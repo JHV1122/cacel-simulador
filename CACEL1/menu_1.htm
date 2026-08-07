@@ -259,7 +259,7 @@ function MM_initTimelines() {
 
     else
 
-        document.MM_Time[0][0].obj = document.all ? document.all["cacel"] : null;
+        document.MM_Time[0][0].obj = document.all ? document.all["cacel"] : document.getElementById("cacel");
 
     document.MM_Time[0][0].keyFrames = new Array(16, 22);
 
@@ -313,7 +313,7 @@ function MM_initTimelines() {
 
     else
 
-        document.MM_Time[0][2].obj = document.all ? document.all["cacel"] : null;
+        document.MM_Time[0][2].obj = document.all ? document.all["cacel"] : document.getElementById("cacel");
 
     document.MM_Time[0][2].keyFrames = new Array(23, 40);
 

@@ -699,7 +699,7 @@ function MM_initTimelines() {
 
     else
 
-        document.MM_Time[0][0].obj = document.all ? document.all["Menu"] : null;
+        document.MM_Time[0][0].obj = document.all ? document.all["Menu"] : document.getElementById("Menu");
 
     document.MM_Time[0][0].keyFrames = new Array(1, 8);
 
@@ -755,7 +755,7 @@ function MM_initTimelines() {
 
     else
 
-        document.MM_Time[0][1].obj = document.all ? document.all["Menu"] : null;
+        document.MM_Time[0][1].obj = document.all ? document.all["Menu"] : document.getElementById("Menu");
 
     document.MM_Time[0][1].keyFrames = new Array(9, 15);
 
@@ -903,7 +903,7 @@ function MM_initTimelines() {
 
     else
 
-        document.MM_Time[1][0].obj = document.all ? document.all["oculta"] : null;
+        document.MM_Time[1][0].obj = document.all ? document.all["oculta"] : document.getElementById("oculta");
 
     document.MM_Time[1][0].keyFrames = new Array(1, 3);
 
@@ -963,7 +963,7 @@ function MM_initTimelines() {
 
     else
 
-        document.MM_Time[2][0].obj = document.all ? document.all["Layer1"] : null;
+        document.MM_Time[2][0].obj = document.all ? document.all["Layer1"] : document.getElementById("Layer1");
 
     document.MM_Time[2][0].keyFrames = new Array(1, 6);
 
@@ -1179,7 +1179,7 @@ alert('La resolución de su monitor es demasiado baja para visualizar esta página
 
       <td rowspan="12" align="center" valign="middle">&nbsp;</td>
 
-      <td valign="middle" bgcolor="#996600"><b><font color="#330099" size="2" face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;<font color="#FFFFFF">Men&uacute;</font></font></b><font color="#FFFFFF">&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="MM_timelineGoto('Timeline1','9')">X</a> 
+      <td valign="middle" bgcolor="#996600"><b><font color="#330099" size="2" face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;<font color="#FFFFFF">Men&uacute;</font></font></b><font color="#FFFFFF">&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="var m=document.getElementById('Menu'); if(m){m.style.left='-160px';}">X</a> 
 
       </td>
 
@@ -1715,7 +1715,7 @@ window.location="mailto:"+e_add+"?subject="+subj;
 
 </div>
 
-&nbsp; <span class="blanco"><a href="#" class="blanco"  onClick="MM_timelinePlay('Timeline1')">Men&uacute;</a></span> 
+&nbsp; <span class="blanco"><a href="#" class="blanco"  onClick="var m=document.getElementById('Menu'); if(m){m.style.left='24px';m.style.visibility='visible';m.style.zIndex='9';tmt_DivOnTop('Menu');}">Men&uacute;</a></span> 
 
 <!--En la linea de tiempo "conmuta"
 

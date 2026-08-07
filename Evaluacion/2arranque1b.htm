@@ -360,7 +360,7 @@ function MM_initTimelines() {
     if (ns)
         document.MM_Time[0][0].obj = document["Menu"];
     else
-        document.MM_Time[0][0].obj = document.all ? document.all["Menu"] : null;
+        document.MM_Time[0][0].obj = document.all ? document.all["Menu"] : document.getElementById("Menu");
     document.MM_Time[0][0].keyFrames = new Array(1, 8);
     document.MM_Time[0][0].values = new Array(5);
     document.MM_Time[0][0].values[0] = new Array(-160,-134,-107,-81,-55,-29,-2,24);
@@ -388,7 +388,7 @@ function MM_initTimelines() {
     if (ns)
         document.MM_Time[0][1].obj = document["Menu"];
     else
-        document.MM_Time[0][1].obj = document.all ? document.all["Menu"] : null;
+        document.MM_Time[0][1].obj = document.all ? document.all["Menu"] : document.getElementById("Menu");
     document.MM_Time[0][1].keyFrames = new Array(9, 15);
     document.MM_Time[0][1].values = new Array(4);
     document.MM_Time[0][1].values[0] = new Array(24,-6,-36,-66,-96,-126,-156);
@@ -462,7 +462,7 @@ function MM_initTimelines() {
     if (ns)
         document.MM_Time[1][0].obj = document["oculta"];
     else
-        document.MM_Time[1][0].obj = document.all ? document.all["oculta"] : null;
+        document.MM_Time[1][0].obj = document.all ? document.all["oculta"] : document.getElementById("oculta");
     document.MM_Time[1][0].keyFrames = new Array(1, 3);
     document.MM_Time[1][0].values = new Array(2);
     document.MM_Time[1][0].values[0] = new Array(25,25,25);
@@ -492,7 +492,7 @@ function MM_initTimelines() {
     if (ns)
         document.MM_Time[2][0].obj = document["Layer1"];
     else
-        document.MM_Time[2][0].obj = document.all ? document.all["Layer1"] : null;
+        document.MM_Time[2][0].obj = document.all ? document.all["Layer1"] : document.getElementById("Layer1");
     document.MM_Time[2][0].keyFrames = new Array(1, 6);
     document.MM_Time[2][0].values = new Array(5);
     document.MM_Time[2][0].values[0] = new Array(28,28,28,28,28,28);
@@ -600,7 +600,7 @@ alert('La resolución de su monitor es demasiado baja para visualizar esta página
     <tr> 
       <td rowspan="13" align="center" valign="middle" bgcolor="#FFFFFF"><img src="imagenes/lacel.gif" width="22" height="102">&nbsp;</td>
       <td rowspan="11" align="center" valign="middle">&nbsp;</td>
-      <td valign="middle" bgcolor="#996600"><b><font color="#330099" size="2" face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;<font color="#FFFFFF">Men&uacute;</font></font></b><font color="#FFFFFF">&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="MM_timelineGoto('Timeline1','9')">X</a> 
+      <td valign="middle" bgcolor="#996600"><b><font color="#330099" size="2" face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;<font color="#FFFFFF">Men&uacute;</font></font></b><font color="#FFFFFF">&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="var m=document.getElementById('Menu'); if(m){m.style.left='-160px';}">X</a> 
       </td>
     </tr>
     <tr> 
@@ -865,7 +865,7 @@ window.location="mailto:"+e_add+"?subject="+subj;
     </tr>
   </table>
 </div>
-&nbsp; <span class="blanco"><a href="#" class="blanco"  onClick="MM_timelinePlay('Timeline1')">Men&uacute;</a></span> 
+&nbsp; <span class="blanco"><a href="#" class="blanco"  onClick="var m=document.getElementById('Menu'); if(m){m.style.left='24px';m.style.visibility='visible';m.style.zIndex='9';tmt_DivOnTop('Menu');}">Men&uacute;</a></span> 
 <!--En la linea de tiempo "conmuta"
 1 cuadro: parada
 2 cuadro: marcha

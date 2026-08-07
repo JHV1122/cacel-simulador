@@ -683,7 +683,7 @@ function MM_initTimelines() {
 
     else
 
-        document.MM_Time[0][0].obj = document.all ? document.all["Menu"] : null;
+        document.MM_Time[0][0].obj = document.all ? document.all["Menu"] : document.getElementById("Menu");
 
     document.MM_Time[0][0].keyFrames = new Array(1, 8);
 
@@ -739,7 +739,7 @@ function MM_initTimelines() {
 
     else
 
-        document.MM_Time[0][1].obj = document.all ? document.all["Menu"] : null;
+        document.MM_Time[0][1].obj = document.all ? document.all["Menu"] : document.getElementById("Menu");
 
     document.MM_Time[0][1].keyFrames = new Array(9, 15);
 
@@ -899,7 +899,7 @@ function MM_initTimelines() {
 
     else
 
-        document.MM_Time[1][2].obj = document.all ? document.all["retardo1"] : null;
+        document.MM_Time[1][2].obj = document.all ? document.all["retardo1"] : document.getElementById("retardo1");
 
     document.MM_Time[1][2].keyFrames = new Array(1, 5);
 
@@ -937,7 +937,7 @@ function MM_initTimelines() {
 
     else
 
-        document.MM_Time[2][2].obj = document.all ? document.all["retardo2"] : null;
+        document.MM_Time[2][2].obj = document.all ? document.all["retardo2"] : document.getElementById("retardo2");
 
     document.MM_Time[2][2].keyFrames = new Array(1, 5);
 
@@ -963,7 +963,7 @@ function MM_initTimelines() {
 
     else
 
-        document.MM_Time[3][0].obj = document.all ? document.all["retardo3"] : null;
+        document.MM_Time[3][0].obj = document.all ? document.all["retardo3"] : document.getElementById("retardo3");
 
     document.MM_Time[3][0].keyFrames = new Array(1, 5);
 
@@ -1001,7 +1001,7 @@ function MM_initTimelines() {
 
     else
 
-        document.MM_Time[4][0].obj = document.all ? document.all["Rearmar"] : null;
+        document.MM_Time[4][0].obj = document.all ? document.all["Rearmar"] : document.getElementById("Rearmar");
 
     document.MM_Time[4][0].keyFrames = new Array(1, 2, 3);
 
@@ -1279,7 +1279,7 @@ alert('La resolución de su monitor es demasiado baja para visualizar esta página
 
       <td rowspan="16" align="center" valign="middle">&nbsp;</td>
 
-      <td valign="middle" bgcolor="#996600"><b><font color="#330099" size="2" face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;<font color="#FFFFFF">Men&uacute;</font></font></b><font color="#FFFFFF">&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="MM_timelineGoto('Timeline1','9')">X</a> 
+      <td valign="middle" bgcolor="#996600"><b><font color="#330099" size="2" face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;<font color="#FFFFFF">Men&uacute;</font></font></b><font color="#FFFFFF">&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="var m=document.getElementById('Menu'); if(m){m.style.left='-160px';}">X</a> 
 
       </td>
 
@@ -2695,7 +2695,7 @@ onMouseDown="MM_swapImage('pulsador3-1','','imagenes/mch1-ac.GIF',1);MM_swapImag
 
 <div id="retardo1" style="position:absolute; width:14px; height:18px; z-index:11; visibility: hidden; left: 221px; top: 0px"></div>
 
-&nbsp; <span class="blanco"><a href="#" class="blanco"  onClick="MM_timelinePlay('Timeline1')">Men&uacute;</a></span> 
+&nbsp; <span class="blanco"><a href="#" class="blanco"  onClick="var m=document.getElementById('Menu'); if(m){m.style.left='24px';m.style.visibility='visible';m.style.zIndex='9';tmt_DivOnTop('Menu');}">Men&uacute;</a></span> 
 
 </body>
 
