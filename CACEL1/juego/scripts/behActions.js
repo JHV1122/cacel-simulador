@@ -57,7 +57,9 @@ function MM_findObj(r, d) { //v3.0  special CourseBuilder version of findObj
   if (parent.frames.length) { if (r.indexOf(".frames[")==6) d=eval(r.substring(0,r.indexOf("]")+10));
     if ((p=r.indexOf("?"))!=-1) {n=r.substring(0,p); d=parent.frames[r.substring(p+1)].document;} }
   if (!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
-  for (i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+  for (i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n);
+  return x;
 }
 function MM_goToURL() { //v3.0
   var i, args=MM_goToURL.arguments; document.MM_returnValue = false;
