@@ -8,7 +8,9 @@ function MM_findObj(n, d) { //v3.0
   var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
     d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
   if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
-  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n);
+  return x;
 }
 
 function MM_dragLayer(objName,x,hL,hT,hW,hH,toFront,dropBack,cU,cD,cL,cR,targL,targT,tol,dropJS,et,dragJS) { //v3.0
@@ -188,7 +190,10 @@ function tmt_IELayerTransitions(targetIE, dur, filterId) {
     for (i = 0; i < arHidden.length; i++) {
         if (arHidden[i] == transNo) { endState = "visible"; }
     }
-    target = eval(targetIE);
+    var idMatch = targetIE.match(/\[['"]([^'"]+)['"]\]/);
+    var targetId = idMatch ? idMatch[1] : null;
+    target = targetId ? document.getElementById(targetId) : null;
+    if (!target) { return; }
     if (document.all && target.filters) {
         target.style.filter = "revealTrans(duration=" + dur + ",transition=" + filterId + ")";
         if (endState == "visible") { target.style.visibility = "hidden"; }
@@ -335,6 +340,12 @@ function tmt_LayerBoxOut(targetNN, targetIE, dur, incr) {
         } else {
             setTimeout("tmt_LayerBoxOut(\"" + targetNN + "\",\"" + targetIE + "\",\"" + dur + "\",1)", dur);
         }
+    }
+    if (!document.all && !document.layers) {
+        var idMatch = targetIE.match(/\[['"]([^'"]+)['"]\]/);
+        var targetId = idMatch ? idMatch[1] : null;
+        var tlbTarget = targetId ? document.getElementById(targetId) : null;
+        if (tlbTarget) { tlbTarget.style.visibility = "visible"; }
     }
 }
 

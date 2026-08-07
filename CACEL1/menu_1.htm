@@ -41,7 +41,11 @@ function MM_findObj(n, d) { //v3.0
 
   if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
 
-  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+
+  if(!x && d.getElementById) x=d.getElementById(n);
+
+  return x;
 
 }
 
@@ -64,7 +68,10 @@ function tmt_IELayerTransitions(targetIE, dur, filterId) {
     for (i = 0; i < arHidden.length; i++) {
         if (arHidden[i] == transNo) { endState = "visible"; }
     }
-    target = eval(targetIE);
+    var idMatch = targetIE.match(/\[['"]([^'"]+)['"]\]/);
+    var targetId = idMatch ? idMatch[1] : null;
+    target = targetId ? document.getElementById(targetId) : null;
+    if (!target) { return; }
     if (document.all && target.filters) {
         target.style.filter = "revealTrans(duration=" + dur + ",transition=" + filterId + ")";
         if (endState == "visible") { target.style.visibility = "hidden"; }
