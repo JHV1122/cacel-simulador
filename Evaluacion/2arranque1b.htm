@@ -1,0 +1,874 @@
+<html>
+<head>
+<title>CACEL 1.0 (C&C)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script language="JavaScript">
+<!--
+function tmt_IELayerTransitions(targetIE, dur, filterId) {
+    transNo = parseInt(filterId);
+    arHidden = new Array(1, 3, 14, 16);
+    endState = "hidden";
+    for (i = 0; i < arHidden.length; i++) {
+        if (arHidden[i] == transNo) { endState = "visible"; }
+    }
+    target = eval(targetIE);
+    if (document.all && target.filters) {
+        target.style.filter = "revealTrans(duration=" + dur + ",transition=" + filterId + ")";
+        if (endState == "visible") { target.style.visibility = "hidden"; }
+        target.filters.revealTrans.apply();
+        target.style.visibility = endState;
+        target.filters.revealTrans.play();
+    } else {
+        target.style.visibility = endState;
+    }
+}
+function tmt_LayerBoxOut(targetNN, targetIE, dur, incr) {
+    transNo = parseInt(1);
+    arHidden = new Array(1, 3, 14, 16);
+    if (document.all) {
+        target = eval(targetIE);
+        target.style.filter = "revealTrans(duration=" + dur + ",transition=1)";
+        endState = "hidden";
+        for (i = 0; i < arHidden.length; i++) {
+            if (arHidden[i] == transNo) {
+                endState = "visible";
+                target.style.visibility = "hidden";
+            }
+        }
+        target.filters.revealTrans.apply();
+        target.style.visibility = endState;
+        target.filters.revealTrans.play();
+    }
+    if (document.layers) {
+        target = eval(targetNN);
+        if (incr == 0) {
+            target.origLeft = target.clip.left;
+            target.origTop = target.clip.top;
+            target.origRight = target.clip.right;
+            target.origBottom = target.clip.bottom;
+            mSecs = dur * 1000;
+            intval = 100;
+            visits = (mSecs / intval);
+            fullW = target.clip.width;
+            fullH = target.clip.height;
+            halfW = fullW / 2;
+            halfH = fullH / 2;
+            alternateW = alternateH = true;
+            incW = halfW / visits;
+            incrementW = (incW >= 1) ? parseInt(incW) : 0;
+            xtraPixW = Math.round((incW - incrementW) * visits);
+            incH = halfH / visits;
+            incrementH = (incH >= 1) ? parseInt(incH) : 0;
+            xtraPixH = Math.round((incH - incrementH) * visits);
+            target.clip.left += halfW;
+            target.clip.right -= halfW;
+            target.clip.top += halfH;
+            target.clip.bottom -= halfH;
+            target.visibility = "show";
+            if ((target.clip.left - target.origLeft) <= incrementW) {
+                target.clip.left = target.origLeft;
+                target.clip.right = target.origRight;
+            } else {
+                if (xtraPixW > 0) {
+                    if (xtraPixW <= visits) {
+                        if (alternateW) {
+                            target.clip.left--;
+                            target.clip.right++;
+                            xtraPixW--;
+                        }
+                        alternateW = !alternateW;
+                    } else {
+                        target.clip.left--;
+                        target.clip.right++;
+                        xtraPixW--;
+                    }
+                }
+                target.clip.left -= incrementW;
+                target.clip.right += incrementW;
+            }
+            if ((target.clip.top - target.origTop) <= incrementH) {
+                target.clip.top = target.origTop;
+                target.clip.bottom = target.origBottom;
+            } else {
+                if (xtraPixH > 0) {
+                    if (xtraPixH <= visits) {
+                        if (alternateH) {
+                            target.clip.top--;
+                            target.clip.bottom++;
+                            xtraPixH--;
+                        }
+                        alternateH = !alternateH;
+                    } else {
+                        target.clip.top--;
+                        target.clip.bottom++;
+                        xtraPixH--;
+                    }
+                }
+                target.clip.top -= incrementH;
+                target.clip.bottom += incrementH;
+            }
+            visits--;
+        } else {
+            if ((target.clip.left - target.origLeft) <= incrementW) {
+                target.clip.left = target.origLeft;
+                target.clip.right = target.origRight;
+            } else {
+                if (xtraPixW > 0) {
+                    if (xtraPixW <= visits) {
+                        if (alternateW) {
+                            target.clip.left--;
+                            target.clip.right++;
+                            xtraPixW--;
+                        }
+                        alternateW = !alternateW;
+                    } else {
+                        target.clip.left--;
+                        target.clip.right++;
+                        xtraPixW--;
+                    }
+                }
+                target.clip.left -= incrementW;
+                target.clip.right += incrementW;
+            }
+            if ((target.clip.top - target.origTop) <= incrementH) {
+                target.clip.top = target.origTop;
+                target.clip.bottom = target.origBottom;
+            } else {
+                if (xtraPixH > 0) {
+                    if (xtraPixH <= visits) {
+                        if (alternateH) {
+                            target.clip.top--;
+                            target.clip.bottom++;
+                            xtraPixH--;
+                        }
+                        alternateH = !alternateH;
+                    } else {
+                        target.clip.top--;
+                        target.clip.bottom++;
+                        xtraPixH--;
+                    }
+                }
+                target.clip.top -= incrementH;
+                target.clip.bottom += incrementH;
+            }
+            visits--;
+        }
+        if (target.clip.left == target.origLeft && target.clip.top == target.origTop) {
+        } else {
+            setTimeout("tmt_LayerBoxOut(\"" + targetNN + "\",\"" + targetIE + "\",\"" + dur + "\",1)", dur);
+        }
+    }
+}
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+function MM_dragLayer(objName,x,hL,hT,hW,hH,toFront,dropBack,cU,cD,cL,cR,targL,targT,tol,dropJS,et,dragJS) { //v3.0
+  //Copyright 1998 Macromedia, Inc. All rights reserved.
+  var i,j,aLayer,retVal,curDrag=null,NS=(navigator.appName=='Netscape'), curLeft, curTop;
+  if (!document.all && !document.layers) return false;
+  retVal = true; if(!NS && event) event.returnValue = true;
+  if (MM_dragLayer.arguments.length > 1) {
+    curDrag = MM_findObj(objName); if (!curDrag) return false;
+    if (!document.allLayers) { document.allLayers = new Array();
+      with (document) if (NS) { for (i=0; i<layers.length; i++) allLayers[i]=layers[i];
+        for (i=0; i<allLayers.length; i++) if (allLayers[i].document && allLayers[i].document.layers)
+          with (allLayers[i].document) for (j=0; j<layers.length; j++) allLayers[allLayers.length]=layers[j];
+      } else for (i=0;i<all.length;i++) if (all[i].style&&all[i].style.position) allLayers[allLayers.length]=all[i];}
+    curDrag.MM_dragOk=true; curDrag.MM_targL=targL; curDrag.MM_targT=targT;
+    curDrag.MM_tol=Math.pow(tol,2); curDrag.MM_hLeft=hL; curDrag.MM_hTop=hT;
+    curDrag.MM_hWidth=hW; curDrag.MM_hHeight=hH; curDrag.MM_toFront=toFront;
+    curDrag.MM_dropBack=dropBack; curDrag.MM_dropJS=dropJS;
+    curDrag.MM_everyTime=et; curDrag.MM_dragJS=dragJS;
+    curDrag.MM_oldZ = (NS)?curDrag.zIndex:curDrag.style.zIndex;
+    curLeft= (NS)?curDrag.left:curDrag.style.pixelLeft; curDrag.MM_startL = curLeft;
+    curTop = (NS)?curDrag.top:curDrag.style.pixelTop; curDrag.MM_startT = curTop;
+    curDrag.MM_bL=(cL<0)?null:curLeft-cL; curDrag.MM_bT=(cU<0)?null:curTop -cU;
+    curDrag.MM_bR=(cR<0)?null:curLeft+cR; curDrag.MM_bB=(cD<0)?null:curTop +cD;
+    curDrag.MM_LEFTRIGHT=0; curDrag.MM_UPDOWN=0; curDrag.MM_SNAPPED=false; //use in your JS!
+    document.onmousedown = MM_dragLayer; document.onmouseup = MM_dragLayer;
+    if (NS) document.captureEvents(Event.MOUSEDOWN|Event.MOUSEUP);
+  } else {
+    var theEvent = ((NS)?objName.type:event.type);
+    if (theEvent == 'mousedown') {
+      var mouseX = (NS)?objName.pageX : event.clientX + document.body.scrollLeft;
+      var mouseY = (NS)?objName.pageY : event.clientY + document.body.scrollTop;
+      var maxDragZ=null; document.MM_maxZ = 0;
+      for (i=0; i<document.allLayers.length; i++) { aLayer = document.allLayers[i];
+        var aLayerZ = (NS)?aLayer.zIndex:aLayer.style.zIndex;
+        if (aLayerZ > document.MM_maxZ) document.MM_maxZ = aLayerZ;
+        var isVisible = (((NS)?aLayer.visibility:aLayer.style.visibility).indexOf('hid') == -1);
+        if (aLayer.MM_dragOk != null && isVisible) with (aLayer) {
+          var parentL=0; var parentT=0;
+          if (!NS) { parentLayer = aLayer.parentElement;
+            while (parentLayer != null && parentLayer.style.position) {
+              parentL += parentLayer.offsetLeft; parentT += parentLayer.offsetTop;
+              parentLayer = parentLayer.parentElement; } }
+          var tmpX=mouseX-(((NS)?pageX:style.pixelLeft+parentL)+MM_hLeft);
+          var tmpY=mouseY-(((NS)?pageY:style.pixelTop +parentT)+MM_hTop);
+          var tmpW = MM_hWidth;  if (tmpW <= 0) tmpW += ((NS)?clip.width :offsetWidth);
+          var tmpH = MM_hHeight; if (tmpH <= 0) tmpH += ((NS)?clip.height:offsetHeight);
+          if ((0 <= tmpX && tmpX < tmpW && 0 <= tmpY && tmpY < tmpH) && (maxDragZ == null
+              || maxDragZ <= aLayerZ)) { curDrag = aLayer; maxDragZ = aLayerZ; } } }
+      if (curDrag) {
+        document.onmousemove = MM_dragLayer; if (NS) document.captureEvents(Event.MOUSEMOVE);
+        curLeft = (NS)?curDrag.left:curDrag.style.pixelLeft;
+        curTop = (NS)?curDrag.top:curDrag.style.pixelTop;
+        MM_oldX = mouseX - curLeft; MM_oldY = mouseY - curTop;
+        document.MM_curDrag = curDrag;  curDrag.MM_SNAPPED=false;
+        if(curDrag.MM_toFront) {
+          eval('curDrag.'+((NS)?'':'style.')+'zIndex=document.MM_maxZ+1');
+          if (!curDrag.MM_dropBack) document.MM_maxZ++; }
+        retVal = false; if(!NS) event.returnValue = false;
+    } } else if (theEvent == 'mousemove') {
+      if (document.MM_curDrag) with (document.MM_curDrag) {
+        var mouseX = (NS)?objName.pageX : event.clientX + document.body.scrollLeft;
+        var mouseY = (NS)?objName.pageY : event.clientY + document.body.scrollTop;
+        newLeft = mouseX-MM_oldX; newTop  = mouseY-MM_oldY;
+        if (MM_bL!=null) newLeft = Math.max(newLeft,MM_bL);
+        if (MM_bR!=null) newLeft = Math.min(newLeft,MM_bR);
+        if (MM_bT!=null) newTop  = Math.max(newTop ,MM_bT);
+        if (MM_bB!=null) newTop  = Math.min(newTop ,MM_bB);
+        MM_LEFTRIGHT = newLeft-MM_startL; MM_UPDOWN = newTop-MM_startT;
+        if (NS) {left = newLeft; top = newTop;}
+        else {style.pixelLeft = newLeft; style.pixelTop = newTop;}
+        if (MM_dragJS) eval(MM_dragJS);
+        retVal = false; if(!NS) event.returnValue = false;
+    } } else if (theEvent == 'mouseup') {
+      document.onmousemove = null;
+      if (NS) document.releaseEvents(Event.MOUSEMOVE);
+      if (NS) document.captureEvents(Event.MOUSEDOWN); //for mac NS
+      if (document.MM_curDrag) with (document.MM_curDrag) {
+        if (typeof MM_targL =='number' && typeof MM_targT == 'number' &&
+            (Math.pow(MM_targL-((NS)?left:style.pixelLeft),2)+
+             Math.pow(MM_targT-((NS)?top:style.pixelTop),2))<=MM_tol) {
+          if (NS) {left = MM_targL; top = MM_targT;}
+          else {style.pixelLeft = MM_targL; style.pixelTop = MM_targT;}
+          MM_SNAPPED = true; MM_LEFTRIGHT = MM_startL-MM_targL; MM_UPDOWN = MM_startT-MM_targT; }
+        if (MM_everyTime || MM_SNAPPED) eval(MM_dropJS);
+        if(MM_dropBack) {if (NS) zIndex = MM_oldZ; else style.zIndex = MM_oldZ;}
+        retVal = false; if(!NS) event.returnValue = false; }
+      document.MM_curDrag = null;
+    }
+    if (NS) document.routeEvent(objName);
+  } return retVal;
+}
+
+function MM_timelinePlay(tmLnName, myID) { //v1.2
+  //Copyright 1997 Macromedia, Inc. All rights reserved.
+  var i,j,tmLn,props,keyFrm,sprite,numKeyFr,firstKeyFr,propNum,theObj,firstTime=false;
+  if (document.MM_Time == null) MM_initTimelines(); //if *very* 1st time
+  tmLn = document.MM_Time[tmLnName];
+  if (myID == null) { myID = ++tmLn.ID; firstTime=true;}//if new call, incr ID
+  if (myID == tmLn.ID) { //if Im newest
+    setTimeout('MM_timelinePlay("'+tmLnName+'",'+myID+')',tmLn.delay);
+    fNew = ++tmLn.curFrame;
+    for (i=0; i<tmLn.length; i++) {
+      sprite = tmLn[i];
+      if (sprite.charAt(0) == 's') {
+        if (sprite.obj) {
+          numKeyFr = sprite.keyFrames.length; firstKeyFr = sprite.keyFrames[0];
+          if (fNew >= firstKeyFr && fNew <= sprite.keyFrames[numKeyFr-1]) {//in range
+            keyFrm=1;
+            for (j=0; j<sprite.values.length; j++) {
+              props = sprite.values[j]; 
+              if (numKeyFr != props.length) {
+                if (props.prop2 == null) sprite.obj[props.prop] = props[fNew-firstKeyFr];
+                else        sprite.obj[props.prop2][props.prop] = props[fNew-firstKeyFr];
+              } else {
+                while (keyFrm<numKeyFr && fNew>=sprite.keyFrames[keyFrm]) keyFrm++;
+                if (firstTime || fNew==sprite.keyFrames[keyFrm-1]) {
+                  if (props.prop2 == null) sprite.obj[props.prop] = props[keyFrm-1];
+                  else        sprite.obj[props.prop2][props.prop] = props[keyFrm-1];
+        } } } } }
+      } else if (sprite.charAt(0)=='b' && fNew == sprite.frame) eval(sprite.value);
+      if (fNew > tmLn.lastFrame) tmLn.ID = 0;
+  } }
+}
+
+function MM_timelineGoto(tmLnName, fNew, numGotos) { //v2.0
+  //Copyright 1997 Macromedia, Inc. All rights reserved.
+  var i,j,tmLn,props,keyFrm,sprite,numKeyFr,firstKeyFr,lastKeyFr,propNum,theObj;
+  if (document.MM_Time == null) MM_initTimelines(); //if *very* 1st time
+  tmLn = document.MM_Time[tmLnName];
+  if (numGotos != null)
+    if (tmLn.gotoCount == null) tmLn.gotoCount = 1;
+    else if (tmLn.gotoCount++ >= numGotos) {tmLn.gotoCount=0; return}
+  jmpFwd = (fNew > tmLn.curFrame);
+  for (i = 0; i < tmLn.length; i++) {
+    sprite = (jmpFwd)? tmLn[i] : tmLn[(tmLn.length-1)-i]; //count bkwds if jumping back
+    if (sprite.charAt(0) == "s") {
+      numKeyFr = sprite.keyFrames.length;
+      firstKeyFr = sprite.keyFrames[0];
+      lastKeyFr = sprite.keyFrames[numKeyFr - 1];
+      if ((jmpFwd && fNew<firstKeyFr) || (!jmpFwd && lastKeyFr<fNew)) continue; //skip if untouchd
+      for (keyFrm=1; keyFrm<numKeyFr && fNew>=sprite.keyFrames[keyFrm]; keyFrm++);
+      for (j=0; j<sprite.values.length; j++) {
+        props = sprite.values[j];
+        if (numKeyFr == props.length) propNum = keyFrm-1 //keyframes only
+        else propNum = Math.min(Math.max(0,fNew-firstKeyFr),props.length-1); //or keep in legal range
+        if (sprite.obj != null) {
+          if (props.prop2 == null) sprite.obj[props.prop] = props[propNum];
+          else        sprite.obj[props.prop2][props.prop] = props[propNum];
+      } }
+    } else if (sprite.charAt(0)=='b' && fNew == sprite.frame) eval(sprite.value);
+  }
+  tmLn.curFrame = fNew;
+  if (tmLn.ID == 0) eval('MM_timelinePlay(tmLnName)');
+}
+
+function MM_timelineStop(tmLnName) { //v1.2
+  //Copyright 1997 Macromedia, Inc. All rights reserved.
+  if (document.MM_Time == null) MM_initTimelines(); //if *very* 1st time
+  if (tmLnName == null)  //stop all
+    for (var i=0; i<document.MM_Time.length; i++) document.MM_Time[i].ID = null;
+  else document.MM_Time[tmLnName].ID = null; //stop one
+}
+
+function tmt_DivOnTop(theDiv){
+	var t = 0;var z = (document.layers) ? ".zIndex" : ".style.zIndex";
+	var fun = (document.getElementById) ? "document.getElementById" : "MM_findObj";
+	var arr = (document.layers) ? document.layers : (document.all) ? document.all.tags("DIV") : document.getElementsByTagName("DIV");
+	for(var i=0;i<arr.length;i++){var oz = eval("arr["+i+"]"+z);if(oz > t){t = oz;}}
+	var obj = eval(fun+"(theDiv)");if(obj)eval(fun+"('"+theDiv+"')"+z+"=parseInt("+t+")+1");
+}
+
+function MM_initTimelines() {
+    //MM_initTimelines() Copyright 1997 Macromedia, Inc. All rights reserved.
+    var ns = navigator.appName == "Netscape";
+    document.MM_Time = new Array(3);
+    document.MM_Time[0] = new Array(17);
+    document.MM_Time["Timeline1"] = document.MM_Time[0];
+    document.MM_Time[0].MM_Name = "Timeline1";
+    document.MM_Time[0].fps = 15;
+    document.MM_Time[0][0] = new String("sprite");
+    document.MM_Time[0][0].slot = 1;
+    if (ns)
+        document.MM_Time[0][0].obj = document["Menu"];
+    else
+        document.MM_Time[0][0].obj = document.all ? document.all["Menu"] : null;
+    document.MM_Time[0][0].keyFrames = new Array(1, 8);
+    document.MM_Time[0][0].values = new Array(5);
+    document.MM_Time[0][0].values[0] = new Array(-160,-134,-107,-81,-55,-29,-2,24);
+    document.MM_Time[0][0].values[0].prop = "left";
+    document.MM_Time[0][0].values[1] = new Array(86,86,86,86,86,86,86,86);
+    document.MM_Time[0][0].values[1].prop = "top";
+    if (!ns) {
+        document.MM_Time[0][0].values[0].prop2 = "style";
+        document.MM_Time[0][0].values[1].prop2 = "style";
+    }
+    document.MM_Time[0][0].values[2] = new Array("visible","visible");
+    document.MM_Time[0][0].values[2].prop = "visibility";
+    if (!ns)
+        document.MM_Time[0][0].values[2].prop2 = "style";
+    document.MM_Time[0][0].values[3] = new Array("9","9");
+    document.MM_Time[0][0].values[3].prop = "zIndex";
+    if (!ns)
+        document.MM_Time[0][0].values[3].prop2 = "style";
+    document.MM_Time[0][0].values[4] = new Array(227,227,227,227,227,227,227,227);
+    document.MM_Time[0][0].values[4].prop = "height";
+    if (!ns)
+        document.MM_Time[0][0].values[4].prop2 = "style";
+    document.MM_Time[0][1] = new String("sprite");
+    document.MM_Time[0][1].slot = 1;
+    if (ns)
+        document.MM_Time[0][1].obj = document["Menu"];
+    else
+        document.MM_Time[0][1].obj = document.all ? document.all["Menu"] : null;
+    document.MM_Time[0][1].keyFrames = new Array(9, 15);
+    document.MM_Time[0][1].values = new Array(4);
+    document.MM_Time[0][1].values[0] = new Array(24,-6,-36,-66,-96,-126,-156);
+    document.MM_Time[0][1].values[0].prop = "left";
+    document.MM_Time[0][1].values[1] = new Array(86,86,86,86,86,86,86);
+    document.MM_Time[0][1].values[1].prop = "top";
+    if (!ns) {
+        document.MM_Time[0][1].values[0].prop2 = "style";
+        document.MM_Time[0][1].values[1].prop2 = "style";
+    }
+    document.MM_Time[0][1].values[2] = new Array("9","9");
+    document.MM_Time[0][1].values[2].prop = "zIndex";
+    if (!ns)
+        document.MM_Time[0][1].values[2].prop2 = "style";
+    document.MM_Time[0][1].values[3] = new Array(169,178,188,198,207,217,227);
+    document.MM_Time[0][1].values[3].prop = "height";
+    if (!ns)
+        document.MM_Time[0][1].values[3].prop2 = "style";
+    document.MM_Time[0][2] = new String("behavior");
+    document.MM_Time[0][2].frame = 15;
+    document.MM_Time[0][2].value = "MM_timelineGoto('Timeline1','1')";
+    document.MM_Time[0][3] = new String("behavior");
+    document.MM_Time[0][3].frame = 8;
+    document.MM_Time[0][3].value = "MM_timelineStop('Timeline1');tmt_DivOnTop('Menu')";
+    document.MM_Time[0][4] = new String("behavior");
+    document.MM_Time[0][4].frame = 1;
+    document.MM_Time[0][4].value = "MM_timelineStop('Timeline1')";
+    document.MM_Time[0][5] = new String("behavior");
+    document.MM_Time[0][5].frame = 9;
+    document.MM_Time[0][5].value = "MM_timelinePlay('Timeline1');tmt_DivOnTop('Menu')";
+    document.MM_Time[0][6] = new String("behavior");
+    document.MM_Time[0][6].frame = 2;
+    document.MM_Time[0][6].value = "tmt_DivOnTop('Menu')";
+    document.MM_Time[0][7] = new String("behavior");
+    document.MM_Time[0][7].frame = 3;
+    document.MM_Time[0][7].value = "tmt_DivOnTop('Menu')";
+    document.MM_Time[0][8] = new String("behavior");
+    document.MM_Time[0][8].frame = 4;
+    document.MM_Time[0][8].value = "tmt_DivOnTop('Menu')";
+    document.MM_Time[0][9] = new String("behavior");
+    document.MM_Time[0][9].frame = 5;
+    document.MM_Time[0][9].value = "tmt_DivOnTop('Menu')";
+    document.MM_Time[0][10] = new String("behavior");
+    document.MM_Time[0][10].frame = 6;
+    document.MM_Time[0][10].value = "tmt_DivOnTop('Menu')";
+    document.MM_Time[0][11] = new String("behavior");
+    document.MM_Time[0][11].frame = 7;
+    document.MM_Time[0][11].value = "tmt_DivOnTop('Menu')";
+    document.MM_Time[0][12] = new String("behavior");
+    document.MM_Time[0][12].frame = 10;
+    document.MM_Time[0][12].value = "tmt_DivOnTop('Menu')";
+    document.MM_Time[0][13] = new String("behavior");
+    document.MM_Time[0][13].frame = 11;
+    document.MM_Time[0][13].value = "tmt_DivOnTop('Menu')";
+    document.MM_Time[0][14] = new String("behavior");
+    document.MM_Time[0][14].frame = 12;
+    document.MM_Time[0][14].value = "tmt_DivOnTop('Menu')";
+    document.MM_Time[0][15] = new String("behavior");
+    document.MM_Time[0][15].frame = 13;
+    document.MM_Time[0][15].value = "tmt_DivOnTop('Menu')";
+    document.MM_Time[0][16] = new String("behavior");
+    document.MM_Time[0][16].frame = 14;
+    document.MM_Time[0][16].value = "tmt_DivOnTop('Menu')";
+    document.MM_Time[0].lastFrame = 15;
+    document.MM_Time[1] = new Array(4);
+    document.MM_Time["conmuta"] = document.MM_Time[1];
+    document.MM_Time[1].MM_Name = "conmuta";
+    document.MM_Time[1].fps = 15;
+    document.MM_Time[1][0] = new String("sprite");
+    document.MM_Time[1][0].slot = 1;
+    if (ns)
+        document.MM_Time[1][0].obj = document["oculta"];
+    else
+        document.MM_Time[1][0].obj = document.all ? document.all["oculta"] : null;
+    document.MM_Time[1][0].keyFrames = new Array(1, 3);
+    document.MM_Time[1][0].values = new Array(2);
+    document.MM_Time[1][0].values[0] = new Array(25,25,25);
+    document.MM_Time[1][0].values[0].prop = "width";
+    if (!ns)
+        document.MM_Time[1][0].values[0].prop2 = "style";
+    document.MM_Time[1][0].values[1] = new Array(31,31,31);
+    document.MM_Time[1][0].values[1].prop = "height";
+    if (!ns)
+        document.MM_Time[1][0].values[1].prop2 = "style";
+    document.MM_Time[1][1] = new String("behavior");
+    document.MM_Time[1][1].frame = 1;
+    document.MM_Time[1][1].value = "MM_swapImage('fuerza','','imagenes/arranque1/arran4.gif',1);MM_swapImage('mando','','imagenes/arranque1/arran1.gif',1);MM_showHideLayers('intoff','','show','inton','','hide');MM_swapImage('motor_foto','','imagenes/motor.gif',1);MM_swapImage('motor_giro','','imagenes/motor_parado.gif',1);MM_swapImage('amperimetro','','imagenes/amper-0.gif',1)";
+    document.MM_Time[1][2] = new String("behavior");
+    document.MM_Time[1][2].frame = 2;
+    document.MM_Time[1][2].value = "MM_swapImage('fuerza','','imagenes/arranque1/arran3b.gif',1);MM_swapImage('mando','','imagenes/arranque1/arran2.gif',1);MM_swapImage('motor_foto','','imagenes/motor_marcha.gif',1);MM_swapImage('motor_giro','','imagenes/giro_dcha.gif',1);MM_showHideLayers('intoff','','hide','inton','','show');MM_showHideLayers('cableroto','','show');MM_swapImage('amperimetro','','imagenes/amper-anima1.gif',1)";
+    document.MM_Time[1][3] = new String("behavior");
+    document.MM_Time[1][3].frame = 3;
+    document.MM_Time[1][3].value = "MM_swapImage('fuerza','','imagenes/arranque1/motor_dos_fases.gif',1);MM_swapImage('motor_foto','','imagenes/motor_2fases.gif','motor_giro','','imagenes/motor_mal.gif',1);MM_swapImage('amperimetro','','imagenes/amper-4.gif',1)";
+    document.MM_Time[1].lastFrame = 3;
+    document.MM_Time[2] = new Array(4);
+    document.MM_Time["tiempo"] = document.MM_Time[2];
+    document.MM_Time[2].MM_Name = "tiempo";
+    document.MM_Time[2].fps = 1;
+    document.MM_Time[2][0] = new String("sprite");
+    document.MM_Time[2][0].slot = 1;
+    if (ns)
+        document.MM_Time[2][0].obj = document["Layer1"];
+    else
+        document.MM_Time[2][0].obj = document.all ? document.all["Layer1"] : null;
+    document.MM_Time[2][0].keyFrames = new Array(1, 6);
+    document.MM_Time[2][0].values = new Array(5);
+    document.MM_Time[2][0].values[0] = new Array(28,28,28,28,28,28);
+    document.MM_Time[2][0].values[0].prop = "left";
+    document.MM_Time[2][0].values[1] = new Array(281,281,281,281,281,281);
+    document.MM_Time[2][0].values[1].prop = "top";
+    if (!ns) {
+        document.MM_Time[2][0].values[0].prop2 = "style";
+        document.MM_Time[2][0].values[1].prop2 = "style";
+    }
+    document.MM_Time[2][0].values[2] = new Array(31,31,31,31,31,31);
+    document.MM_Time[2][0].values[2].prop = "width";
+    if (!ns)
+        document.MM_Time[2][0].values[2].prop2 = "style";
+    document.MM_Time[2][0].values[3] = new Array(51,51,51,51,51,51);
+    document.MM_Time[2][0].values[3].prop = "height";
+    if (!ns)
+        document.MM_Time[2][0].values[3].prop2 = "style";
+    document.MM_Time[2][0].values[4] = new Array("inherit","inherit");
+    document.MM_Time[2][0].values[4].prop = "visibility";
+    if (!ns)
+        document.MM_Time[2][0].values[4].prop2 = "style";
+    document.MM_Time[2][1] = new String("behavior");
+    document.MM_Time[2][1].frame = 6;
+    document.MM_Time[2][1].value = "MM_swapImage('motor_foto','','imagenes/motor_quemado.gif',1);MM_swapImage('motor_giro','','imagenes/motor_parado.gif',1);MM_swapImage('fuerza','','imagenes/arranque1/arran5b.gif',1);MM_swapImage('amperimetro','','imagenes/amper-0.gif',1);MM_popupMsg('¡¡Atención!!\\rEl motor se ha quemado por falta de una fase.\\rPara reiniciar el circuito hacer clic en el interruptor del cuadro eléctrico.')";
+    document.MM_Time[2][2] = new String("behavior");
+    document.MM_Time[2][2].frame = 1;
+    document.MM_Time[2][2].value = "MM_timelinePlay('tiempo');MM_showHideLayers('mensaje','','show')";
+    document.MM_Time[2][3] = new String("behavior");
+    document.MM_Time[2][3].frame = 5;
+    document.MM_Time[2][3].value = "MM_showHideLayers('mensaje','','hide')";
+    document.MM_Time[2].lastFrame = 6;
+    for (i=0; i<document.MM_Time.length; i++) {
+        document.MM_Time[i].ID = null;
+        document.MM_Time[i].curFrame = 0;
+        document.MM_Time[i].delay = 1000/document.MM_Time[i].fps;
+    }
+}
+//-->
+</script>
+<link rel="stylesheet" href="estilo1.css">
+<script language="JavaScript">
+<!--
+
+//Detección de la resolución de pantalla
+
+if ((screen.width == 640) && (screen.height == 480)) 
+{
+alert('La resolución de su monitor es demasiado baja para visualizar esta página.¡Por favor cámbiela a 800x600!')
+}
+//-->
+</script>
+<script language="JavaScript" src="scripts/behActions.js"></script>
+<script language="JavaScript" src="scripts/behCourseBuilder.js"></script>
+<script language="JavaScript" src="scripts/interactionClass.js"></script>
+<script language="JavaScript" src="scripts/elemInptClass.js"></script>
+<script language="JavaScript" src="scripts/elemIbtnClass.js"></script>
+</head>
+
+<body bgcolor="#FFFFFF" bgproperties="fixed"
+ onLoad="MM_initInteractions();MM_dragLayer('Fuerza','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Cuadro','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Mando','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Motores','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Materiales','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Leyenda','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_timelineGoto('Timeline1','1');MM_dragLayer('Menu','',0,0,0,0,true,false,0,0,0,181,24,86,300,'',false,'');MM_dragLayer('Descripcion','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('cuestionario','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_preloadImages('imagenes/arranque1/arran1.gif','imagenes/arranque1/arran2.gif','imagenes/motor_marcha.gif','imagenes/giro_dcha.gif','imagenes/arranque1/arran4.gif','imagenes/motor.gif','imagenes/motor_parado.gif','imagenes/arranque1/arran3b.gif','imagenes/arranque1/motor_dos_fases.gif','imagenes/motor_2fases.gif','imagenes/motor_mal.gif','imagenes/motor_quemado.gif','imagenes/arranque1/arran5b.gif','imagenes/amper-anima1.gif','imagenes/amper-0.gif','imagenes/amper-4.gif');MM_dragLayer('Creditos','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Titulo','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'')" marginwidth="0" marginheight="0" topmargin="0" leftmargin="0" background="imagenes/fondo.jpg">
+<div id="oculta" style="position:absolute; width:1px; height:1px; z-index:11; left: 18px; top: 320px; visibility: hidden"></div>
+<div id="Creditos" style="position:absolute; width:366px; height:260px; z-index:10; top: 42px; overflow: visible; visibility: hidden; left: 230px"> 
+  <div aling=justify class="creditos"> 
+    <table width="381" border="0" cellspacing="1" cellpadding="0" height="245" bgcolor="#000000">
+      <tr> 
+        <td height="15" bgcolor="#FFCC00"> 
+          <div align="left"><b><font face="Arial, Helvetica, sans-serif" color="#CCCC99">&nbsp;<font color="#000000">Acerca 
+            de CACEL</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Creditos\']','0.8','12');MM_showHideLayers('Creditos','','hide')">X</a></b></font></b></div>
+        </td>
+      </tr>
+      <tr valign="top" bgcolor="#FFFFFF"> 
+        <td height="290"> 
+          <blockquote> 
+            <p><b><font face="Arial, Helvetica, sans-serif" color="#CCCC99"><br>
+              <img src="imagenes/portada/icono.gif" width="100" height="22"></font></b></p>
+            <p><font face="Arial, Helvetica, sans-serif" color="#000000" size="2">Curso 
+              de Automatismos Cableados en L&iacute;nea</font> </p>
+            <p><font face="Arial, Helvetica, sans-serif" size="1" color="#3333CC"><b>Desarrollado 
+              por:</b></font></p>
+            <p><font face="Arial, Helvetica, sans-serif" size="1" color="#990000">Juan 
+              Carlos Mart&iacute;n Castillo </font><font face="Arial, Helvetica, sans-serif" size="1" color="#003300"><br>
+              Profesor de Instalaciones Electrot&eacute;cnicas del IES &quot;R&iacute;o 
+              Cuerpo de Hombre&quot; de B&eacute;jar (Salamanca)</font></p>
+            <p><font face="Arial, Helvetica, sans-serif" size="1" color="#990000">Jes&uacute;s 
+              G&oacute;mez Colorado</font><font face="Arial, Helvetica, sans-serif" size="1" color="#CCCCFF"><br>
+              <font color="#003300">Catedr&aacute;tico de Sistemas Electrot&eacute;cnicos 
+              y Autom&aacute;ticos de IES &quot;R&iacute;o Cuerpo de Hombre&quot; 
+              de B&eacute;jar (Salamanca)</font></font></p>
+            <p><font face="Arial, Helvetica, sans-serif" size="1" color="#333333">E- 
+              mail:</font><font face="Arial, Helvetica, sans-serif" size="1" color="#CCCCFF"> 
+              <a href="mailto:%20jmarti50@olmo.pntic.mec.es" class="submenu">jmarti50@olmo.pntic.mec.es</a><br>
+              <font color="#333333">WEB :</font><a href="http://olmo.pntic.mec.es/%7Ejmarti50/index.htm" class="submenu"> 
+              http://olmo.pntic.mec.es/~jmarti50/index.htm</a></font></p>
+          </blockquote>
+          <p align="right"><font color="#333333" face="Arial, Helvetica, sans-serif" size="1"> 
+            &copy; Castillo &amp; Colorado 2.000</font> 
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div id="Menu" style="position:absolute; width:151px; height:227px; z-index:9; left: -160px; top: 86px; visibility: visible" class="blanco"> 
+  <table width="158" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFCC00">
+    <tr> 
+      <td rowspan="13" align="center" valign="middle" bgcolor="#FFFFFF"><img src="imagenes/lacel.gif" width="22" height="102">&nbsp;</td>
+      <td rowspan="11" align="center" valign="middle">&nbsp;</td>
+      <td valign="middle" bgcolor="#996600"><b><font color="#330099" size="2" face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;<font color="#FFFFFF">Men&uacute;</font></font></b><font color="#FFFFFF">&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="MM_timelineGoto('Timeline1','9')">X</a> 
+      </td>
+    </tr>
+    <tr> 
+      <td height="6"> 
+        <hr color="#330099" noshade size="1">
+      </td>
+    </tr>
+    <tr> 
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+onClick="tmt_LayerBoxOut('document.layers[\'Fuerza\']','document.all[\'Fuerza\']','0.5','0');tmt_DivOnTop('Fuerza')">Esquema 
+        de fuerza</a></td>
+    </tr>
+    <tr> 
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+onClick="tmt_LayerBoxOut('document.layers[\'Mando\']','document.all[\'Mando\']','0.5','0');tmt_DivOnTop('Mando')">Esquema 
+        de mando</a></td>
+    </tr>
+    <tr> 
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+onClick="tmt_LayerBoxOut('document.layers[\'Materiales\']','document.all[\'Materiales\']','0.5','0');tmt_DivOnTop('Materiales')">Materiales</a></td>
+    </tr>
+    <tr> 
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+onClick="tmt_LayerBoxOut('document.layers[\'Descripcion\']','document.all[\'Descripcion\']','0.5','0');tmt_DivOnTop('Descripcion')">Descripci&oacute;n</a></td>
+    </tr>
+    <tr> 
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+onClick="tmt_LayerBoxOut('document.layers[\'Leyenda\']','document.all[\'Leyenda\']','0.5','0');tmt_DivOnTop('Leyenda')">Leyenda</a></td>
+    </tr>
+    <tr> 
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+onClick="tmt_LayerBoxOut('document.layers[\'cuestionario\']','document.all[\'cuestionario\']','0.5','0');tmt_DivOnTop('cuestionario')">Cuestionario</a></td>
+    </tr>
+    <tr> 
+      <td height="14"><img src="imagenes/flecha.gif" width="12" height="12"><a href="#" OnClick="window.open(document.location, 'big', 'fullscreen=yes')">Pantalla 
+        completa</a></td>
+    </tr>
+    <tr> 
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#" onClick="window.close()">Cerrar 
+        ventana</a></td>
+    </tr>
+    <tr> 
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#" onClick="MM_showHideLayers('Creditos','','show');tmt_LayerBoxOut('document.layers[\'Creditos\']','document.all[\'Creditos\']','0.8','0');tmt_DivOnTop('Creditos')">Cr&eacute;ditos</a></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle">&nbsp;</td>
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="index.htm">Inicio</a></td>
+    </tr>
+    <tr> 
+      <td align="center" valign="middle">&nbsp;</td>
+      <td> 
+        <hr color="#330099" noshade size="1">
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="Fuerza" style="position:absolute; width:220px; height:327px; z-index:5; left: 27px; top: 35px; background-color: #FFFFFF; layer-background-color: #FFFFFF; border: 1px none #000000" class="blanco"> 
+  <table width="192" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+      <td class="arrastrar"> 
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Esquema 
+          de Fuerza&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Fuerza\']','0.8','12')">X</a></b></font></div>
+      </td>
+    </tr>
+    <tr bgcolor="#FFFFFF"> 
+      <td> <img src="imagenes/arranque1/arran4.gif" width="242" height="395" name="fuerza">
+        <div id="cableroto" style="position:absolute; width:28px; height:39px; z-index:12; left: 66px; top: 73px; visibility: hidden"><img src="imagenes/transparente.gif" width="52" height="40" usemap="#Map3" border="0" onMouseDown="MM_timelineGoto('tiempo','1')"><map name="Map3"><area shape="rect" coords="20,9,33,26" href="#" onClick="MM_timelineGoto('conmuta','3');MM_timelineGoto('tiempo','1');MM_showHideLayers('cableroto','','hide')"></map></div>
+        <map name="Map2"><area shape="circle" coords="91,70,5" href="#"></map>
+        <div id="amperimetroesquema" style="position:absolute; width:17px; height:16px; z-index:12; left: 118px; top: 84px"><img src="imagenes/amper-00.gif" width="16" height="16"></div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="Mando" style="position:absolute; width:120px; height:301px; z-index:2; left: 275px; top: 35px"> 
+  <table width="192" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+      <td class="arrastrar"> 
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Esquema 
+          de mando &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Mando\']','0.8','12')">X</a></b></font></div>
+      </td>
+    </tr>
+    <tr bgcolor="#FFFFFF"> 
+      <td><img src="imagenes/arranque1/arran1.gif" width="182" height="345" name="mando"></td>
+    </tr>
+  </table>
+</div>
+<div id="Materiales" style="position:absolute; width:276px; height:388px; z-index:6; left: 278px; top: 18px; visibility: hidden"> 
+  <table width="185" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+      <td class="arrastrar"> 
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2"><b>Lista 
+          de materiales&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Materiales\']','0.8','12')">X</a></b></font></div>
+      </td>
+    </tr>
+    <tr bgcolor="#66CCCC" valign="top"> 
+      <td> 
+        <table width="76%" border="0">
+          <tr> 
+            <td width="59%">1 interruptor magnetot&eacute;rmico tripolar</td>
+            <td width="41%">
+              <div align="center"><a href="#"><img src="imagenes/materiales/magneto_tripolar.gif" width="84" height="81" onMouseDown="MM_openBrWindow('simbolos/magneto3.htm','','resizable=yes,width=130,height=245')" border="0"></a></div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="59%">1 interruptor magnetot&eacute;rmico monopolar</td>
+            <td width="41%">
+              <div align="center"><a href="#"><img src="imagenes/materiales/magneto_mono.gif" width="68" height="82" onMouseDown="MM_openBrWindow('simbolos/magneto1.htm','','resizable=yes,width=130,height=245')" border="0"></a></div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="59%">1 contactor</td>
+            <td width="41%">
+              <div align="center"><a href="#"><img src="imagenes/materiales/contactor3.gif" width="61" height="83" border="0" onMouseDown="MM_openBrWindow('simbolos/contactor.htm','Contactor','resizable=yes,width=130,height=330')"></a></div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="59%">1 amper&iacute;metro</td>
+            <td width="41%">
+              <div align="center"><a href="#"><img src="imagenes/materiales/amperimetro.gif" width="60" height="64" onMouseDown="MM_openBrWindow('simbolos/amper.htm','','resizable=yes,width=130,height=150')" border="0"></a></div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="59%">1 interruptor monopolar</td>
+            <td width="41%">
+              <div align="center"><a href="#"><img src="imagenes/int-1b.gif" width="29" height="41" onMouseDown="MM_openBrWindow('simbolos/interruptor.htm','','resizable=yes,width=130,height=150')" border="0"></a></div>
+            </td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+        </td>
+    </tr>
+  </table>
+</div>
+<div id="Leyenda" style="position:absolute; width:240px; height:21px; z-index:4; left: 469px; top: 237px; visibility: hidden"> 
+  <table width="242" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+      <td class="arrastrar"> 
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Leyenda&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Leyenda\']','0.8','12')">X</a></b></font></div>
+      </td>
+    </tr>
+    <tr bgcolor="#99CCCC"> 
+      <td><font size="2" face="Arial, Helvetica, sans-serif">QM1- Interruptor 
+        magnetot&eacute;rmico fuerza</font> <font size="2" face="Arial, Helvetica, sans-serif"><br>
+        QM2- Interruptor magnetot&eacute;rmico mando</font> <font size="2" face="Arial, Helvetica, sans-serif"><br>
+        SA1- Interruptor</font> <font size="2" face="Arial, Helvetica, sans-serif"><br>
+        KM1- Contactor</font> <font size="2" face="Arial, Helvetica, sans-serif"><br>
+        M1- Motor</font> <br>
+        A- Amper&iacute;metro</td>
+    </tr>
+  </table>
+</div>
+<div id="Descripcion" style="position:absolute; width:345px; height:21px; z-index:3; left: 290px; top: 130px; visibility: hidden"> 
+  <table width="400" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+      <td class="arrastrar" height="14"> 
+        <div align="left"><b>Descripci&oacute;n&nbsp;&nbsp;&nbsp;&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font face="Arial, Helvetica, sans-serif" size="2"><a href="#" onClick="tmt_IELayerTransitions('document.all[\'Descripcion\']','0.8','12')">X</a></font></div>
+      </td>
+    </tr>
+    <tr bgcolor="#99CCCC"> 
+      <td class="descripcion">El interruptor se utiliza para cerrar y abrir el 
+        circuito de la bobina del contactor, actuando con ello los contactos de 
+        fuerza del mismo. Deberá estar dimensionado solamente para la intensidad 
+        de corriente que absorba la bobina, y no para la corriente del motor, 
+        que circula por los contactos de fuerza del contactor. Este sistema, denominado 
+        también "mando por contacto permanente", permite el arranque y la parada 
+        del motor desde un solo punto de accionamiento. Es utilizado, sobre todo, 
+        cuando el interruptor, en lugar de ser accionado manualmente, lo es por 
+        alguna magnitud que dependa del funcionamiento del motor (por ejemplo, 
+        un presostato).<br>
+        Los magnetotérmicos utilizados en la protección de fuerza deben tener 
+        curva de disparo de acompañamiento de motor, para no disparar en el arranque. 
+        El magnetotérmico del circuito de mando debe ser adecuado para cargas 
+        inductivas. </td>
+    </tr>
+  </table>
+</div>
+<div id="Layer1" style="position:absolute; width:10px; height:15px; z-index:12; left: 5px; top: 30px; visibility: hidden"></div>
+&nbsp; 
+<div id="cuestionario" style="position:absolute; width:306px; height:21px; z-index:3; left: 470px; top: 35px; visibility: visible"> 
+  <table width="308" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+      <td class="arrastrar" height="11"> 
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Cuestionario&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font><font face="Arial, Helvetica, sans-serif" size="2"><b><a href="#" onClick="tmt_IELayerTransitions('document.all[\'cuestionario\']','0.8','12');MM_showHideLayers('correcto','','hide','incorrecto','','hide','sinrespuesta','','hide')">X</a></b></font></div>
+      </td>
+    </tr>
+    <tr bgcolor="#99CCCC"> 
+      <td class="arrastrar"> 
+        <div align="center"><interaction name="MultCh_Checkboxes01" object="G01" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+          </interaction> 
+          <div align="left"><interaction name="MultCh_Checkboxes02" object="G02" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+            </interaction></div>
+        </div>
+        <div align="center"><interaction name="MultCh_Checkboxes02" object="G02" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+          <div name="G02Layer" align="left"> 
+            <p><span name="G01question">1 &iquest;Cuando arranca el motor?<br>
+              </span></p>
+          </div>
+          </interaction></div>
+        <blockquote> 
+          <div align="center"><interaction name="MultCh_Checkboxes02" object="G02" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+            <div name="G02Layer" align="left"><span name="G01choice2">a-Cuando 
+              se abre el interruptor<br>
+              </span><span name="G01choice1"> b-Cuando se cierra el interrutor 
+              </span> <span name="G01choice2"> <br>
+              </span> <span name="G01choice3"> c- Nunca arranca</span> <span name="G01question"> 
+              </span></div>
+            </interaction></div>
+        </blockquote>
+        <div align="center"><interaction name="MultCh_Checkboxes02" object="G02" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+          <div name="G02Layer" align="left"> 
+            <p><span name="G02question">2 &iquest;Que corriente marca el amper&iacute;metro?</span> 
+            </p>
+          </div>
+          </interaction></div>
+        <blockquote> 
+          <div align="center"><interaction name="MultCh_Checkboxes02" object="G02" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+            <div name="G02Layer" align="left"><span name="G02choice1"> a-La del 
+              motor trif&aacute;sico<br>
+              </span> <span name="G02choice2"> b-La de la bobina del contactor<br>
+              </span> <span name="G02choice3"> c-La del interruptor magnetot&eacute;rmico</span> 
+            </div>
+            </interaction></div>
+        </blockquote>
+        <div align="center"><interaction name="MultCh_Checkboxes02" object="G02" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+          <div name="G02Layer" align="left"><interaction name="MultCh_Checkboxes04" object="G04" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js">3 
+            &iquest;Que ocurre si persiste la falta de una fase en el circuito</interaction> 
+            <span name="G04question">?</span> </div>
+          </interaction></div>
+        <blockquote>
+          <div align="center"><interaction name="MultCh_Checkboxes02" object="G02" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js">
+            <div name="G02Layer" align="left"><span name="G04choice2"> a-Simplemente 
+              deja de girar.</span><span name="G04choice1"><br>
+              </span> <span name="G04choice2"> </span><span name="G04choice1"> 
+              b-El motor se quema</span><span name="G04choice2"></span><span name="G04choice2"><br>
+              </span> <span name="G04choice3"> c-Funciona normalmente</span> </div>
+            </interaction></div>
+        </blockquote>
+        <div align="center"><interaction name="MultCh_Checkboxes02" object="G02" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js">
+          <div name="G02Layer" align="left">
+          
+            <p> 
+              <script language="JavaScript">
+<!--
+/* Get this script and more at JavaScript City: http://www.javascriptcity.com */
+
+function e_friend()
+{
+var e_add= prompt('Escriba la dirección del tutor:',' ');
+var subj= prompt('Escriba el nombre del circuito. No olvide indicar los resultados en el cuerpo del mensaje:',' ');
+if ((subj==" ") || (subj==null))
+ subj="Hi!";
+window.location="mailto:"+e_add+"?subject="+subj;
+}
+//-->
+</script>
+            </p>
+          </div>
+          </interaction>
+          <p> <a href="javascript:e_friend()">Enviar E-mail</a>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+&nbsp; <span class="blanco"><a href="#" class="blanco"  onClick="MM_timelinePlay('Timeline1')">Men&uacute;</a></span> 
+<!--En la linea de tiempo "conmuta"
+1 cuadro: parada
+2 cuadro: marcha
+3 cuadro: corte de un cable --> 
+<div id="Titulo" style="position:absolute; width:691px; height:21px; z-index:13; left: 70px; top: 5px; background-color: #FFFFFF; layer-background-color: #FFFFFF; border: 1px none #000000"> 
+  <table width="100%" border="0" bgcolor="#000000" cellspacing="1">
+    <tr bgcolor="#FFCC00"> 
+      <td class="titulo"> 
+        <div align="center" class="titulo">Arranque de un motor trifásico. Mando 
+          con interruptor monopolar </div>
+      </td>
+    </tr>
+  </table>
+  
+</div>
+</body>
+</html>

@@ -1,0 +1,1730 @@
+<html>
+
+<head>
+
+<title>CACEL 1.0 (C&C)</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<!doctype html>
+<meta http-equiv="X-UA-Compatible" content="IE=5" />
+
+<script language="JavaScript">
+
+<!--
+
+function tmt_LayerBoxOut(targetNN, targetIE, dur, incr) {
+
+    transNo = parseInt(1);
+
+    arHidden = new Array(1, 3, 14, 16);
+
+    if (document.all) {
+
+        target = eval(targetIE);
+
+        target.style.filter = "revealTrans(duration=" + dur + ",transition=1)";
+
+        endState = "hidden";
+
+        for (i = 0; i < arHidden.length; i++) {
+
+            if (arHidden[i] == transNo) {
+
+                endState = "visible";
+
+                target.style.visibility = "hidden";
+
+            }
+
+        }
+
+        target.filters.revealTrans.apply();
+
+        target.style.visibility = endState;
+
+        target.filters.revealTrans.play();
+
+    }
+
+    if (document.layers) {
+
+        target = eval(targetNN);
+
+        if (incr == 0) {
+
+            target.origLeft = target.clip.left;
+
+            target.origTop = target.clip.top;
+
+            target.origRight = target.clip.right;
+
+            target.origBottom = target.clip.bottom;
+
+            mSecs = dur * 1000;
+
+            intval = 100;
+
+            visits = (mSecs / intval);
+
+            fullW = target.clip.width;
+
+            fullH = target.clip.height;
+
+            halfW = fullW / 2;
+
+            halfH = fullH / 2;
+
+            alternateW = alternateH = true;
+
+            incW = halfW / visits;
+
+            incrementW = (incW >= 1) ? parseInt(incW) : 0;
+
+            xtraPixW = Math.round((incW - incrementW) * visits);
+
+            incH = halfH / visits;
+
+            incrementH = (incH >= 1) ? parseInt(incH) : 0;
+
+            xtraPixH = Math.round((incH - incrementH) * visits);
+
+            target.clip.left += halfW;
+
+            target.clip.right -= halfW;
+
+            target.clip.top += halfH;
+
+            target.clip.bottom -= halfH;
+
+            target.visibility = "show";
+
+            if ((target.clip.left - target.origLeft) <= incrementW) {
+
+                target.clip.left = target.origLeft;
+
+                target.clip.right = target.origRight;
+
+            } else {
+
+                if (xtraPixW > 0) {
+
+                    if (xtraPixW <= visits) {
+
+                        if (alternateW) {
+
+                            target.clip.left--;
+
+                            target.clip.right++;
+
+                            xtraPixW--;
+
+                        }
+
+                        alternateW = !alternateW;
+
+                    } else {
+
+                        target.clip.left--;
+
+                        target.clip.right++;
+
+                        xtraPixW--;
+
+                    }
+
+                }
+
+                target.clip.left -= incrementW;
+
+                target.clip.right += incrementW;
+
+            }
+
+            if ((target.clip.top - target.origTop) <= incrementH) {
+
+                target.clip.top = target.origTop;
+
+                target.clip.bottom = target.origBottom;
+
+            } else {
+
+                if (xtraPixH > 0) {
+
+                    if (xtraPixH <= visits) {
+
+                        if (alternateH) {
+
+                            target.clip.top--;
+
+                            target.clip.bottom++;
+
+                            xtraPixH--;
+
+                        }
+
+                        alternateH = !alternateH;
+
+                    } else {
+
+                        target.clip.top--;
+
+                        target.clip.bottom++;
+
+                        xtraPixH--;
+
+                    }
+
+                }
+
+                target.clip.top -= incrementH;
+
+                target.clip.bottom += incrementH;
+
+            }
+
+            visits--;
+
+        } else {
+
+            if ((target.clip.left - target.origLeft) <= incrementW) {
+
+                target.clip.left = target.origLeft;
+
+                target.clip.right = target.origRight;
+
+            } else {
+
+                if (xtraPixW > 0) {
+
+                    if (xtraPixW <= visits) {
+
+                        if (alternateW) {
+
+                            target.clip.left--;
+
+                            target.clip.right++;
+
+                            xtraPixW--;
+
+                        }
+
+                        alternateW = !alternateW;
+
+                    } else {
+
+                        target.clip.left--;
+
+                        target.clip.right++;
+
+                        xtraPixW--;
+
+                    }
+
+                }
+
+                target.clip.left -= incrementW;
+
+                target.clip.right += incrementW;
+
+            }
+
+            if ((target.clip.top - target.origTop) <= incrementH) {
+
+                target.clip.top = target.origTop;
+
+                target.clip.bottom = target.origBottom;
+
+            } else {
+
+                if (xtraPixH > 0) {
+
+                    if (xtraPixH <= visits) {
+
+                        if (alternateH) {
+
+                            target.clip.top--;
+
+                            target.clip.bottom++;
+
+                            xtraPixH--;
+
+                        }
+
+                        alternateH = !alternateH;
+
+                    } else {
+
+                        target.clip.top--;
+
+                        target.clip.bottom++;
+
+                        xtraPixH--;
+
+                    }
+
+                }
+
+                target.clip.top -= incrementH;
+
+                target.clip.bottom += incrementH;
+
+            }
+
+            visits--;
+
+        }
+
+        if (target.clip.left == target.origLeft && target.clip.top == target.origTop) {
+
+        } else {
+
+            setTimeout("tmt_LayerBoxOut(\"" + targetNN + "\",\"" + targetIE + "\",\"" + dur + "\",1)", dur);
+
+        }
+
+    }
+
+}
+
+function MM_findObj(n, d) { //v3.0
+
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+
+}
+
+
+
+function MM_dragLayer(objName,x,hL,hT,hW,hH,toFront,dropBack,cU,cD,cL,cR,targL,targT,tol,dropJS,et,dragJS) { //v3.0
+
+  //Copyright 1998 Macromedia, Inc. All rights reserved.
+
+  var i,j,aLayer,retVal,curDrag=null,NS=(navigator.appName=='Netscape'), curLeft, curTop;
+
+  if (!document.all && !document.layers) return false;
+
+  retVal = true; if(!NS && event) event.returnValue = true;
+
+  if (MM_dragLayer.arguments.length > 1) {
+
+    curDrag = MM_findObj(objName); if (!curDrag) return false;
+
+    if (!document.allLayers) { document.allLayers = new Array();
+
+      with (document) if (NS) { for (i=0; i<layers.length; i++) allLayers[i]=layers[i];
+
+        for (i=0; i<allLayers.length; i++) if (allLayers[i].document && allLayers[i].document.layers)
+
+          with (allLayers[i].document) for (j=0; j<layers.length; j++) allLayers[allLayers.length]=layers[j];
+
+      } else for (i=0;i<all.length;i++) if (all[i].style&&all[i].style.position) allLayers[allLayers.length]=all[i];}
+
+    curDrag.MM_dragOk=true; curDrag.MM_targL=targL; curDrag.MM_targT=targT;
+
+    curDrag.MM_tol=Math.pow(tol,2); curDrag.MM_hLeft=hL; curDrag.MM_hTop=hT;
+
+    curDrag.MM_hWidth=hW; curDrag.MM_hHeight=hH; curDrag.MM_toFront=toFront;
+
+    curDrag.MM_dropBack=dropBack; curDrag.MM_dropJS=dropJS;
+
+    curDrag.MM_everyTime=et; curDrag.MM_dragJS=dragJS;
+
+    curDrag.MM_oldZ = (NS)?curDrag.zIndex:curDrag.style.zIndex;
+
+    curLeft= (NS)?curDrag.left:curDrag.style.pixelLeft; curDrag.MM_startL = curLeft;
+
+    curTop = (NS)?curDrag.top:curDrag.style.pixelTop; curDrag.MM_startT = curTop;
+
+    curDrag.MM_bL=(cL<0)?null:curLeft-cL; curDrag.MM_bT=(cU<0)?null:curTop -cU;
+
+    curDrag.MM_bR=(cR<0)?null:curLeft+cR; curDrag.MM_bB=(cD<0)?null:curTop +cD;
+
+    curDrag.MM_LEFTRIGHT=0; curDrag.MM_UPDOWN=0; curDrag.MM_SNAPPED=false; //use in your JS!
+
+    document.onmousedown = MM_dragLayer; document.onmouseup = MM_dragLayer;
+
+    if (NS) document.captureEvents(Event.MOUSEDOWN|Event.MOUSEUP);
+
+  } else {
+
+    var theEvent = ((NS)?objName.type:event.type);
+
+    if (theEvent == 'mousedown') {
+
+      var mouseX = (NS)?objName.pageX : event.clientX + document.body.scrollLeft;
+
+      var mouseY = (NS)?objName.pageY : event.clientY + document.body.scrollTop;
+
+      var maxDragZ=null; document.MM_maxZ = 0;
+
+      for (i=0; i<document.allLayers.length; i++) { aLayer = document.allLayers[i];
+
+        var aLayerZ = (NS)?aLayer.zIndex:aLayer.style.zIndex;
+
+        if (aLayerZ > document.MM_maxZ) document.MM_maxZ = aLayerZ;
+
+        var isVisible = (((NS)?aLayer.visibility:aLayer.style.visibility).indexOf('hid') == -1);
+
+        if (aLayer.MM_dragOk != null && isVisible) with (aLayer) {
+
+          var parentL=0; var parentT=0;
+
+          if (!NS) { parentLayer = aLayer.parentElement;
+
+            while (parentLayer != null && parentLayer.style.position) {
+
+              parentL += parentLayer.offsetLeft; parentT += parentLayer.offsetTop;
+
+              parentLayer = parentLayer.parentElement; } }
+
+          var tmpX=mouseX-(((NS)?pageX:style.pixelLeft+parentL)+MM_hLeft);
+
+          var tmpY=mouseY-(((NS)?pageY:style.pixelTop +parentT)+MM_hTop);
+
+          var tmpW = MM_hWidth;  if (tmpW <= 0) tmpW += ((NS)?clip.width :offsetWidth);
+
+          var tmpH = MM_hHeight; if (tmpH <= 0) tmpH += ((NS)?clip.height:offsetHeight);
+
+          if ((0 <= tmpX && tmpX < tmpW && 0 <= tmpY && tmpY < tmpH) && (maxDragZ == null
+
+              || maxDragZ <= aLayerZ)) { curDrag = aLayer; maxDragZ = aLayerZ; } } }
+
+      if (curDrag) {
+
+        document.onmousemove = MM_dragLayer; if (NS) document.captureEvents(Event.MOUSEMOVE);
+
+        curLeft = (NS)?curDrag.left:curDrag.style.pixelLeft;
+
+        curTop = (NS)?curDrag.top:curDrag.style.pixelTop;
+
+        MM_oldX = mouseX - curLeft; MM_oldY = mouseY - curTop;
+
+        document.MM_curDrag = curDrag;  curDrag.MM_SNAPPED=false;
+
+        if(curDrag.MM_toFront) {
+
+          eval('curDrag.'+((NS)?'':'style.')+'zIndex=document.MM_maxZ+1');
+
+          if (!curDrag.MM_dropBack) document.MM_maxZ++; }
+
+        retVal = false; if(!NS) event.returnValue = false;
+
+    } } else if (theEvent == 'mousemove') {
+
+      if (document.MM_curDrag) with (document.MM_curDrag) {
+
+        var mouseX = (NS)?objName.pageX : event.clientX + document.body.scrollLeft;
+
+        var mouseY = (NS)?objName.pageY : event.clientY + document.body.scrollTop;
+
+        newLeft = mouseX-MM_oldX; newTop  = mouseY-MM_oldY;
+
+        if (MM_bL!=null) newLeft = Math.max(newLeft,MM_bL);
+
+        if (MM_bR!=null) newLeft = Math.min(newLeft,MM_bR);
+
+        if (MM_bT!=null) newTop  = Math.max(newTop ,MM_bT);
+
+        if (MM_bB!=null) newTop  = Math.min(newTop ,MM_bB);
+
+        MM_LEFTRIGHT = newLeft-MM_startL; MM_UPDOWN = newTop-MM_startT;
+
+        if (NS) {left = newLeft; top = newTop;}
+
+        else {style.pixelLeft = newLeft; style.pixelTop = newTop;}
+
+        if (MM_dragJS) eval(MM_dragJS);
+
+        retVal = false; if(!NS) event.returnValue = false;
+
+    } } else if (theEvent == 'mouseup') {
+
+      document.onmousemove = null;
+
+      if (NS) document.releaseEvents(Event.MOUSEMOVE);
+
+      if (NS) document.captureEvents(Event.MOUSEDOWN); //for mac NS
+
+      if (document.MM_curDrag) with (document.MM_curDrag) {
+
+        if (typeof MM_targL =='number' && typeof MM_targT == 'number' &&
+
+            (Math.pow(MM_targL-((NS)?left:style.pixelLeft),2)+
+
+             Math.pow(MM_targT-((NS)?top:style.pixelTop),2))<=MM_tol) {
+
+          if (NS) {left = MM_targL; top = MM_targT;}
+
+          else {style.pixelLeft = MM_targL; style.pixelTop = MM_targT;}
+
+          MM_SNAPPED = true; MM_LEFTRIGHT = MM_startL-MM_targL; MM_UPDOWN = MM_startT-MM_targT; }
+
+        if (MM_everyTime || MM_SNAPPED) eval(MM_dropJS);
+
+        if(MM_dropBack) {if (NS) zIndex = MM_oldZ; else style.zIndex = MM_oldZ;}
+
+        retVal = false; if(!NS) event.returnValue = false; }
+
+      document.MM_curDrag = null;
+
+    }
+
+    if (NS) document.routeEvent(objName);
+
+  } return retVal;
+
+}
+
+
+
+function MM_timelinePlay(tmLnName, myID) { //v1.2
+
+  //Copyright 1997 Macromedia, Inc. All rights reserved.
+
+  var i,j,tmLn,props,keyFrm,sprite,numKeyFr,firstKeyFr,propNum,theObj,firstTime=false;
+
+  if (document.MM_Time == null) MM_initTimelines(); //if *very* 1st time
+
+  tmLn = document.MM_Time[tmLnName];
+
+  if (myID == null) { myID = ++tmLn.ID; firstTime=true;}//if new call, incr ID
+
+  if (myID == tmLn.ID) { //if Im newest
+
+    setTimeout('MM_timelinePlay("'+tmLnName+'",'+myID+')',tmLn.delay);
+
+    fNew = ++tmLn.curFrame;
+
+    for (i=0; i<tmLn.length; i++) {
+
+      sprite = tmLn[i];
+
+      if (sprite.charAt(0) == 's') {
+
+        if (sprite.obj) {
+
+          numKeyFr = sprite.keyFrames.length; firstKeyFr = sprite.keyFrames[0];
+
+          if (fNew >= firstKeyFr && fNew <= sprite.keyFrames[numKeyFr-1]) {//in range
+
+            keyFrm=1;
+
+            for (j=0; j<sprite.values.length; j++) {
+
+              props = sprite.values[j]; 
+
+              if (numKeyFr != props.length) {
+
+                if (props.prop2 == null) sprite.obj[props.prop] = props[fNew-firstKeyFr];
+
+                else        sprite.obj[props.prop2][props.prop] = props[fNew-firstKeyFr];
+
+              } else {
+
+                while (keyFrm<numKeyFr && fNew>=sprite.keyFrames[keyFrm]) keyFrm++;
+
+                if (firstTime || fNew==sprite.keyFrames[keyFrm-1]) {
+
+                  if (props.prop2 == null) sprite.obj[props.prop] = props[keyFrm-1];
+
+                  else        sprite.obj[props.prop2][props.prop] = props[keyFrm-1];
+
+        } } } } }
+
+      } else if (sprite.charAt(0)=='b' && fNew == sprite.frame) eval(sprite.value);
+
+      if (fNew > tmLn.lastFrame) tmLn.ID = 0;
+
+  } }
+
+}
+
+
+
+function MM_timelineGoto(tmLnName, fNew, numGotos) { //v2.0
+
+  //Copyright 1997 Macromedia, Inc. All rights reserved.
+
+  var i,j,tmLn,props,keyFrm,sprite,numKeyFr,firstKeyFr,lastKeyFr,propNum,theObj;
+
+  if (document.MM_Time == null) MM_initTimelines(); //if *very* 1st time
+
+  tmLn = document.MM_Time[tmLnName];
+
+  if (numGotos != null)
+
+    if (tmLn.gotoCount == null) tmLn.gotoCount = 1;
+
+    else if (tmLn.gotoCount++ >= numGotos) {tmLn.gotoCount=0; return}
+
+  jmpFwd = (fNew > tmLn.curFrame);
+
+  for (i = 0; i < tmLn.length; i++) {
+
+    sprite = (jmpFwd)? tmLn[i] : tmLn[(tmLn.length-1)-i]; //count bkwds if jumping back
+
+    if (sprite.charAt(0) == "s") {
+
+      numKeyFr = sprite.keyFrames.length;
+
+      firstKeyFr = sprite.keyFrames[0];
+
+      lastKeyFr = sprite.keyFrames[numKeyFr - 1];
+
+      if ((jmpFwd && fNew<firstKeyFr) || (!jmpFwd && lastKeyFr<fNew)) continue; //skip if untouchd
+
+      for (keyFrm=1; keyFrm<numKeyFr && fNew>=sprite.keyFrames[keyFrm]; keyFrm++);
+
+      for (j=0; j<sprite.values.length; j++) {
+
+        props = sprite.values[j];
+
+        if (numKeyFr == props.length) propNum = keyFrm-1 //keyframes only
+
+        else propNum = Math.min(Math.max(0,fNew-firstKeyFr),props.length-1); //or keep in legal range
+
+        if (sprite.obj != null) {
+
+          if (props.prop2 == null) sprite.obj[props.prop] = props[propNum];
+
+          else        sprite.obj[props.prop2][props.prop] = props[propNum];
+
+      } }
+
+    } else if (sprite.charAt(0)=='b' && fNew == sprite.frame) eval(sprite.value);
+
+  }
+
+  tmLn.curFrame = fNew;
+
+  if (tmLn.ID == 0) eval('MM_timelinePlay(tmLnName)');
+
+}
+
+
+
+function MM_timelineStop(tmLnName) { //v1.2
+
+  //Copyright 1997 Macromedia, Inc. All rights reserved.
+
+  if (document.MM_Time == null) MM_initTimelines(); //if *very* 1st time
+
+  if (tmLnName == null)  //stop all
+
+    for (var i=0; i<document.MM_Time.length; i++) document.MM_Time[i].ID = null;
+
+  else document.MM_Time[tmLnName].ID = null; //stop one
+
+}
+
+
+
+function tmt_DivOnTop(theDiv){
+
+	var t = 0;var z = (document.layers) ? ".zIndex" : ".style.zIndex";
+
+	var fun = (document.getElementById) ? "document.getElementById" : "MM_findObj";
+
+	var arr = (document.layers) ? document.layers : (document.all) ? document.all.tags("DIV") : document.getElementsByTagName("DIV");
+
+	for(var i=0;i<arr.length;i++){var oz = eval("arr["+i+"]"+z);if(oz > t){t = oz;}}
+
+	var obj = eval(fun+"(theDiv)");if(obj)eval(fun+"('"+theDiv+"')"+z+"=parseInt("+t+")+1");
+
+}
+
+
+
+function tmt_IELayerTransitions(targetIE, dur, filterId) {
+    transNo = parseInt(filterId);
+    arHidden = new Array(1, 3, 14, 16);
+    endState = "hidden";
+    for (i = 0; i < arHidden.length; i++) {
+        if (arHidden[i] == transNo) { endState = "visible"; }
+    }
+    target = eval(targetIE);
+    if (document.all && target.filters) {
+        target.style.filter = "revealTrans(duration=" + dur + ",transition=" + filterId + ")";
+        if (endState == "visible") { target.style.visibility = "hidden"; }
+        target.filters.revealTrans.apply();
+        target.style.visibility = endState;
+        target.filters.revealTrans.play();
+    } else {
+        target.style.visibility = endState;
+    }
+}
+
+
+
+function MM_initTimelines() {
+
+    //MM_initTimelines() Copyright 1997 Macromedia, Inc. All rights reserved.
+
+    var ns = navigator.appName == "Netscape";
+
+    document.MM_Time = new Array(2);
+
+    document.MM_Time[0] = new Array(17);
+
+    document.MM_Time["Timeline1"] = document.MM_Time[0];
+
+    document.MM_Time[0].MM_Name = "Timeline1";
+
+    document.MM_Time[0].fps = 15;
+
+    document.MM_Time[0][0] = new String("sprite");
+
+    document.MM_Time[0][0].slot = 1;
+
+    if (ns)
+
+        document.MM_Time[0][0].obj = document["Menu"];
+
+    else
+
+        document.MM_Time[0][0].obj = document.all ? document.all["Menu"] : null;
+
+    document.MM_Time[0][0].keyFrames = new Array(1, 8);
+
+    document.MM_Time[0][0].values = new Array(5);
+
+    document.MM_Time[0][0].values[0] = new Array(-169,-141,-114,-86,-59,-31,-4,24);
+
+    document.MM_Time[0][0].values[0].prop = "left";
+
+    document.MM_Time[0][0].values[1] = new Array(86,86,86,86,86,86,86,86);
+
+    document.MM_Time[0][0].values[1].prop = "top";
+
+    if (!ns) {
+
+        document.MM_Time[0][0].values[0].prop2 = "style";
+
+        document.MM_Time[0][0].values[1].prop2 = "style";
+
+    }
+
+    document.MM_Time[0][0].values[2] = new Array("visible","visible");
+
+    document.MM_Time[0][0].values[2].prop = "visibility";
+
+    if (!ns)
+
+        document.MM_Time[0][0].values[2].prop2 = "style";
+
+    document.MM_Time[0][0].values[3] = new Array("9","9");
+
+    document.MM_Time[0][0].values[3].prop = "zIndex";
+
+    if (!ns)
+
+        document.MM_Time[0][0].values[3].prop2 = "style";
+
+    document.MM_Time[0][0].values[4] = new Array(227,227,227,227,227,227,227,227);
+
+    document.MM_Time[0][0].values[4].prop = "height";
+
+    if (!ns)
+
+        document.MM_Time[0][0].values[4].prop2 = "style";
+
+    document.MM_Time[0][1] = new String("sprite");
+
+    document.MM_Time[0][1].slot = 1;
+
+    if (ns)
+
+        document.MM_Time[0][1].obj = document["Menu"];
+
+    else
+
+        document.MM_Time[0][1].obj = document.all ? document.all["Menu"] : null;
+
+    document.MM_Time[0][1].keyFrames = new Array(9, 15);
+
+    document.MM_Time[0][1].values = new Array(4);
+
+    document.MM_Time[0][1].values[0] = new Array(24,-6,-36,-66,-96,-126,-156);
+
+    document.MM_Time[0][1].values[0].prop = "left";
+
+    document.MM_Time[0][1].values[1] = new Array(86,86,86,86,86,86,86);
+
+    document.MM_Time[0][1].values[1].prop = "top";
+
+    if (!ns) {
+
+        document.MM_Time[0][1].values[0].prop2 = "style";
+
+        document.MM_Time[0][1].values[1].prop2 = "style";
+
+    }
+
+    document.MM_Time[0][1].values[2] = new Array("9","9");
+
+    document.MM_Time[0][1].values[2].prop = "zIndex";
+
+    if (!ns)
+
+        document.MM_Time[0][1].values[2].prop2 = "style";
+
+    document.MM_Time[0][1].values[3] = new Array(227,227,227,227,227,227,227);
+
+    document.MM_Time[0][1].values[3].prop = "height";
+
+    if (!ns)
+
+        document.MM_Time[0][1].values[3].prop2 = "style";
+
+    document.MM_Time[0][2] = new String("behavior");
+
+    document.MM_Time[0][2].frame = 15;
+
+    document.MM_Time[0][2].value = "MM_timelineGoto('Timeline1','1');tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][3] = new String("behavior");
+
+    document.MM_Time[0][3].frame = 8;
+
+    document.MM_Time[0][3].value = "MM_timelineStop('Timeline1');tmt_DivOnTop('Menu');tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][4] = new String("behavior");
+
+    document.MM_Time[0][4].frame = 1;
+
+    document.MM_Time[0][4].value = "MM_timelineStop('Timeline1');tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][5] = new String("behavior");
+
+    document.MM_Time[0][5].frame = 9;
+
+    document.MM_Time[0][5].value = "MM_timelinePlay('Timeline1');tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][6] = new String("behavior");
+
+    document.MM_Time[0][6].frame = 2;
+
+    document.MM_Time[0][6].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][7] = new String("behavior");
+
+    document.MM_Time[0][7].frame = 3;
+
+    document.MM_Time[0][7].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][8] = new String("behavior");
+
+    document.MM_Time[0][8].frame = 4;
+
+    document.MM_Time[0][8].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][9] = new String("behavior");
+
+    document.MM_Time[0][9].frame = 5;
+
+    document.MM_Time[0][9].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][10] = new String("behavior");
+
+    document.MM_Time[0][10].frame = 6;
+
+    document.MM_Time[0][10].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][11] = new String("behavior");
+
+    document.MM_Time[0][11].frame = 7;
+
+    document.MM_Time[0][11].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][12] = new String("behavior");
+
+    document.MM_Time[0][12].frame = 10;
+
+    document.MM_Time[0][12].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][13] = new String("behavior");
+
+    document.MM_Time[0][13].frame = 11;
+
+    document.MM_Time[0][13].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][14] = new String("behavior");
+
+    document.MM_Time[0][14].frame = 12;
+
+    document.MM_Time[0][14].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][15] = new String("behavior");
+
+    document.MM_Time[0][15].frame = 13;
+
+    document.MM_Time[0][15].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][16] = new String("behavior");
+
+    document.MM_Time[0][16].frame = 14;
+
+    document.MM_Time[0][16].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0].lastFrame = 15;
+
+    document.MM_Time[1] = new Array(3);
+
+    document.MM_Time["conmuta"] = document.MM_Time[1];
+
+    document.MM_Time[1].MM_Name = "conmuta";
+
+    document.MM_Time[1].fps = 15;
+
+    document.MM_Time[1][0] = new String("behavior");
+
+    document.MM_Time[1][0].frame = 1;
+
+    document.MM_Time[1][0].value = "MM_swapImage('fuerza','','imagenes/monofasico/fuerza0.gif',1);MM_swapImage('mando','','imagenes/monofasico/mando0.gif',1);MM_swapImage('motor_foto','','imagenes/motor.gif',1);MM_swapImage('motor_giro','','imagenes/motor_parado.gif',1);MM_swapImage('lamp_v_iz','','imagenes/lamp_verde_off.gif',1);MM_swapImage('lamp_v_dch','','imagenes/lamp_verde_off.gif',1);MM_showHideLayers('pulsadores1','','hide','pulsadores0','','show','pulsadores2','','hide')";
+
+    document.MM_Time[1][1] = new String("behavior");
+
+    document.MM_Time[1][1].frame = 2;
+
+    document.MM_Time[1][1].value = "MM_swapImage('fuerza','','imagenes/monofasico/fuerza1.gif',1);MM_swapImage('motor_foto','','imagenes/motor_marcha.gif',1);MM_swapImage('motor_giro','','imagenes/giro_izq.gif',1);MM_swapImage('lamp_v_iz','','imagenes/lamp_verde_on.gif',1)";
+
+    document.MM_Time[1][2] = new String("behavior");
+
+    document.MM_Time[1][2].frame = 3;
+
+    document.MM_Time[1][2].value = "MM_swapImage('fuerza','','imagenes/monofasico/fuerza2.gif',1);MM_swapImage('motor_foto','','imagenes/motor_marcha.gif',1);MM_swapImage('motor_giro','','imagenes/giro_dcha.gif',1);MM_swapImage('lamp_v_dch','','imagenes/lamp_verde_on.gif',1)";
+
+    document.MM_Time[1].lastFrame = 3;
+
+    for (i=0; i<document.MM_Time.length; i++) {
+
+        document.MM_Time[i].ID = null;
+
+        document.MM_Time[i].curFrame = 0;
+
+        document.MM_Time[i].delay = 1000/document.MM_Time[i].fps;
+
+    }
+
+}
+
+//-->
+
+</script>
+
+<link rel="stylesheet" href="estilo1.css">
+
+<script language="JavaScript" src="scripts/behActions.js"></script>
+
+<script language="JavaScript" src="scripts/behCourseBuilder.js"></script>
+
+<script language="JavaScript" src="scripts/interactionClass.js"></script>
+
+<script language="JavaScript" src="scripts/elemInptClass.js"></script>
+
+<script language="JavaScript" src="scripts/elemIbtnClass.js"></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" bgproperties="fixed"
+
+ onLoad="MM_initInteractions();MM_dragLayer('Fuerza','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Cuadro','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Mando','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Motores','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Materiales','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Leyenda','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_timelineGoto('Timeline1','1');MM_dragLayer('Menu','',0,0,0,0,true,false,0,0,0,181,24,86,300,'',false,'');MM_dragLayer('Descripcion','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_preloadImages('imagenes/lamp_verde_on.gif','imagenes/motor_marcha.gif','imagenes/giro_izq.gif','imagenes/motor.gif','imagenes/motor_parado.gif','imagenes/lamp_verde_off.gif','imagenes/giro_dcha.gif','imagenes/monofasico/fuerza0.gif','imagenes/monofasico/mando0.gif','imagenes/monofasico/fuerza1.gif','imagenes/monofasico/fuerza2.gif');MM_dragLayer('cuestionario','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Creditos','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Titulo','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'')" marginwidth="0" marginheight="0" topmargin="0" leftmargin="0" background="imagenes/fondo.jpg">
+
+<div id="Titulo" style="position:absolute; width:691px; height:21px; z-index:13; left: 70px; top: 5px; background-color: #FFFFFF; layer-background-color: #FFFFFF; border: 1px none #000000"> 
+
+  <table width="100%" border="0" bgcolor="#000000" cellspacing="1">
+
+    <tr bgcolor="#FFCC00"> 
+
+      <td class="titulo"> 
+
+        <div align="center" class="titulo">Inversión del sentido de giro de un 
+
+          motor monof&aacute;sico.<font size="2"><br>
+
+          Mando con pulsadores pasando por paro.</font></div>
+
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<!--Conmuta:
+
+1- Todo parado
+
+2- Marcha izquierda
+
+3- Marcha derecha --> 
+
+<div id="cuestionario" style="position:absolute; width:306px; height:21px; z-index:3; left: 530px; top: 55px; visibility: visible"> 
+
+  <table width="308" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+
+      <td class="arrastrar" height="11"> 
+
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Cuestionario&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font><font face="Arial, Helvetica, sans-serif" size="2"><b><a href="#" onClick="tmt_IELayerTransitions('document.all[\'cuestionario\']','0.8','12');MM_showHideLayers('correcto','','hide','incorrecto','','hide','sinrespuesta','','hide')">X</a></b></font></div>
+
+      </td>
+
+    </tr>
+
+    <tr bgcolor="#99CCCC"> 
+
+      <td class="arrastrar"> 
+
+        <div align="center"><interaction name="MultCh_Checkboxes01" object="G01" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+
+          </interaction><interaction name="MultCh_Checkboxes01" object="G01" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+
+          <div name="G01Layer" align="left" class="arrastrar"><span name="G01question">1-<span class="descripcion"> 
+
+            Para invertir el sentido de giro de un motor monof&aacute;sico, es 
+
+            necesario:<br>
+
+            </span></span> 
+
+            <form name="G01choices">
+
+              <blockquote>
+
+                <p><span class="descripcion"><span name="G01choice2"> a- Intercambiar 
+
+                  las fases en los dos bobinados</span><span name="G01choice1"><br>
+
+                  b- Intercambiar las fases en uno de los bobinados.<br>
+
+                  </span> <span name="G01choice3"> c- Se intercambian las fases 
+
+                  antes del interruptor magnetot&eacute;rmico.<br>
+
+                  </span> </span> </p>
+
+              </blockquote>
+
+            </form>
+
+            <form name="G01controls">
+
+            </form>
+
+          </div>
+
+          <div align="left"> <span class="descripcion"> 
+
+            <script language="JavaScript">
+
+<!--
+
+  // Copyright 1998,1999 Macromedia, Inc. All rights reserved.
+
+  function newG01() {
+
+    G01 = new MM_interaction('G01',0,1,1,null,0,1,0,'','','c','',0);
+
+    G01.add('inpt','choice1',0,1,1,0);
+
+    G01.add('inpt','choice2',0,1,0,0);
+
+    G01.add('inpt','choice3',0,1,0,0);
+
+    G01.init();
+
+    G01.am('segm','Segment: Check Tries_',1,0);
+
+    G01.am('cond','Limite de veces_','G01.triesAtLimit == true',0);
+
+    G01.am('actn','Set Interaction Properties: Disable Interaction','MM_setIntProps(\'G01.setDisabled(true);\')','sp');
+
+    G01.am('end');
+
+  }
+
+  if (window.newG01 == null) window.newG01 = newG01;
+
+  if (!window.MM_initIntFns) window.MM_initIntFns = ''; window.MM_initIntFns += 'newG01();';
+
+//-->
+
+</script>
+
+            </span><cbi-select object="G01"></div>
+
+          </interaction> 
+
+          <div align="left"><span class="descripcion"><interaction name="MultCh_Checkboxes02" object="G02" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+
+            </interaction></span></div>
+
+          <span class="descripcion"><interaction name="MultCh_Checkboxes02" object="G02" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+
+          </interaction></span><interaction name="MultCh_Checkboxes02" object="G02" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+
+          <div name="G02Layer" align="left"><span class="descripcion"><span name="G02question">2- 
+
+            Qu&eacute; misi&oacute;n tienen los contactos de KM3 y KM2 conectados 
+
+            en serie con las bobinas de KM2 y KM3 respectivamente.<br>
+
+            </span> </span> 
+
+            <form name="G02choices">
+
+              <blockquote> 
+
+                <p><span class="descripcion"><span name="G02choice1"> a- Evitar 
+
+                  que los dos contactores puedan ser activados a la vez.<br>
+
+                  </span> <span name="G02choice2"> b- No sirven para nada y se 
+
+                  pueden quitar del circuito.<br>
+
+                  </span> <span name="G02choice3"> c- Parar el motor en cualquier 
+
+                  momento.<br>
+
+                  </span> </span> </p>
+
+              </blockquote>
+
+            </form>
+
+            <form name="G02controls">
+
+            </form>
+
+          </div>
+
+          <div align="left"> <span class="descripcion"> 
+
+            <script language="JavaScript">
+
+<!--
+
+  // Copyright 1998,1999 Macromedia, Inc. All rights reserved.
+
+  function newG02() {
+
+    G02 = new MM_interaction('G02',0,1,1,null,0,1,0,'','','c','',0);
+
+    G02.add('inpt','choice1',0,1,1,0);
+
+    G02.add('inpt','choice2',0,1,0,0);
+
+    G02.add('inpt','choice3',0,1,0,0);
+
+    G02.init();
+
+    G02.am('segm','Segment: Check Tries_',1,0);
+
+    G02.am('cond','Limite de veces_','G02.triesAtLimit == true',0);
+
+    G02.am('actn','Set Interaction Properties: Disable Interaction','MM_setIntProps(\'G02.setDisabled(true);\')','sp');
+
+    G02.am('end');
+
+  }
+
+  if (window.newG02 == null) window.newG02 = newG02;
+
+  if (!window.MM_initIntFns) window.MM_initIntFns = ''; window.MM_initIntFns += 'newG02();';
+
+//-->
+
+</script>
+
+            </span><cbi-select object="G02"></div>
+
+          </interaction> 
+
+          <div align="left"><span class="descripcion"><interaction name="MultCh_Checkboxes04" object="G04" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js">3- 
+
+            En el esquema de fuerza &iquest;donde pone &quot;Bobinado Principal&quot; 
+
+            se puede conectar el Auxiliar? y &iquest;don</interaction><span name="G04question">de 
+
+            pone Auxiliar se puede conectar el Principal?<br>
+
+            </span> </span></div>
+
+          <span class="descripcion"><interaction name="MultCh_Checkboxes04" object="G04" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"></interaction></span><interaction name="MultCh_Checkboxes04" object="G04" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+
+          <div name="G04Layer" align="left"> 
+
+            <form name="G04choices">
+
+              <blockquote> 
+
+                <p><span class="descripcion"><span name="G04choice2"> a- No ya 
+
+                  que se hace un cortocircuito<br>
+
+                  </span> <span name="G04choice3"> b- No ya que el motor no funciona</span><span name="G04choice1"> 
+
+                  <br>
+
+                  c- Si</span><br>
+
+                  <span name="G04choice3"><br>
+
+                  </span> </span> </p>
+
+              </blockquote>
+
+            </form>
+
+            <form name="G04controls">
+
+            </form>
+
+          </div>
+
+          <div align="left"> <span class="descripcion"> 
+
+            <script language="JavaScript">
+
+<!--
+
+  // Copyright 1998,1999 Macromedia, Inc. All rights reserved.
+
+  function newG04() {
+
+    G04 = new MM_interaction('G04',0,1,1,null,0,1,0,'','','c','',0);
+
+    G04.add('inpt','choice1',0,1,1,0);
+
+    G04.add('inpt','choice2',0,1,0,0);
+
+    G04.add('inpt','choice3',0,1,0,0);
+
+    G04.init();
+
+    G04.am('segm','Segment: Check Tries_',1,0);
+
+    G04.am('cond','Limite de veces_','G04.triesAtLimit == true',0);
+
+    G04.am('actn','Set Interaction Properties: Disable Interaction','MM_setIntProps(\'G04.setDisabled(true);\')','sp');
+
+    G04.am('end');
+
+  }
+
+  if (window.newG04 == null) window.newG04 = newG04;
+
+  if (!window.MM_initIntFns) window.MM_initIntFns = ''; window.MM_initIntFns += 'newG04();';
+
+//-->
+
+</script>
+
+            </span><cbi-select object="G04"></div>
+
+          </interaction> 
+
+          <script language="JavaScript">
+
+<!--
+
+/* Get this script and more at JavaScript City: http://www.javascriptcity.com */
+
+
+
+function e_friend()
+
+{
+
+var e_add= prompt('Escriba la dirección del tutor:',' ');
+
+var subj= prompt('Escriba el nombre del circuito. No olvide indicar los resultados en el cuerpo del mensaje:',' ');
+
+if ((subj==" ") || (subj==null))
+
+ subj="Hi!";
+
+window.location="mailto:"+e_add+"?subject="+subj;
+
+}
+
+//-->
+
+</script>
+
+          <p align="center"> <a href="javascript:e_friend()">Enviar E-mail</a></p>
+
+        </div>
+
+      </td>
+
+    </tr>
+
+  </table>
+
+</div> 
+
+<div id="Menu" style="position:absolute; width:151px; height:227px; z-index:9; left: -169px; top: 86px; visibility: visible" class="blanco"> 
+
+  <table width="158" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFCC00">
+
+    <tr> 
+
+      <td rowspan="14" align="center" valign="middle" bgcolor="#FFFFFF"><img src="imagenes/lacel.gif" width="22" height="102">&nbsp;</td>
+
+      <td rowspan="13" align="center" valign="middle">&nbsp;</td>
+
+      <td valign="middle" bgcolor="#996600"><b><font color="#330099" size="2" face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;<font color="#FFFFFF">Men&uacute;</font></font></b><font color="#FFFFFF">&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="MM_timelineGoto('Timeline1','9')">X</a> 
+
+      </td>
+
+    </tr>
+
+    <tr> 
+
+      <td height="6"> 
+
+        <hr color="#330099" noshade size="1">
+
+      </td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+
+onClick="tmt_LayerBoxOut('document.layers[\'Fuerza\']','document.all[\'Fuerza\']','0.5','0');tmt_DivOnTop('Fuerza')">Esquema 
+
+        de fuerza</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+
+onClick="tmt_LayerBoxOut('document.layers[\'Mando\']','document.all[\'Mando\']','0.5','0');tmt_DivOnTop('Mando')">Esquema 
+
+        de mando</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+
+onClick="tmt_LayerBoxOut('document.layers[\'Materiales\']','document.all[\'Materiales\']','0.5','0');tmt_DivOnTop('Materiales')">Materiales</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+
+onClick="tmt_LayerBoxOut('document.layers[\'Descripcion\']','document.all[\'Descripcion\']','0.5','0');tmt_DivOnTop('Descripcion')">Descripci&oacute;n</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+
+onClick="tmt_LayerBoxOut('document.layers[\'Leyenda\']','document.all[\'Leyenda\']','0.5','0');tmt_DivOnTop('Leyenda')">Leyenda</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+
+onClick="tmt_LayerBoxOut('document.layers[\'cuestionario\']','document.all[\'cuestionario\']','0.5','0');tmt_DivOnTop('cuestionario')">Cuestionario</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#" OnClick="window.open(document.location, 'big', 'fullscreen=yes')">Pantalla 
+
+        completa</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#" onClick="window.close()">Cerrar 
+
+        ventana</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td height="14"><img src="imagenes/flecha.gif" width="12" height="12"><a href="#" onClick="MM_openBrWindow('ayuda/ayuda.htm','','scrollbars=yes,width=400,height=500')">Ayuda</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#" onClick="tmt_LayerBoxOut('document.layers[\'Creditos\']','document.all[\'Creditos\']','0.5','0');tmt_DivOnTop('Creditos')">Cr&eacute;ditos</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="menu.htm">Inicio</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td align="center" valign="middle">&nbsp;</td>
+
+      <td> 
+
+        <hr color="#330099" noshade size="1">
+
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="Fuerza" style="position:absolute; width:220px; height:327px; z-index:5; left: 5px; top: 50px; background-color: #FFFFFF; layer-background-color: #FFFFFF; border: 1px none #000000" class="blanco"> 
+
+  <table width="192" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+
+      <td class="arrastrar"> 
+
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Esquema de Fuerza&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Fuerza\']','0.7','12')">X</a></b></font></div>
+
+      </td>
+
+    </tr>
+
+    <tr bgcolor="#FFFFFF"> 
+
+      <td> <img src="imagenes/monofasico/fuerza0.gif" width="418" height="457" name="fuerza"> 
+
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="Mando" style="position:absolute; width:120px; height:301px; z-index:2; left: 385px; top: 52px"> 
+
+  <table width="192" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+
+      <td class="arrastrar"> 
+
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Esquema 
+
+          de mando &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Mando\']','0.7','12')">X</a></b></font></div>
+
+      </td>
+
+    </tr>
+
+    <tr bgcolor="#FFFFFF"> 
+
+      <td><img src="imagenes/monofasico/mando0.gif" width="376" height="450" name="mando"></td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="Materiales" style="position:absolute; width:142px; height:16px; z-index:6; left: 248px; top: 13px; visibility: hidden"> 
+
+  <table width="192" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+
+      <td class="arrastrar"> 
+
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2"><b>Lista 
+
+          de materiales&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Materiales\']','0.7','12')">X</a></b></font></div>
+
+      </td>
+
+    </tr>
+
+    <tr bgcolor="#99CCCC"> 
+
+      <td>
+
+        <table width="99%" border="0">
+
+          <tr> 
+
+            <td width="59%">1 interruptor magnetot&eacute;rmico bipolar</td>
+
+            <td width="41%"> 
+
+              <div align="center"><a href="#"><img src="imagenes/materiales/magneto_bipolar.gif" width="60" height="86" border="0" onMouseDown="MM_openBrWindow('simbolos/magneto2.htm','','resizable=yes,width=130,height=250')"></a></div>
+
+            </td>
+
+          </tr>
+
+          <tr> 
+
+            <td width="59%">1 interruptor magnetot&eacute;rmico monopolar</td>
+
+            <td width="41%"> 
+
+              <div align="center"><a href="#"><img src="imagenes/materiales/magneto_mono.gif" width="68" height="82" onMouseDown="MM_openBrWindow('simbolos/magneto1.htm','','resizable=yes,width=130,height=245')" border="0"></a></div>
+
+            </td>
+
+          </tr>
+
+          <tr> 
+
+            <td width="59%">3 contactores</td>
+
+            <td width="41%"> 
+
+              <div align="center"><a href="#"><img src="imagenes/materiales/contactor3.gif" width="61" height="83" border="0" onMouseDown="MM_openBrWindow('simbolos/contactor.htm','Contactor','resizable=yes,width=130,height=330')"></a></div>
+
+            </td>
+
+          </tr>
+
+          <tr> 
+
+            <td width="59%">2 indicadores luminosos</td>
+
+            <td width="41%"> 
+
+              <div align="center"><a href="#"><img src="imagenes/materiales/piloto_roojo.gif" width="66" height="65" onMouseDown="MM_openBrWindow('simbolos/indicador.htm','','resizable=yes,width=130,height=150')" border="0"></a></div>
+
+            </td>
+
+          </tr>
+
+          <tr> 
+
+            <td width="59%">3 pulsadores</td>
+
+            <td width="41%"> 
+
+              <div align="center"><img src="imagenes/materiales/pulsador_azul.gif" width="69" height="69" onMouseDown="MM_openBrWindow('simbolos/pulsador.htm','','resizable=yes,width=130,height=330')"></div>
+
+            </td>
+
+          </tr>
+
+        </table>
+
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="Leyenda" style="position:absolute; width:262px; height:21px; z-index:4; left: 469px; top: 237px; visibility: hidden"> 
+
+  <table width="262" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+
+      <td class="arrastrar"> 
+
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Leyenda&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Leyenda\']','0.7','12')">X</a></b></font></div>
+
+      </td>
+
+    </tr>
+
+    <tr bgcolor="#99CCCC"> 
+
+      <td><font size="-1" face="Arial, Helvetica, sans-serif">QM1- Interruptor 
+
+        magnetot&eacute;rmico fuerza</font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>QM2- Magnetot&eacute;rmico mando</font></font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>KM1- Contactor bobinado principal</font></font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>KM2- Contactor bobinado auxiliar Izq.</font></font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>KM3- Contactor bobinado auxiliar Drcha.</font></font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>SB1- Pulsador de parada</font></font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>SB2- Marcha Izq.</font></font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>SB3- Marcha Dcha.</font></font> </td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="Descripcion" style="position:absolute; width:120px; height:22px; z-index:3; left: 285px; top: 110px; visibility: hidden"> 
+
+  <table width="400" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+
+      <td class="arrastrar" height="15"> 
+
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Descripci&oacute;n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Descripcion\']','0.7','12')">X&nbsp;&nbsp;</a></b></font></div>
+
+      </td>
+
+    </tr>
+
+    <tr bgcolor="#99CCCC"> 
+
+      <td class="descripcion">El motor monofásico dispone de dos devanados, cuya 
+
+        interconexión en paralelo determina el sentido de giro para el motor. 
+
+        Por tanto, no puede realizarse la inversión de giro intercambiando los 
+
+        dos conductores de alimentación, puesto que el motor permanecería en el 
+
+        mismo sentido de giro. Por esta razón son necesarios tres contactores 
+
+        (que pueden ser tripolares, desechando uno de los contactos de fuerza 
+
+        de cada uno), puesto que, mientras un contactor alimenta uno de los dos 
+
+        devanados, los otros dos realizan la inversión del otro. Para que el motor 
+
+        funcione, deben estar siempre activados el contactor del devanado principal 
+
+        y uno de los del devanado auxiliar. Entre éstos dos últimos, el circuito 
+
+        de mando es idéntico al de la inversión de giro de un motor trifásico, 
+
+        puesto que tampoco en este caso puede admitirse el funcionamiento simultáneo 
+
+        de ambos, que produciría cortocircuito. Como el contactor del devanado 
+
+        principal debe funcionar con cualquiera de los otros dos, se utilizan 
+
+        dos contactos NA en paralelo, uno de cada uno de éstos, para activarlo. 
+
+        El tipo de circuito utilizado exige pasar por paro para realizar la inversión.</td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="Creditos" style="position:absolute; width:366px; height:260px; z-index:10; top: 45px; overflow: visible; visibility: hidden; left: 240px"> 
+
+  <div aling=justify class="creditos"> 
+
+    <table width="381" border="0" cellspacing="1" cellpadding="0" height="245" bgcolor="#000000">
+
+      <tr> 
+
+        <td height="18" bgcolor="#FFCC00" class="arrastrar"> 
+
+          <div align="left"><b><font face="Arial, Helvetica, sans-serif" color="#CCCC99">&nbsp;<font color="#000000">Acerca 
+
+            de CACEL</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Creditos\']','0.8','12')">X</a></b></font></b></div>
+
+        </td>
+
+      </tr>
+
+      <tr valign="top" bgcolor="#FFFFFF"> 
+
+        <td height="290"> 
+
+          <blockquote> 
+
+            <p><b><font face="Arial, Helvetica, sans-serif" color="#CCCC99"><br>
+
+              <img src="imagenes/portada/icono.gif" width="100" height="22"></font></b></p>
+
+            <p><font face="Arial, Helvetica, sans-serif" color="#000000" size="2">Curso 
+
+              de Automatismos Cableados en L&iacute;nea</font> </p>
+
+            <p><font face="Arial, Helvetica, sans-serif" size="1" color="#3333CC"><b>Desarrollado 
+
+              por:</b></font></p>
+
+            <p><font face="Arial, Helvetica, sans-serif" size="1" color="#990000">Juan 
+
+              Carlos Mart&iacute;n Castillo </font><font face="Arial, Helvetica, sans-serif" size="1" color="#003300"><br>
+
+              Profesor de Instalaciones Electrot&eacute;cnicas del IES &quot;R&iacute;o 
+
+              Cuerpo de Hombre&quot; de B&eacute;jar (Salamanca)</font></p>
+
+            <p><font face="Arial, Helvetica, sans-serif" size="1" color="#990000">Jes&uacute;s 
+
+              G&oacute;mez Colorado</font><font face="Arial, Helvetica, sans-serif" size="1" color="#CCCCFF"><br>
+
+              <font color="#003300">Catedr&aacute;tico de Sistemas Electrot&eacute;cnicos 
+
+              y Autom&aacute;ticos de IES &quot;R&iacute;o Cuerpo de Hombre&quot; 
+
+              de B&eacute;jar (Salamanca)</font></font></p>
+
+            <p><font face="Arial, Helvetica, sans-serif" size="1" color="#333333">E- 
+
+              mail:</font><font face="Arial, Helvetica, sans-serif" size="1" color="#CCCCFF"> 
+
+              <a href="mailto:%20jmarti50@olmo.pntic.mec.es" class="submenu">jmarti50@olmo.pntic.mec.es</a><br>
+
+              <font color="#333333">WEB :</font><a href="http://olmo.pntic.mec.es/%7Ejmarti50/index.htm" class="submenu"> 
+
+              http://olmo.pntic.mec.es/~jmarti50/index.htm</a></font></p>
+
+          </blockquote>
+
+          <p align="right"><font color="#333333" face="Arial, Helvetica, sans-serif" size="1"> 
+
+            &copy; Castillo &amp; Colorado 2.000</font> 
+
+        </td>
+
+      </tr>
+
+    </table>
+
+  </div>
+
+</div>
+
+&nbsp; &nbsp; <span class="blanco"><a href="#" class="blanco"  onClick="MM_timelinePlay('Timeline1');tmt_DivOnTop('Menu')">Men&uacute;</a></span> 
+
+</body>
+
+</html>
+

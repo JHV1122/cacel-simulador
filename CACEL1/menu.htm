@@ -1,0 +1,1911 @@
+<html>
+
+<head>
+
+<title>CACEL (Curso de Automatismos Cableados En L&iacute;nea)</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<!doctype html>
+<meta http-equiv="X-UA-Compatible" content="IE=5" />
+
+<script language="JavaScript">
+
+<!--
+
+
+
+
+
+
+
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+
+
+function MM_swapImgRestore() { //v3.0
+
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+
+}
+
+
+
+function MM_findObj(n, d) { //v3.0
+
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+
+}
+
+
+
+function MM_swapImage() { //v3.0
+
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+
+}
+
+
+
+function MM_timelinePlay(tmLnName, myID) { //v1.2
+
+  //Copyright 1997 Macromedia, Inc. All rights reserved.
+
+  var i,j,tmLn,props,keyFrm,sprite,numKeyFr,firstKeyFr,propNum,theObj,firstTime=false;
+
+  if (document.MM_Time == null) MM_initTimelines(); //if *very* 1st time
+
+  tmLn = document.MM_Time[tmLnName];
+
+  if (myID == null) { myID = ++tmLn.ID; firstTime=true;}//if new call, incr ID
+
+  if (myID == tmLn.ID) { //if Im newest
+
+    setTimeout('MM_timelinePlay("'+tmLnName+'",'+myID+')',tmLn.delay);
+
+    fNew = ++tmLn.curFrame;
+
+    for (i=0; i<tmLn.length; i++) {
+
+      sprite = tmLn[i];
+
+      if (sprite.charAt(0) == 's') {
+
+        if (sprite.obj) {
+
+          numKeyFr = sprite.keyFrames.length; firstKeyFr = sprite.keyFrames[0];
+
+          if (fNew >= firstKeyFr && fNew <= sprite.keyFrames[numKeyFr-1]) {//in range
+
+            keyFrm=1;
+
+            for (j=0; j<sprite.values.length; j++) {
+
+              props = sprite.values[j]; 
+
+              if (numKeyFr != props.length) {
+
+                if (props.prop2 == null) sprite.obj[props.prop] = props[fNew-firstKeyFr];
+
+                else        sprite.obj[props.prop2][props.prop] = props[fNew-firstKeyFr];
+
+              } else {
+
+                while (keyFrm<numKeyFr && fNew>=sprite.keyFrames[keyFrm]) keyFrm++;
+
+                if (firstTime || fNew==sprite.keyFrames[keyFrm-1]) {
+
+                  if (props.prop2 == null) sprite.obj[props.prop] = props[keyFrm-1];
+
+                  else        sprite.obj[props.prop2][props.prop] = props[keyFrm-1];
+
+        } } } } }
+
+      } else if (sprite.charAt(0)=='b' && fNew == sprite.frame) eval(sprite.value);
+
+      if (fNew > tmLn.lastFrame) tmLn.ID = 0;
+
+  } }
+
+}
+
+
+
+function MM_showHideLayers() { //v3.0
+
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+
+  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v='hide')?'hidden':v; }
+
+    obj.visibility=v; }
+
+}
+
+
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+
+  window.open(theURL,winName,features);
+
+}
+
+//-->
+
+</script>
+
+<style type="text/css">
+
+<!--
+
+a:hover {  font-family: Arial, Helvetica, sans-serif; font-size: 10pt; color: #FFFFCC; text-decoration: none}
+
+a {  font-family: Arial, Helvetica, sans-serif; font-size: 10pt; color: #FFCC00; text-decoration: none}
+
+a.submenu {  font-family: Arial, Helvetica, sans-serif; font-size: xx-small; color: #CCCC99; text-decoration: none; font-weight: bolder}
+
+a.submenu:hover {  font-family: Arial, Helvetica, sans-serif; font-size: xx-small; color: #CCFFFF; text-decoration: none}
+
+a.peque:hover {  font-family: Arial, Helvetica, sans-serif; font-size: 9pt; color: #FFFFCC; text-decoration: none}
+
+a.peque {  font-family: Arial, Helvetica, sans-serif; font-size: 8pt; color: #FFCC00; text-decoration: none}
+
+.texto {  font-family: Arial, Helvetica, sans-serif; font-size: 7pt; font-weight: normal; color: #CCCCCC; text-decoration: none; text-align: left}
+
+.texto2 { font-family: Arial, Helvetica, sans-serif; font-size: 9pt; font-weight: bold; color: #CCCC99; text-decoration: none; text-align: left }
+
+-->
+
+</style>
+
+<script language="JavaScript">
+
+<!--
+
+
+
+//Detección de la resolución de pantalla
+
+
+
+if ((screen.width == 640) && (screen.height == 480)) 
+
+{
+
+alert('La resolución de su monitor es demasiado baja para visualizar esta página.¡Por favor cámbiela a 800x600!')
+
+}
+
+//-->
+
+</script>
+
+</head>
+
+
+
+<body bgcolor="#000000" onLoad="MM_preloadImages('imagenes/portada/firma2.jpg','imagenes/portada/montaje1.jpg','imagenes/portada/montaje4.jpg','imagenes/portada/montaje9.jpg','imagenes/portada/montaje6.jpg','imagenes/portada/fondo.gif','imagenes/portada/topo_anima.gif','imagenes/portada/topo4.gif','imagenes/portada/montaje10.jpg','imagenes/portada/montaje5.jpg','imagenes/portada/montaje3.jpg','imagenes/portada/montaje8.jpg','imagenes/portada/titulo04.gif','imagenes/portada/titulo03.gif','imagenes/portada/montaje2.jpg')" marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
+
+<span class="texto"></span>
+
+<table width="98%" border="0">
+
+  <tr>
+
+    <td height="19"><img src="imagenes/portada/fondo.gif" width="760" height="580" name="fondo"></td>
+
+  </tr>
+
+</table>
+
+<div id="cacel" style="position:absolute; width:83px; height:115px; z-index:1; visibility: visible; left: 10px; top: 20px"> 
+
+  <img src="imagenes/portada/titulo02.gif" width="84" height="377" name="Titulo"></div>
+
+<div id="realizado" style="position:absolute; width:113px; height:31px; z-index:3; left: 651px; top: 364px; visibility: visible"> 
+
+  <p align="right"><a href="mailto:jmarti50@olmo.pntic.mec.es"><img src="imagenes/portada/firma.jpg" width="102" height="31" name="firma" border="0" alt="E-mail"></a></p>
+
+  </div>
+
+<div id="montaje" style="position:absolute; width:200px; height:115px; z-index:4; left: 558px; top: 15px; visibility: visible"> 
+
+  <table width="98%" border="0" height="115">
+
+    <tr>
+
+      <td><img src="imagenes/portada/montaje10.jpg" width="100" height="75" name="montaje1"></td>
+
+      <td><img src="imagenes/portada/montaje5.jpg" width="100" height="75" name="montaje2"></td>
+
+    </tr>
+
+    <tr>
+
+      <td>&nbsp;</td>
+
+      <td><img src="imagenes/portada/montaje3.jpg" width="100" height="75" name="montaje3"></td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="menu" style="position:absolute; width:410px; height:10px; z-index:5; left: 130px; top: 35px; visibility: visible"> 
+
+  <table width="100%" border="0">
+
+    <tr>
+
+      <td valign="top"><font color="#FFCC00" size="2" face="Arial, Helvetica, sans-serif"><b><a href="#" onMouseOver="MM_swapImage('montaje1','','imagenes/portada/montaje1.jpg',1);MM_swapImage('topo1','','imagenes/portada/topo_anima.gif',1)" onMouseOut="MM_swapImage('topo1','','imagenes/portada/topo4.gif',1);MM_swapImage('montaje1','','imagenes/portada/montaje10.jpg',1)" onClick="MM_showHideLayers('itinerario','','show','simbolos','','hide','acerca','','hide','ayuda','','hide','enlaces','','hide','otrosrecursos','','hide')"><img src="imagenes/portada/topo4.gif" width="24" height="24" align="absmiddle" border="0" name="topo1">Itinerarios 
+
+        de estudio</a><br>
+
+        </b></font><font size="2" face="Arial, Helvetica, sans-serif"><b><font color="#FFCC00"><a href="#" onMouseOver="MM_swapImage('montaje2','','imagenes/portada/montaje4.jpg',1);MM_swapImage('topo2','','imagenes/portada/topo_anima.gif',1)" onMouseOut="MM_swapImage('topo2','','imagenes/portada/topo4.gif',1);MM_swapImage('montaje2','','imagenes/portada/montaje5.jpg',1)" onClick="MM_showHideLayers('itinerario','','hide','simbolos','','show','acerca','','hide','ayuda','','hide','enlaces','','hide','otrosrecursos','','hide')"><img src="imagenes/portada/topo4.gif" width="24" height="24" align="absmiddle" border="0" name="topo2">Identificaci&oacute;n 
+
+        de s&iacute;mbolos</a><br>
+
+        </font><font size="2" face="Arial, Helvetica, sans-serif" color="#FFCC00"><a href="#" onMouseOver="MM_swapImage('montaje3','','imagenes/portada/montaje6.jpg',1);MM_swapImage('topo21','','imagenes/portada/topo_anima.gif',1)" onMouseOut="MM_swapImage('topo21','','imagenes/portada/topo4.gif',1);MM_swapImage('montaje3','','imagenes/portada/montaje2.jpg',1)" onClick="MM_showHideLayers('itinerario','','hide','simbolos','','hide','acerca','','hide','ayuda','','hide','enlaces','','show','otrosrecursos','','hide')"><img src="imagenes/portada/topo4.gif" width="24" height="24" align="absmiddle" border="0" name="topo21">Enlaces</a></font><font color="#FFCC00"><br>
+
+        </font><font size="2" face="Arial, Helvetica, sans-serif"><b><font size="2" face="Arial, Helvetica, sans-serif" color="#FFCC00"><a href="#" onMouseOver="MM_swapImage('montaje3','','imagenes/portada/montaje6.jpg',1);MM_swapImage('topo211','','imagenes/portada/topo_anima.gif',1)" onMouseOut="MM_swapImage('topo211','','imagenes/portada/topo4.gif',1);MM_swapImage('montaje3','','imagenes/portada/montaje2.jpg',1)" onClick="MM_showHideLayers('itinerario','','hide','simbolos','','hide','acerca','','hide','ayuda','','hide','enlaces','','hide','otrosrecursos','','show')"><img src="imagenes/portada/topo4.gif" width="24" height="24" align="absmiddle" border="0" name="topo211">Otros 
+
+        recursos </a></font><font color="#FFCC00"></font></b></font><font color="#FFCC00"><br>
+
+        </font></b></font></td>
+
+      <td valign="top"><font size="2" face="Arial, Helvetica, sans-serif" color="#FFCC00"><b><a href="#" onMouseOut="MM_swapImage('topo4','','imagenes/portada/topo4.gif','topo3','','imagenes/portada/topo4.gif',1);MM_swapImage('montaje2','','imagenes/portada/montaje8.jpg',1)" onMouseOver="MM_swapImage('montaje2','','imagenes/portada/montaje6.jpg',1);MM_swapImage('topo4','','imagenes/portada/topo_anima.gif',1)" onClick="MM_showHideLayers('itinerario','','hide','simbolos','','hide','acerca','','show','ayuda','','hide','enlaces','','hide','otrosrecursos','','hide')"><img src="imagenes/portada/topo4.gif" width="25" height="24" border="0" align="absmiddle" name="topo4">Acerca 
+
+        de CACEL</a><br>
+
+        </b></font><font size="2" face="Arial, Helvetica, sans-serif"><b><font color="#FFCC00"><a href="#" onMouseOver="MM_swapImage('montaje3','','imagenes/portada/montaje9.jpg',1);MM_swapImage('topo3','','imagenes/portada/topo_anima.gif',1)" onMouseOut="MM_swapImage('topo3','','imagenes/portada/topo4.gif',1);MM_swapImage('montaje3','','imagenes/portada/montaje3.jpg',1)" onClick="MM_showHideLayers('itinerario','','hide','simbolos','','hide','acerca','','hide','ayuda','','show','enlaces','','hide','otrosrecursos','','hide');MM_openBrWindow('ayuda/ayuda.htm','','scrollbars=yes,width=400,height=500')"><img src="imagenes/portada/topo4.gif" width="24" height="24" align="absmiddle" border="0" name="topo3">Ayuda</a><br>
+
+        </font><font size="2" face="Arial, Helvetica, sans-serif" color="#FFCC00"><a href="#" onMouseOver="MM_swapImage('montaje1','','imagenes/portada/montaje5.jpg',1);MM_swapImage('topo31','','imagenes/portada/topo_anima.gif',1)" onMouseOut="MM_swapImage('topo31','','imagenes/portada/topo4.gif',1);MM_swapImage('montaje1','','imagenes/portada/montaje10.jpg',1)"
+
+onClick="window.close()"><img src="imagenes/portada/topo4.gif" width="24" height="24" align="absmiddle" border="0" name="topo31">Cerrar</a></font></b></font></td>
+
+    </tr>
+
+  </table>
+
+  
+
+</div>
+
+<div id="itinerario" style="position:absolute; width:480px; height:245px; z-index:6; left: 152px; top: 152px; overflow: auto; visibility: hidden"> 
+
+  <hr noshade color="#99CCCC" width="400" align="left">
+
+  <p> 
+
+    <script language="JavaScript1.2">
+
+NS4 = (document.layers) ? 1 : 0;
+
+IE4 = (document.all) ? 1 : 0;
+
+ver4 = (NS4 || IE4) ? 1 : 0;
+
+
+
+if (ver4) {
+
+    with (document) {
+
+        write("<STYLE TYPE='text/css'>");
+
+        if (NS4) {
+
+            write(".parent {position:absolute; visibility:visible}");
+
+            write(".child {position:absolute; visibility:visible}");
+
+            write(".regular {position:absolute; visibility:visible}")
+
+        }
+
+        else {
+
+            write(".child {display:none}")
+
+        }
+
+        write("</STYLE>");
+
+    }
+
+}
+
+
+
+function getIndex(el) {
+
+    ind = null;
+
+    for (i=0; i<document.layers.length; i++) {
+
+        whichEl = document.layers[i];
+
+        if (whichEl.id == el) {
+
+            ind = i;
+
+            break;
+
+        }
+
+    }
+
+    return ind;
+
+}
+
+
+
+function arrange() {
+
+    nextY = document.layers[firstInd].pageY +document.layers[firstInd].document.height;
+
+    for (i=firstInd+1; i<document.layers.length; i++) {
+
+        whichEl = document.layers[i];
+
+        if (whichEl.visibility != "hide") {
+
+            whichEl.pageY = nextY;
+
+            nextY += whichEl.document.height;
+
+        }
+
+    }
+
+}
+
+
+
+function initIt(){
+
+    if (!ver4) return;
+
+    if (NS4) {
+
+        for (i=0; i<document.layers.length; i++) {
+
+            whichEl = document.layers[i];
+
+            if (whichEl.id.indexOf("Child") != -1) whichEl.visibility = "hide";
+
+       }
+
+        arrange();
+
+    }
+
+    else {
+
+        divColl = document.all.tags("DIV");
+
+        for (i=0; i<divColl.length; i++) {
+
+            whichEl = divColl(i);
+
+            if (whichEl.className == "child") whichEl.style.display = "none";
+
+        }
+
+    }
+
+}
+
+
+
+function expandIt(el) {
+
+    if (!ver4) return;
+
+    if (IE4) {
+
+        whichEl = eval(el + "Child");
+
+        if (whichEl.style.display == "none") {
+
+            whichEl.style.display = "block";
+
+        }
+
+        else {
+
+            whichEl.style.display = "none";
+
+        }
+
+    }
+
+    else {
+
+        whichEl = eval("document." + el + "Child");
+
+        if (whichEl.visibility == "hide") {
+
+            whichEl.visibility = "show";
+
+        }
+
+        else {
+
+            whichEl.visibility = "hide";
+
+        }
+
+        arrange();
+
+    }
+
+}
+
+
+
+onload = initIt;
+
+
+
+</script>
+
+    <font color="#336699" face="Arial, Helvetica, sans-serif" size="2"><b><u>Itinerarios 
+
+    de Estudio</u></b></font> </p>
+
+  <div id="KB1Parent" class="parent"> <a href="#" onClick="expandIt('KB1'); return false"> 
+
+    <b>Por Circuitos:</b> </a> </div>
+
+  <div id="KB1Child" class="child"> 
+
+    <hr noshade color="#99CCCC" width="400" align="left">
+
+    <font color="#CCCCCC"><a href="arranque1b.htm" class="submenu">- Arranque 
+
+    de un motor trif&aacute;sico. Mando con interruptor monopolar </a><br>
+
+    <a href="lamparas.htm" class="submenu">- Arranque de un motor trif&aacute;sico. 
+
+    Se&ntilde;alizaci&oacute;n luminosa On-Off </a><br>
+
+    <a href="marcha_paro2.htm" class="submenu">- Arranque de un motor trif&aacute;sico. 
+
+    Mando con pulsadores marcha/paro</a><br>
+
+    <a href="cascada.htm" class="submenu">- Arranque de tres motores en cascada 
+
+    en el orden 1-2-3. Mando con pulsadores</a><br>
+
+    <a href="inver1.htm" class="submenu">- Inversi&oacute;n del sentido de giro 
+
+    de un motor III. Mando con conmutador de tres posiciones.</a><br>
+
+    <a href="inver2.htm" class="submenu">- Inversi&oacute;n del sentido de giro 
+
+    de un motor III. Mando con pulsadores pasando por paro.</a><br>
+
+    <a href="inver3.htm" class="submenu">- Inversi&oacute;n del sentido de giro 
+
+    de un motor III. Mando con Pulsadores sin pasar por paro.</a><br>
+
+    <a href="inver-tmp.htm" class="submenu">- Inversi&oacute;n del sentido de 
+
+    giro de un motor trif&aacute;sico de forma autom&aacute;tica con temporizadores.</a><br>
+
+    <a href="inver4-fc.htm" class="submenu">- Inversi&oacute;n del sentido de 
+
+    giro de un motor trif&aacute;sico. Parada con finales de carrera.</a><br>
+
+    <a href="temporizador.htm" class="submenu">- Conmutaci&oacute;n de l&aacute;mparas 
+
+    con temporizador.</a><br>
+
+    <a href="telerruptor.htm" class="submenu">- Arranque de un motor trif&aacute;sico 
+
+    con telerruptor.</a><br>
+
+    <a href="monofasico.htm" class="submenu">- Inversi&oacute;n del sentido de 
+
+    giro de un motor monof&aacute;sico. Mando con pulsadores.</a><br>
+
+    <a href="e_t2.htm" class="submenu">- Arranque de un motor trif&aacute;sico 
+
+    en estrella/tri&aacute;ngulo. Mando manual con pulsadores</a><br>
+
+    <a href="e_t1.htm" class="submenu">- Arranque en estrella/tri&aacute;ngulo 
+
+    de un motor trif&aacute;sico. Mando autom&aacute;tico con temporizador.</a><br>
+
+    <a href="escalera.htm" class="submenu">- Control autom&aacute;tico de una 
+
+    escalera el&eacute;ctrica con barrera fotoel&eacute;ctrica.</a><br>
+
+    </font></div>
+
+  <div id="KB2Parent" class="parent"> <a href="#" onClick="expandIt('KB2'); return false"> 
+
+    <b>Por Contenidos: </b></a> </div>
+
+  <div id="KB2Child" class="child"> 
+
+    <hr noshade color="#99CCCC" width="400" align="left">
+
+    <font color="#CCCCCC"><font color="#6699CC">- <font size="1" face="Arial, Helvetica, sans-serif">Activación 
+
+    del contactor </font></font><font size="1" face="Arial, Helvetica, sans-serif" color="#CCCC99"><br>
+
+    <a href="arranque1b.htm" class="submenu">* Con interruptor monopolar </a><br>
+
+    <a href="marcha_paro2.htm" class="submenu">* Con pulsadores</a> <br>
+
+    <font color="#6699CC">- Contactos auxiliares </font><br>
+
+    <a href="marcha_paro2.htm" class="submenu">* La realimentación (enclavamiento) 
+
+    </a><br>
+
+    <a href="cascada.htm" class="submenu">* Acciones condicionadas</a> <br>
+
+    <font color="#6699CC">- Señalización luminosa: </font><br>
+
+    <a href="lamparas.htm" class="submenu">* Con contactos auxiliares. </a><br>
+
+    <a href="cascada.htm" class="submenu">* Activación de bobinas. </a><br>
+
+    <font color="#6699CC"><a href="marcha_paro2.htm" class="submenu">* Disparo 
+
+    de un rel&eacute; t&eacute;rmico.</a><br>
+
+    <a href="cascada.htm" class="submenu">* Disparo de varios rel&eacute;s t&eacute;rmicos.</a><br>
+
+    - Comportamiento del motor trifásico ante la falta de una fase </font><br>
+
+    <a href="arranque1b.htm" class="submenu">* Arranque sin protección. </a><br>
+
+    <a href="marcha_paro2.htm" class="submenu">* Arranque con protección por un 
+
+    relé térmico diferencial. </a><br>
+
+    <a href="cascada.htm" class="submenu">* Arranque con varios rel&eacute;s t&eacute;rmicos.</a><br>
+
+    <font color="#6699CC">- Inversión del sentido de giro de un motor trifásico.</font> 
+
+    <br>
+
+    * <a href="inver1.htm" class="submenu">Con interruptor rotativo </a><br>
+
+    <a href="inver2.htm" class="submenu">* con pulsadores de paro-marcha</a> <br>
+
+    <a href="inver3.htm" class="submenu">* con pulsadores de doble cámara</a> 
+
+    <br>
+
+    <a href="inver4-fc.htm" class="submenu">* Parada con finales de carrera</a> 
+
+    <br>
+
+    <font color="#6699CC">- Uso de los captadores: </font><br>
+
+    <a href="arranque1b.htm" class="submenu">* Interruptor monopolar </a><br>
+
+    <a href="inver1.htm" class="submenu">* El conmutador rotativo de 3 posiciones 
+
+    </a><br>
+
+    <a href="marcha_paro2.htm" class="submenu">* Pulsadores de marcha / paro.</a> 
+
+    <br>
+
+    <a href="inver3.htm" class="submenu">* Pulsadores de doble cámara 1. </a><br>
+
+    <a href="e_t2.htm" class="submenu">* Pulsadores de doble c&aacute;mara 2.</a><br>
+
+    <a href="inver4-fc.htm" class="submenu">* Interruptores de posición (Finales 
+
+    de carrera) </a><br>
+
+    <a href="escalera.htm" class="submenu">* Barrera fotoeléctrica </a><br>
+
+    <font color="#6699CC">- Arranque de un motor trifásico:</font> <br>
+
+    <a href="marcha_paro2.htm" class="submenu">* Arranque directo </a><br>
+
+    <a href="e_t2.htm" class="submenu">* Arranque estrella-triángulo </a><br>
+
+    <font color="#6699CC">- Acciones temporizadas:</font> <br>
+
+    <a href="temporizador.htm" class="submenu">* Uso básico del temporizador. 
+
+    </a><br>
+
+    <a href="inver-tmp.htm" class="submenu">* Temporizadores en cascada </a><br>
+
+    <a href="escalera.htm" class="submenu">* Aplicación del temporizador. </a><br>
+
+    <font color="#6699CC">- Relés y contactores auxiliares. </font><br>
+
+    <a href="escalera.htm" class="submenu">* Aplicación de un contactor auxiliar. 
+
+    </a><br>
+
+    <span class="submenu"><a href="telerruptor.htm" class="submenu">* El telerruptor. 
+
+    </a></span></font></font></div>
+
+  <div id="KB14Parent" class="parent"> <a href="#" onClick="expandIt('KB14'); return false"> 
+
+    <b>Evaluaci&oacute;n:</b></a> </div>
+
+  <div id="KB14Child" class="child"> 
+
+    <hr noshade color="#99CCCC" width="400" align="left">
+
+    <span class="texto"><font color="#CCCCCC"><a href="2arranque1b.htm" class="submenu">- 
+
+    Arranque de un motor trif&aacute;sico. Mando con interruptor monopolar </a><br>
+
+    <a href="2lamparas.htm" class="submenu">- Arranque de un motor trif&aacute;sico. 
+
+    Se&ntilde;alizaci&oacute;n luminosa On-Off </a><br>
+
+    <a href="2marcha_paro2.htm" class="submenu">- Arranque de un motor trif&aacute;sico. 
+
+    Mando con pulsadores marcha/paro</a><br>
+
+    <a href="2cascada.htm" class="submenu">- Arranque de tres motores en cascada 
+
+    en el orden 1-2-3. Mando con pulsadores</a><br>
+
+    <a href="2nver1.htm" class="submenu">- Inversi&oacute;n del sentido de giro 
+
+    de un motor III. Mando con conmutador de tres posiciones.</a><br>
+
+    <a href="2inver2.htm" class="submenu">- Inversi&oacute;n del sentido de giro 
+
+    de un motor III. Mando con pulsadores pasando por paro.</a><br>
+
+    <a href="2inver3.htm" class="submenu">- Inversi&oacute;n del sentido de giro 
+
+    de un motor III. Mando con Pulsadores sin pasar por paro.</a><br>
+
+    <a href="2inver-tmp.htm" class="submenu">- Inversi&oacute;n del sentido de 
+
+    giro de un motor trif&aacute;sico de forma autom&aacute;tica con temporizadores.</a><br>
+
+    <a href="2inver4-fc.htm" class="submenu">- Inversi&oacute;n del sentido de 
+
+    giro de un motor trif&aacute;sico. Parada con finales de carrera.</a><br>
+
+    <a href="2temporizador.htm" class="submenu">- Conmutaci&oacute;n de l&aacute;mparas 
+
+    con temporizador.</a><br>
+
+    <a href="2telerruptor.htm" class="submenu">- Arranque de un motor trif&aacute;sico 
+
+    con telerruptor.</a><br>
+
+    <a href="2monofasico.htm" class="submenu">- Inversi&oacute;n del sentido de 
+
+    giro de un motor monof&aacute;sico. Mando con pulsadores.</a><br>
+
+    <a href="2e_t2.htm" class="submenu">- Arranque de un motor trif&aacute;sico 
+
+    en estrella/tri&aacute;ngulo. Mando manual con pulsadores</a><br>
+
+    <a href="2e_t1.htm" class="submenu">- Arranque en estrella/tri&aacute;ngulo 
+
+    de un motor trif&aacute;sico. Mando autom&aacute;tico con temporizador.</a><br>
+
+    <a href="2escalera.htm" class="submenu">- Control autom&aacute;tico de una 
+
+    escalera el&eacute;ctrica con barrera fotoel&eacute;ctrica.</a></font>. </span></div>
+
+
+
+  <p class="texto"> 
+
+    <script language='JavaScript'>
+
+    if (NS4) {
+
+        firstEl = "KB1Parent";
+
+        firstInd = getIndex(firstEl);
+
+        arrange();
+
+    }
+
+</script>
+
+    <br>
+
+    Los modos <font color="#99CCCC">&quot;Por Circuitos&quot; </font>y<font color="#99CCCC"> 
+
+    &quot;Por Contenidos&quot;</font> permiten la simulaci&oacute;n y la autocomprobaci&oacute;n 
+
+    de los cuestionarios<br>
+
+    El modo <font color="#99CCCC">&quot;Evaluaci&oacute;n&quot;</font> no permite 
+
+    la simulaci&oacute;n y el cuestionario no se puede resolver. Este itinerario 
+
+    est&aacute; enfocado a evaluar al alumno v&iacute;a E-mail.</p>
+
+  <p>&nbsp; </p>
+
+</div>
+
+<div id="simbolos" style="position:absolute; width:480px; height:245px; z-index:7; left: 152px; top: 152px; visibility: hidden; overflow: auto"> 
+
+  <hr noshade color="#99CCCC" width="400" align="left">
+
+  <p> <b><font face="Arial, Helvetica, sans-serif" size="2" color="#336699"><u>Identificaci&oacute;n 
+
+    de Simbolos Electrot&eacute;cnicos</u></font></b></p>
+
+  <p><font color="#CCCCCC" face="Arial, Helvetica, sans-serif" size="2">Juegos 
+
+    de asociaci&oacute;n del s&iacute;mbolos por su nombre:</font></p>
+
+  <blockquote> 
+
+    <p><font color="#CCCCCC" face="Arial, Helvetica, sans-serif" size="2"><a href="#" class="submenu" onClick="MM_openBrWindow('juego/simbolos1.htm','','scrollbars=yes')">- 
+
+      Juego 1</a><br>
+
+      <a href="#" class="submenu" onClick="MM_openBrWindow('juego/simbolos2.htm','','scrollbars=yes')">- 
+
+      Juego 2</a><br>
+
+      <a href="#" class="submenu" onClick="MM_openBrWindow('juego/simbolos3.htm','','scrollbars=yes')">- 
+
+      Juego 3</a></font></p>
+
+  </blockquote>
+
+  <p align="left"><font color="#FFFFCC"><span name="G01question"><font size="1" color="#6699CC" face="Arial, Helvetica, sans-serif">Forma 
+
+    de uso:</font><font face="Arial, Helvetica, sans-serif" size="1"><br>
+
+    <b><font color="#CCCCCC">1-</font></b><font color="#CCCCCC">Arrastrar los 
+
+    s&iacute;mbolos situados a la izquierda encima de cada uno de los nombres 
+
+    situados a la derecha <br>
+
+    </font></font></span></font><font color="#CCCCCC" size="1" face="Arial, Helvetica, sans-serif"><span name="G01question"><b>2-</b>Presionar 
+
+    el Bot&oacute;n &quot;Comprobar&quot; para ver si las asociaciones son correctas. 
+
+    <br>
+
+    <br>
+
+    Para comenzar de nuevo, pulsar &quot;Restaurar&quot;. <br>
+
+    El tiempo m&aacute;ximo de las pruebas es <b>1 minuto.</b></span></font></p>
+
+  <p>&nbsp;</p>
+
+</div>
+
+<div id="acerca" style="position:absolute; width:480px; height:245px; z-index:7; left: 152px; top: 152px; visibility: hidden; overflow: auto"> 
+
+  <hr noshade color="#99CCCC" width="400" align="left">
+
+  <p align="left"><font face="Arial, Helvetica, sans-serif" color="#CCCC99"><img src="imagenes/portada/icono.gif" width="100" height="22"></font></p>
+
+  <p align="left"><font face="Arial, Helvetica, sans-serif" color="#CCCCCC" size="2">Curso 
+
+    de Automatismos Cableados en L&iacute;nea</font></p>
+
+  <p align="left"><font face="Arial, Helvetica, sans-serif" size="1" color="#CCCCFF"><b>Desarrollado 
+
+    por:</b></font></p>
+
+  <p align="left"><font face="Arial, Helvetica, sans-serif" size="1" color="#CCCC99">Juan 
+
+    Carlos Mart&iacute;n Castillo </font><font face="Arial, Helvetica, sans-serif" size="1" color="#CCCCFF"><br>
+
+    <font color="#CCCCCC">Profesor de Instalaciones Electrot&eacute;cnicas del 
+
+    IES &quot;R&iacute;o Cuerpo de Hombre&quot; de B&eacute;jar (Salamanca)</font></font></p>
+
+  <p align="left"><font face="Arial, Helvetica, sans-serif" size="1" color="#CCCC99">Jes&uacute;s 
+
+    G&oacute;mez Colorado</font><font face="Arial, Helvetica, sans-serif" size="1" color="#CCCCFF"><br>
+
+    <font color="#CCCCCC">Catedr&aacute;tico de Sistemas Electrot&eacute;cnicos 
+
+    y Autom&aacute;ticos de IES &quot;R&iacute;o Cuerpo de Hombre&quot; de B&eacute;jar 
+
+    (Salamanca)</font></font></p>
+
+  <p align="left"><font face="Arial, Helvetica, sans-serif" size="1" color="#CCCCCC">E- 
+
+    mail</font><font face="Arial, Helvetica, sans-serif" size="1" color="#CCCCFF">: 
+
+    <a href="mailto:%20jmarti50@olmo.pntic.mec.es" class="submenu">jmarti50@olmo.pntic.mec.es</a><br>
+
+    <font color="#CCCCCC">WEB :</font><a href="http://olmo.pntic.mec.es/%7Ejmarti50/index.htm" class="submenu"> 
+
+    http://olmo.pntic.mec.es/~jmarti50/index.htm</a></font></p>
+
+  <p align="right"><font color="#CCCCCC" face="Arial, Helvetica, sans-serif" size="1"> 
+
+    &copy; Castillo &amp; Colorado 2.000</font></p>
+
+  <hr noshade color="#99CCCC" width="400" align="left">
+
+</div>
+
+<div id="ayuda" style="position:absolute; width:480px; height:245px; z-index:7; left: 152px; top: 152px; visibility: hidden"> 
+
+  <hr noshade color="#99CCCC" width="400" align="left">
+
+</div>
+
+<div id="enlaces" style="position:absolute; width:480px; height:245px; z-index:7; left: 152px; top: 152px; overflow: auto; visibility: hidden" class="texto"> 
+
+  <hr noshade color="#99CCCC" width="400" align="left">
+
+  <p> 
+
+    <script language="JavaScript1.2">
+
+NS4 = (document.layers) ? 1 : 0;
+
+IE4 = (document.all) ? 1 : 0;
+
+ver4 = (NS4 || IE4) ? 1 : 0;
+
+
+
+if (ver4) {
+
+    with (document) {
+
+        write("<STYLE TYPE='text/css'>");
+
+        if (NS4) {
+
+            write(".parent {position:absolute; visibility:visible}");
+
+            write(".child {position:absolute; visibility:visible}");
+
+            write(".regular {position:absolute; visibility:visible}")
+
+        }
+
+        else {
+
+            write(".child {display:none}")
+
+        }
+
+        write("</STYLE>");
+
+    }
+
+}
+
+
+
+function getIndex(el) {
+
+    ind = null;
+
+    for (i=0; i<document.layers.length; i++) {
+
+        whichEl = document.layers[i];
+
+        if (whichEl.id == el) {
+
+            ind = i;
+
+            break;
+
+        }
+
+    }
+
+    return ind;
+
+}
+
+
+
+function arrange() {
+
+    nextY = document.layers[firstInd].pageY +document.layers[firstInd].document.height;
+
+    for (i=firstInd+1; i<document.layers.length; i++) {
+
+        whichEl = document.layers[i];
+
+        if (whichEl.visibility != "hide") {
+
+            whichEl.pageY = nextY;
+
+            nextY += whichEl.document.height;
+
+        }
+
+    }
+
+}
+
+
+
+function initIt(){
+
+    if (!ver4) return;
+
+    if (NS4) {
+
+        for (i=0; i<document.layers.length; i++) {
+
+            whichEl = document.layers[i];
+
+            if (whichEl.id.indexOf("Child") != -1) whichEl.visibility = "hide";
+
+       }
+
+        arrange();
+
+    }
+
+    else {
+
+        divColl = document.all.tags("DIV");
+
+        for (i=0; i<divColl.length; i++) {
+
+            whichEl = divColl(i);
+
+            if (whichEl.className == "child") whichEl.style.display = "none";
+
+        }
+
+    }
+
+}
+
+
+
+function expandIt(el) {
+
+    if (!ver4) return;
+
+    if (IE4) {
+
+        whichEl = eval(el + "Child");
+
+        if (whichEl.style.display == "none") {
+
+            whichEl.style.display = "block";
+
+        }
+
+        else {
+
+            whichEl.style.display = "none";
+
+        }
+
+    }
+
+    else {
+
+        whichEl = eval("document." + el + "Child");
+
+        if (whichEl.visibility == "hide") {
+
+            whichEl.visibility = "show";
+
+        }
+
+        else {
+
+            whichEl.visibility = "hide";
+
+        }
+
+        arrange();
+
+    }
+
+}
+
+
+
+onload = initIt;
+
+
+
+</script>
+
+    <font color="#336699" face="Arial, Helvetica, sans-serif" size="2"><b><u>Enlaces</u></b></font> 
+
+  </p>
+
+  <div id="KB5Parent" class="parent"> <a href="#" onClick="expandIt('KB5'); return false"> 
+
+    <b>Nuestra p&aacute;gina WEB</b> </a> </div>
+
+   
+
+    
+
+  <div id="KB5Child" class="child"><b><font face="Arial,Helvetica" size="-1" color="#FF6600"><span class="texto"><font color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;En 
+
+    ella puede encontrar, entre otras cosas:</font><br>
+
+    <font color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>- 
+
+    Informaci&oacute;n sobre nuestra <font color="#99CCCC">oferta educativa</font>.<br>
+
+    <font color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>- 
+
+    Una revista On-Line sobre Electricidad, Electr&oacute;nica y Autom&aacute;tica</span> 
+
+    </font></b><font face="Arial,Helvetica" size="-1" color="#99CCCC"><span class="texto"><b>(REEA)</b></span></font><b><font face="Arial,Helvetica" size="-1" color="#FF6600"> 
+
+    <span class="texto">realizada por <font color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>profesores 
+
+    y alumnos de formaci&oacute;n profesional.</span><br>
+
+    <span class="texto"><font color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>- 
+
+    Una colecci&oacute;n de<font color="#99CCCC"> 30 esquemas de automatismos</font> 
+
+    cableados sobre contactores<br>
+
+    <font color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>- 
+
+    Ultimas versiones de <font color="#99CCCC">CACEL<br>
+
+    </font></span><span class="texto"><font color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></span><a href="http://olmo.pntic.mec.es/%7Ejmarti50/index.htm" class="submenu">http://olmo.pntic.mec.es/~jmarti50/index.htm</a> 
+
+    </font></b> &nbsp;</div>
+
+  <div id="KB6Parent" class="parent"> <a href="#" onClick="expandIt('KB6'); return false"> 
+
+    <b>Fabricantes </b></a> </div>
+
+  <div id="KB6Child" class="child"><b><font face="Arial,Helvetica" size="-1" color="#FF6633"><span class="texto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><font face="Arial,Helvetica" size="-1"><font color="#FF6600"><a href="http://www.siemens.es/" class="submenu">Siemens 
+
+    Espa&ntilde;a</a></font><font color="#FFFFFF"> <img src="spain.gif" height=14 width=14></font></font></b> 
+
+    <br>
+
+    <font face="Arial,Helvetica" color="#CCCC99" size="-1" class="texto"><b><font face="Arial,Helvetica" size="-1" color="#FF6633"><span class="texto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font></b>Productos 
+
+    para la Automatizaci&oacute;n.</font><br>
+
+    <font color="#FF6600" face="Arial,Helvetica" size="-1"><b><font face="Arial,Helvetica" size="-1" color="#FF6633"><span class="texto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><a href="http://www.schneiderelectric.es/" class="submenu">Schneider 
+
+    Espa&ntilde;a</a></b></font><b><font face="Arial,Helvetica" color="#FFFFFF" size="-1"> 
+
+    <img src="spain.gif" height=14 width=14></font></b> <br>
+
+    <font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto"><b><font face="Arial,Helvetica" size="-1" color="#FF6633"><span class="texto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font></b>Electrotecnia 
+
+    en general.</font> <br>
+
+    <b><font face="Arial,Helvetica" size="-1" color="#FF6633"><span class="texto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><font face="Arial,Helvetica" size="-1"><font color="#FF6600"><a href="http://www.omron.es" class="submenu">Omron 
+
+    Espa&ntilde;a </a></font><font color="#FFFFFF"> <img src="spain.gif" height=14 width=14></font></font></b> 
+
+    <br>
+
+    <font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto"><b><font face="Arial,Helvetica" size="-1" color="#FF6633"><span class="texto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font></b>Automatizaci&oacute;n 
+
+    (PLC's, contactores, rel&eacute;s, etc)</font> <br>
+
+    <font color="#FF6600" face="Arial,Helvetica" size="-1"><b><font face="Arial,Helvetica" size="-1" color="#FF6633"><span class="texto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><a href="http://www.kmoeller.es/" add_date="924147919" last_visit="925789053" last_modified="924147890" class="submenu">Moeller 
+
+    Electric Espa&ntilde;a</a></b> </font><b><font face="Arial,Helvetica" color="#FFFFFF" size="-1"><img src="file:///C|/Departamento/enlaces/spain.gif" height=14 width=14></font></b> 
+
+    <font color="#FF6600" face="Arial,Helvetica" size="-1"><b><a href="http://www.ab.com/"> 
+
+    <br>
+
+    </a><font face="Arial,Helvetica" size="-1" color="#FF6633"><span class="texto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><span class="texto">Automatizaci&oacute;n 
+
+    en general<br>
+
+    </span><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu">Allen-Bradley 
+
+    / Rockwell Automation</a></b></font><b><font face="Arial,Helvetica" color="#FFFFFF" size="-1"> 
+
+    <img src="ingles.gif" height=14 width=14><br>
+
+    </font></b><b><font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto">Automatizaci&oacute;n 
+
+    en general</span></font><font face="Arial,Helvetica" color="#FFFFFF" size="-1"><br>
+
+    </font></b> <b><font face="Arial,Helvetica" color="#FFFFFF" size="-1"> </font><font size=-1 face="Arial,Helvetica" color="#FF6600"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><a href="http://www.medex.es/index.html" class="submenu">Medex 
+
+    </a></font><img src="spain.gif" border=0 height=14 width=14> <br>
+
+    <font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></font><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto">Protecciones 
+
+    electricas industriales.</font> <br>
+
+    <font size=-1 face="Arial,Helvetica" color="#FF6600"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><a href="http://www.afme.es/empresas.html" class="submenu">AFME 
+
+    </a></font><img src="spain.gif" border=0 height=14 width=14> <br>
+
+    <font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></font><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto">Asociaci&oacute;n 
+
+    de fabricantes de material el&eacute;ctrico</font> <br>
+
+    <font size=-1 face="Arial,Helvetica" color="#FF6600"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><a href="http://www.orbis.es/esp/corepage.htm" add_date="922857240" last_visit="922858693" last_modified="922857231" class="submenu">ORBIS 
+
+    </a></font><img src="spain.gif" border=0 height=14 width=14> <br>
+
+    <font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></font><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto">Dispositivos 
+
+    auxiliares para la automatizaci&oacute;n (sensores fotoel&eacute;ctricos, 
+
+    relojes, etc) </font><br>
+
+    </b><font size=-1 face="Arial,Helvetica"><b><font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></font><font color="#FF6600"><a href="http://www.weidmuller.es/" add_date="923721704" last_visit="926049439" last_modified="923721678" class="submenu">Weidm&uuml;ller 
+
+    S.A. - Espa&ntilde;a </a></font><font color="#FFFFFF"><img src="spain.gif" border=0 height=14 width=14></font><font color="#FF6600">&nbsp;</font></b></font><br>
+
+    <font face="Arial,Helvetica" color="#FF6600" size="-1"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></b><span class="texto">Terminales 
+
+    y regletas.</span></font><b> <br>
+
+    <font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><a href="http://www.asein.com/" class="submenu">ASEIN 
+
+    </a><img src="spain.gif" border=0 height=14 width=14> <br>
+
+    <font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto">Fabricante 
+
+    de Escobillas y material el&eacute;ctrico.<br>
+
+    </span></font><font size=-1 face="Arial,Helvetica"><font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></font><font color="#FF6600"><a href="http://www.circutor.com/" class="submenu">Circutor</a></font><font color="#FFFFFF">&nbsp;</font></font><img src="spain.gif" height=14 width=14> 
+
+    <br>
+
+    <font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></font><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto"><span class="texto">Instrumentaci&oacute;n</span></font><span class="texto"> 
+
+    en general. Instrumentos para cuadros el&eacute;ctricos.</span></b> <br>
+
+    <b><font face="Arial,Helvetica" color="#FF6600" size="-1"><span class="texto"> 
+
+    </span><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><a href="http://www.mgmrestop.com/Spanish/ricbacf.htm" class="submenu">MGM 
+
+    </a><img src="spain.gif" border=0 height=14 width=14> <br>
+
+    <font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto">Repuestos 
+
+    de motores el&eacute;ctricos.</span><span class="texto"></span></font></b> 
+
+  </div>
+
+  <div id="KB9Parent" class="parent"> <a href="#" onClick="expandIt('KB9'); return false"> 
+
+    <b>Equipos did&aacute;cticos</b> </a> </div>
+
+  <div id="KB9Child" class="child"> <font size=-1><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font><font face="Arial,Helvetica" color="#FF6600"><a href="http://www.alecop.mcc.es/" class="submenu">Alecop</a></font></b></font> 
+
+    <img src="spain.gif" height=14 width=14> <br>
+
+    <font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto"><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font></b>Electromec&aacute;nica, 
+
+    electr&oacute;nica, electricidad, regulaci&oacute;n y control, rob&oacute;tica, 
+
+    cnc, etc.</font> <br>
+
+    <font size=-1><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font><font face="Arial,Helvetica" color="#FF6600"><a href="http://www.distesa.es" class="submenu">Distesa</a></font></b></font> 
+
+    <img src="spain.gif" height=14 width=14> <br>
+
+    <font face="Arial,Helvetica" color="#FF6600" size="-1"><span class="texto"><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font></b>Electromec&aacute;nica, 
+
+    electr&oacute;nica, electricidad, regulaci&oacute;n y control, instalaciones, 
+
+    etc</span>.</font> <br>
+
+    <font size=-1><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font><font face="Arial,Helvetica" color="#FF6600"><a href="http://www.lucas-nuelle.com" class="submenu">Lucas-Nuelle</a></font></b></font> 
+
+    <img src="spain.gif" height=14 width=14> <br>
+
+    <font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto"><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font></b>Electr&oacute;nica, 
+
+    electricidad, electromec&aacute;nica, etc.</font> <br>
+
+    <font size=-1><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font><font face="Arial,Helvetica"><font color="#FF6600"><a href="http://www.labvolt.com/indexe.html" class="submenu">Lab-Volt</a></font>&nbsp;</font></b></font><img src="spain.gif" height=14 width=14> 
+
+    <br>
+
+    <font size=-1><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font><font face="Arial,Helvetica"><font color="#FF6600"><a href="http://www.sidac.com/html/general1.html" class="submenu">SIDAC</a></font>&nbsp;</font></b></font><img src="spain.gif" height=14 width=14> 
+
+    <br>
+
+  </div>
+
+
+
+  <div id="KB7Parent" class="parent"> <a href="#" onClick="expandIt('KB7'); return false"> 
+
+    <b>Software de dise&ntilde;o electrot&eacute;cnico </b></a> </div>
+
+  <div id="KB7Child" class="child"> 
+
+   <font size=-1><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.microdata.it/" class="submenu">EcadPlus&nbsp;&nbsp;</a></font></b></font><span class="submenu"><img src="ingles.gif" height=14 width=14>&nbsp;&nbsp;</span> 
+
+      <br>
+
+      <font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto"><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font></b>Dise&ntilde;o 
+
+      electrot&eacute;cnico y electromec&aacute;nico</font><br>
+
+      <font size=-1><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font><font face="Arial,Helvetica" color="#FF6600"><a href="http://www.desa-logiciels.com/indexuk.htm" class="submenu">DeSA 
+
+      soft&nbsp;&nbsp;</a></font></b></font><img src="ingles.gif" height=14 width=14>&nbsp;&nbsp; 
+
+      <br>
+
+      <font face="Arial,Helvetica" color="#FF6600" size="-1"><span class="texto"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></b>Sofware 
+
+      para el dise&ntilde;o de esquemas en el sector el&eacute;ctrico</span>.</font> 
+
+      <br>
+
+      <font size=-1><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font><font face="Arial,Helvetica" color="#FF6600"><a href="http://www.wscad.com/homep_e.htm" class="submenu">WSCAD 
+
+      Electronic GmbH</a>&nbsp;</font></b></font><img src="ingles.gif" height=14 width=14>&nbsp;&nbsp; 
+
+      <br>
+
+      <font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto"><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font></b>Programa 
+
+      de CAD para el dise&ntilde;o electromec&aacute;nico. (Automatismos con contactores, 
+
+      neum&aacute;tica, etc)</font> <br>
+
+      <font size=-1><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font><font face="Arial,Helvetica" color="#FF6600"><a href="http://www.cadtek.com/cimlogic.htm" class="submenu">CIMLOGIC</a>&nbsp;&nbsp;</font></b></font><img src="ingles.gif" height=14 width=14> 
+
+      <br>
+
+      <font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto"><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font></b>Aplicaci&oacute;n 
+
+      de dise&ntilde;o el&eacute;ctrico que trabaja bajo Autocad.</font> <br>
+
+      <font size=-1><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font><font face="Arial,Helvetica" color="#FF6600"><a href="http://www.dtbsware.com/" class="submenu">dTbSware</a>&nbsp;&nbsp;</font></b></font><img src="ingles.gif" height=14 width=14> 
+
+      <br>
+
+      <font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto"><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font></b>Software 
+
+      de aplicaciones espec&iacute;ficas para la ingenier&iacute;a.</font> <br>
+
+      <font size=-1><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font><font face="Arial,Helvetica" color="#FF6600"><a href="http://procuno.com/" class="submenu">Procedimientos-Uno&nbsp;&nbsp;</a></font></b></font><img src="spain.gif" height=14 width=14>&nbsp;&nbsp; 
+
+      <br>
+
+      <font face="Arial,Helvetica" color="#FF6600" size="-1"><span class="texto"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></b>Programas 
+
+      de Ingenier&iacute;a civil. Entre elllos varios para dise&ntilde;o electrot&eacute;cnico.</span><br>
+
+      </font><font size=-1><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font><font face="Arial,Helvetica" color="#FF6600"><a href="http://www.eplan.de" add_date="917500937" last_visit="917500855" last_modified="917500855" class="submenu">EPLAN 
+
+      Wiechers + Partner American Pages&nbsp;&nbsp;</a></font></b></font>&nbsp;<img src="ingles.gif" height=14 width=14> 
+
+      <br>
+
+      <font face="Arial,Helvetica" color="#FF6600" size="-1"><span class="texto"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></b>Dise&ntilde;o 
+
+      electrot&eacute;cnico y electromec&aacute;nico.</span><br>
+
+      </font><font size=-1><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font><font face="Arial,Helvetica" color="#FF6600"><a href="http://www.cadelec.com/" add_date="917501301" last_visit="917501350" last_modified="917501289" class="submenu">CADELEC</a>&nbsp;&nbsp;</font></b></font><img src="ingles.gif" height=14 width=14>&nbsp;&nbsp; 
+
+      <br>
+
+      <font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto"><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font></b>Dise&ntilde;o 
+
+      electrot&eacute;cnico y electromec&aacute;nico.</font> <br>
+
+      <font size=-1><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span></font><font face="Arial,Helvetica" color="#FF6600"><a href="http://www.aceri.com" class="submenu">Electrical 
+
+      Designer</a>&nbsp;&nbsp;</font></b></font><img src="ingles.gif" height=14 width=14>&nbsp;&nbsp; 
+
+      <br>
+
+      <font face="Arial,Helvetica" color="#FF6600" size="-1"><span class="texto"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></b>Software 
+
+      de dise&ntilde;o electrot&eacute;cnico para Autocad 13 y 14. (Antes Cadelec)</span><br>
+
+      <b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto"></span><a href="http://franky.unizar.es/%7Epubieto/" class="submenu">CirCAD&nbsp;</a>&nbsp;</b><img src="spain.gif" height=14 width=14>&nbsp;&nbsp; 
+
+      <br>
+
+      <span class="texto"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></b>Programa 
+
+      de dise&ntilde;o de esquemas e instalaciones el&eacute;ctricas para AutoCAD 
+
+      14. </span><span class="texto">GRATUITO.</span> </font> 
+
+  </div>
+
+  <div id="KB3Parent" class="parent"> <a href="#" onClick="expandIt('KB3'); return false"> 
+
+    <b>Buscadores de recursos el&eacute;ctricos </b></a> </div>
+
+  <div id="KB3Child" class="child"><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto"><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><a href="http://www.neoelectra.com/" class="submenu">NeoElectra 
+
+    </a><img src="spain.gif" border=0 height=14 width=14> <br>
+
+    <font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto">Un 
+
+    portal en espa&ntilde;ol dedicado exclusivamente a la Electridad.</span></font> 
+
+    </b></font><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><span class="texto"> 
+
+    </span></font></b><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto"><br>
+
+    </font><font color="#FF6600" face="Arial,Helvetica" size="-1"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><a href="http://www.inchi.com/conexion/" class="submenu">Inchi 
+
+    Conexion</a></b></font> <img src="spain.gif" border=0 height=14 width=14> 
+
+    <br>
+
+    <font color="#FF6600" face="Arial,Helvetica" size="-1"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></b></font><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto">Buscador 
+
+    especializado en Electricidad y Electr&oacute;nica.</font> <br>
+
+    <font size=-1 face="Arial,Helvetica" color="#FF6600"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><a href="http://www.electrica.com.ar" class="submenu">El&eacute;ctrica 
+
+    </a></b></font><img src="spain.gif" border=0 height=14 width=14> <br>
+
+    <font color="#FF6600" face="Arial,Helvetica" size="-1"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></b></font><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto">Buscador 
+
+    El&eacute;ctrico</font> <br>
+
+    <font size=-1 face="Arial,Helvetica" color="#FF6600"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><a href="http://www.electricnet.com/BuyersGuide/" class="submenu">ElectricNet 
+
+    buyer’s </a></b></font><img src="ingles.gif" border=0 height=14 width=14> 
+
+    <br>
+
+    <font color="#FF6600" face="Arial,Helvetica" size="-1"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></b></font><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto">Buscador 
+
+    de recursos de electricidad y electr&oacute;nica.</font><br>
+
+    <font size=-1 face="Arial,Helvetica"><b><font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></font><font color="#FF6600"><a href="http://www.us-epanorama.net/index.html" class="submenu">Panorama.Net</a></font><font color="#FFFFFF"> 
+
+    <img src="ingles.gif" border=0 height=14 width=14></font></b></font> <br>
+
+    <font color="#FF6600" face="Arial,Helvetica" size="-1"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></b></font><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto">Recursos 
+
+    de Electricidad y Electr&oacute;nica en internet</font> <br>
+
+    <font size=-1 face="Arial,Helvetica" color="#FF6600"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><a href="http://www.ctv.es/USERS/tecnociencia/" class="submenu">TecnoCiencia 
+
+    </a></b></font><img src="spain.gif" border=0 height=14 width=14> <br>
+
+    <font color="#FF6600" face="Arial,Helvetica" size="-1"><b><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></b></font><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto">Recursos 
+
+    gratis de Electricidad y Electr&oacute;nica</font> . </div>
+
+  <div id="KB4Parent" class="parent"> <a href="#" onClick="expandIt('KB4'); return false"> 
+
+    <b>P&aacute;ginas personales </b></a> </div>
+
+  <div id="KB4Child" class="child"><b><font face="Arial,Helvetica" color="#FF6600" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><a href="http://webs.adam.es/sparra/pp/electro.htm" class="submenu">Electricidad 
+
+    Pr&aacute;ctica </a><img src="spain.gif" border=0 height=14 width=14> <br>
+
+    <font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><span class="texto">Esquemas 
+
+    y descripci&oacute;n de materiales utilizados en las instalaciones el&eacute;ctricas.</span></font><br>
+
+    <font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a><a href="http://eya.swin.net/" class="submenu">Electr&oacute;nica 
+
+    y Aut&oacute;matas</a></font><font face="Arial,Helvetica" color="#FFFFFF" size="-1"> 
+
+    <img src="spain.gif" height=15 width=14></font> <br>
+
+    <font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></font><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto">Tutoriales 
+
+    y software de electr&oacute;nica.<br>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tutoriales 
+
+    de redes industriales.Tutoriales y</font><font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></font><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto">software</font><font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></font><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto">de 
+
+    aut&oacute;matas</font><font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;</font><a href="http://www.ab.com/" class="submenu"></a></font><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto">programables 
+
+    y automatizaci&oacute;n</font></b>.<br>
+
+    <font size=-1><b><font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></font><font face="Arial,Helvetica" color="#FF6600"><a href="http://personal.redestb.es/jorgecd/" class="submenu">JorgeCD</a></font></b></font><img src="spain.gif" height=14 width=14> 
+
+    <br>
+
+    <font face="Arial,Helvetica" color="#FF6600" size="-1"><span class="texto"><b><font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></font></b>P&aacute;gina 
+
+    de un exalumno del </span></font><span class="texto"><font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto"> 
+
+    ciclo formativo "Equipos e Instalaciones Electrotecnicas"</font> <br>
+
+    <font face="Arial,Helvetica" color="#FF6600" size="-1" class="texto"><b><font color="#FF6600" face="Arial,Helvetica" size="-1"><font face="Arial,Helvetica" size="-1" color="#FF6633">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></font></b>( 
+
+    Apuntes de domotica, telefonia, electrotecnia, etc)</font> </span></div>
+
+  <script language='JavaScript'>
+
+    if (NS4) {
+
+        firstEl = "KB1Parent";
+
+        firstInd = getIndex(firstEl);
+
+        arrange();
+
+    }
+
+</script>
+
+</div>
+
+<div id="Layer1" style="position:absolute; width:135px; height:14px; z-index:8; left: 637px; top: 0px" class="texto">Visualizaci&oacute;n 
+
+  &oacute;ptima a 800x600</div>
+
+<div id="otrosrecursos" style="position:absolute; width:480px; height:245px; z-index:6; left: 152px; top: 152px; overflow: auto; visibility: hidden"> 
+
+  <hr noshade color="#99CCCC" width="400" align="left">
+
+  <p> 
+
+    <script language="JavaScript1.2">
+
+NS4 = (document.layers) ? 1 : 0;
+
+IE4 = (document.all) ? 1 : 0;
+
+ver4 = (NS4 || IE4) ? 1 : 0;
+
+
+
+if (ver4) {
+
+    with (document) {
+
+        write("<STYLE TYPE='text/css'>");
+
+        if (NS4) {
+
+            write(".parent {position:absolute; visibility:visible}");
+
+            write(".child {position:absolute; visibility:visible}");
+
+            write(".regular {position:absolute; visibility:visible}")
+
+        }
+
+        else {
+
+            write(".child {display:none}")
+
+        }
+
+        write("</STYLE>");
+
+    }
+
+}
+
+
+
+function getIndex(el) {
+
+    ind = null;
+
+    for (i=0; i<document.layers.length; i++) {
+
+        whichEl = document.layers[i];
+
+        if (whichEl.id == el) {
+
+            ind = i;
+
+            break;
+
+        }
+
+    }
+
+    return ind;
+
+}
+
+
+
+function arrange() {
+
+    nextY = document.layers[firstInd].pageY +document.layers[firstInd].document.height;
+
+    for (i=firstInd+1; i<document.layers.length; i++) {
+
+        whichEl = document.layers[i];
+
+        if (whichEl.visibility != "hide") {
+
+            whichEl.pageY = nextY;
+
+            nextY += whichEl.document.height;
+
+        }
+
+    }
+
+}
+
+
+
+function initIt(){
+
+    if (!ver4) return;
+
+    if (NS4) {
+
+        for (i=0; i<document.layers.length; i++) {
+
+            whichEl = document.layers[i];
+
+            if (whichEl.id.indexOf("Child") != -1) whichEl.visibility = "hide";
+
+       }
+
+        arrange();
+
+    }
+
+    else {
+
+        divColl = document.all.tags("DIV");
+
+        for (i=0; i<divColl.length; i++) {
+
+            whichEl = divColl(i);
+
+            if (whichEl.className == "child") whichEl.style.display = "none";
+
+        }
+
+    }
+
+}
+
+
+
+function expandIt(el) {
+
+    if (!ver4) return;
+
+    if (IE4) {
+
+        whichEl = eval(el + "Child");
+
+        if (whichEl.style.display == "none") {
+
+            whichEl.style.display = "block";
+
+        }
+
+        else {
+
+            whichEl.style.display = "none";
+
+        }
+
+    }
+
+    else {
+
+        whichEl = eval("document." + el + "Child");
+
+        if (whichEl.visibility == "hide") {
+
+            whichEl.visibility = "show";
+
+        }
+
+        else {
+
+            whichEl.visibility = "hide";
+
+        }
+
+        arrange();
+
+    }
+
+}
+
+
+
+onload = initIt;
+
+
+
+</script>
+
+    <font color="#336699" face="Arial, Helvetica, sans-serif" size="2"><b><u>Otros 
+
+    Recursos </u></b></font> </p>
+
+  <div id="KB11Parent" class="parent"> <a href="#" onClick="expandIt('KB11'); return false"> 
+
+    <b>Bibliograf&iacute;a:</b> </a> </div>
+
+  <div id="KB11Child" class="child"> 
+
+    <hr noshade color="#99CCCC" width="400" align="left">
+
+    <font color="#CCCCCC"><span class="texto2">1.- Cálculo y construcción de circuitos 
+
+    con contactores (1999)</span><br>
+
+    <span class="texto">Roldán, José <br>
+
+    Editor: Editorial Paraninfo,S.A.</span><br>
+
+    <span class="texto2">2. - Automatismos eléctricos, neumáticos e hidr&aacute;ulicos 
+
+    (1999)</span><br>
+
+    <span class="texto">Cembranos Nistal, Florencio Jesús <br>
+
+    Editor: Editorial Paraninfo,S.A.</span><br>
+
+    <span class="texto2">3. - Automatismos y cuadros eléctricos: ciclos formativos 
+
+    (1999)</span><br>
+
+    <span class="texto">Valentín Labarta, José Luis <br>
+
+    Editor: Editorial Donostiarra, S.A. </span><br>
+
+    <span class="texto2">4.- Automatismos y cuadros eléctricos (1999)</span><br>
+
+    <span class="texto">Trigo Lobato, Valeriano; Mart&iacute;n Castillo, Juan 
+
+    Carlos<br>
+
+    Editor: Editorial Editex, S.A. </span><br>
+
+    <span class="texto2">5.- Esquemario de automatismos eléctricos (1999)</span><br>
+
+    <span class="texto">Moreno Gil, José ; Fernández García, Carlos<br>
+
+    Editor: PLC Madrid Automatización Avanzada y Formación<br>
+
+    </span> <span class="texto2">6.- Electrotecnia (1999)</span><br>
+
+    <span class="texto">Jes&uacute;s G&oacute;mez Colorado y Juan Carlos Mart&iacute;n 
+
+    Castillo<br>
+
+    Editor: Editex</span><br>
+
+    <span class="texto2">7<span class="texto2">. - Aut</span></span><span class="texto2">omatismos 
+
+    y cuadros eléctricos: ciclos formativos (1999)</span><br>
+
+    <span class="texto">Rold&aacute;n Viloria, Jos&eacute;<br>
+
+    Editor: Editorial Paraninfo, S.A. </span><br>
+
+    <span class="texto2">8. - Arranque de motores mediante contactores</span><br>
+
+    <span class="texto">Vicente Lladonosa<br>
+
+    Editor: Editorial Marcombo</span><br>
+
+    <span class="texto2">9. - Circuitos b&aacute;sicos de contactores y temporizadores</span><br>
+
+    <span class="texto">Vicente Lladonosa<br>
+
+    Editor: Editorial Marcombo<br>
+
+    </span><span class="texto2">10. - Automatismos y cuadros eléctricos: ciclos 
+
+    formativos</span><br>
+
+    <span class="texto">Antonio Cazorla y otros<br>
+
+    Editor: Editorial Santillana<br>
+
+    </span><span class="texto2">11. - Concepci&oacute;n de un Automatismo</span><br>
+
+    <span class="texto">Telemecanique<br>
+
+    Editor: Telemecanique<br>
+
+    </span><span class="texto2">1<span class="texto2">2. -</span> Maniobras de 
+
+    m&aacute;quinas el&eacute;ctricas serie 800</span><br>
+
+    <span class="texto">Alecop<br>
+
+    Editor: Alecop</span></font>
+
+<hr noshade color="#99CCCC" width="400" align="left">
+
+  </div>
+
+  <div id="KB10Parent" class="parent"> <a href="#" onClick="expandIt('KB10'); return false"> 
+
+    <b>Cat&aacute;logos en soporte inform&aacute;tico:</b></a> </div>
+
+  <div id="KB10Child" class="child">
+
+    <hr noshade color="#99CCCC" width="400" align="left">
+
+    <table border=0 cols=2 align="left" >
+
+      <tr> 
+
+        <td width="145" height="52"> 
+
+          <div align=right class="texto2"><b><font face="Arial,Helvetica"><font color="#000099"><font size=+1><span class="submenu"><font color="#FF9999" size="2"><span class="submenu"><span class="submenu"><span class="texto"><span class="texto2">Cat&aacute;logo 
+
+            Schneider</span></span></span></span></font></span></font></font></font></b> 
+
+            <span class="texto"><span class="submenu"><span class="submenu"><font color="#FF9999" size="2"><span class="submenu"><br>
+
+            </span></font><font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto">Formato: 
+
+            CD-ROM</span></font></font></font> </span></span></span><font color="#FF9999"><br>
+
+            </font><font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto">I<span class="texto">dioma:</span></span><span class="texto"></span></font></font></font><font color="#FF9999"> 
+
+            <font face="Arial,Helvetica"><font color="#FF9999" size="2"><span class="submenu"><b><font color="#FF9999"><img src="spain.gif" border=0 height=14 width=14 align=BOTTOM></font></b></span></font><font size=-2>&nbsp;</font></font></font></div>
+
+        </td>
+
+        <td width="69" height="52"><img src="imagenes/schneider.jpg" border=1 height=36 width=50 align=BOTTOM></td>
+
+        <td width="145" height="52"><b><font face="Arial,Helvetica"><font color="#000099"><font size=+1 class="texto2">Moeller 
+
+          Electric<br>
+
+          <span class="texto"><span class="submenu"><span class="submenu"><font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto">Formato: 
+
+          CD-ROM</span></font></font></font> </span></span></span><font color="#FF9999"><br>
+
+          </font><font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto">I<span class="texto">dioma:</span></span><span class="texto"></span></font></font></font><font color="#FF9999"> 
+
+          <font face="Arial,Helvetica"><font color="#FF9999" size="2"><span class="submenu"><b><font color="#FF9999"><img src="spain.gif" border=0 height=14 width=14 align=BOTTOM></font></b></span></font><font size=-2>&nbsp;</font></font></font></font></font></font></b></td>
+
+        <td width="70" height="52"><img src="imagenes/moeller.jpg" width="50" height="47"></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="145" height="52"><b><font face="Arial,Helvetica"><font color="#000099"><font size=+1><span class="texto2">Siemens</span></font></font></font></b> 
+
+          <span class="texto2"><br>
+
+          </span> <font face="Arial,Helvetica"><font color="#000000"></font></font> 
+
+          <font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto">Formato: 
+
+          CD-ROM</span></font></font></font> <br>
+
+          <font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto">I<span class="texto">dioma:</span></span><span class="texto">&nbsp;<img src="ingles.gif" border=0 height=14 width=14 align=BOTTOM></span></font></font></font></td>
+
+        <td width="69" height="52"><img src="imagenes/siemens2.jpg" width="50" height="48"></td>
+
+        <td width="145" height="52"><b><font face="Arial,Helvetica"><font color="#000099"><font size=+1 class="texto2">Cat&aacute;logo 
+
+          RS <br>
+
+          <span class="texto"><span class="submenu"><span class="submenu"><font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto">Formato: 
+
+          CD-ROM</span></font></font></font> </span></span></span><font color="#FF9999"><br>
+
+          </font><font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto">I<span class="texto">dioma:</span></span><span class="texto"></span></font></font></font><font color="#FF9999"> 
+
+          <font face="Arial,Helvetica"><font color="#FF9999" size="2"><span class="submenu"><b></b></span></font><font size=-2>&nbsp;</font></font></font></font><font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto"><img src="ingles.gif" border=0 height=14 width=14 align=BOTTOM></span></font></font></font></font></font></b></td>
+
+        <td width="70" height="52"><img src="imagenes/rs.jpg" width="50" height="49"></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="145" height="52"><b><font face="Arial,Helvetica"><font color="#000099"><font size=+1><span class="texto2">Omrom</span><br>
+
+          </font><font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto">Formato: 
+
+          CD-ROM</span></font></font></font> <br>
+
+          <font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto">I<span class="texto">dioma:</span></span><span class="texto">&nbsp;<img src="ingles.gif" border=0 height=14 width=14 align=BOTTOM></span></font></font></font><font size=+1> 
+
+          </font></font></font></b> </td>
+
+        <td width="69" height="52"><img src="imagenes/omron2.jpg" width="50" height="42"></td>
+
+        <td width="145" height="52"><b><font face="Arial,Helvetica"><font color="#000099"><font size=+1 class="texto2">Asco 
+
+          Jucomatic <br>
+
+          <span class="texto"><span class="submenu"><span class="submenu"><font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto">Formato: 
+
+          CD-ROM</span></font></font></font> </span></span></span><font color="#FF9999"><br>
+
+          </font><font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto">I<span class="texto">dioma:</span></span><span class="texto"></span></font></font></font><font color="#FF9999"> 
+
+          <font face="Arial,Helvetica"><font color="#FF9999" size="2"><span class="submenu"><b></b></span></font><font size=-2>&nbsp;</font></font></font></font><font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto"><img src="ingles.gif" border=0 height=14 width=14 align=BOTTOM></span></font></font></font></font></font></b></td>
+
+        <td width="70" height="52"><img src="imagenes/asco-2.jpg" width="50" height="48"></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="145" height="52"><b><font face="Arial,Helvetica"><font color="#000099"><font size=+1 class="texto2">BICC 
+
+          General Cable<br>
+
+          <span class="texto"><span class="submenu"><span class="submenu"><font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto">Formato: 
+
+          CD-ROM</span></font></font></font> </span></span></span><font color="#FF9999"><br>
+
+          </font><font face="Arial,Helvetica"><font color="#CC0000"><font size=-2><span class="texto">I<span class="texto">dioma:</span></span><span class="texto"></span></font></font></font><font color="#FF9999"> 
+
+          <font face="Arial,Helvetica"><font color="#FF9999" size="2"><span class="submenu"><b><font color="#FF9999"><img src="spain.gif" border=0 height=14 width=14 align=BOTTOM></font></b></span></font><font size=-2>&nbsp;</font></font></font> 
+
+          </font></font></font></b></td>
+
+        <td width="69" height="52"><img src="imagenes/bicc.jpg" width="50" height="45"></td>
+
+        <td width="145" height="52">&nbsp;</td>
+
+        <td width="70" height="52">&nbsp;</td>
+
+      </tr>
+
+    </table>
+
+  </div>
+
+</div>
+
+<br>
+
+</body>
+
+</html>
+

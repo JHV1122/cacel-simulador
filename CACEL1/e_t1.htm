@@ -1,0 +1,2592 @@
+<html>
+
+<head>
+
+<title>CACEL 1.0 (C&C)</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<!doctype html>
+<meta http-equiv="X-UA-Compatible" content="IE=5" />
+
+<script language="JavaScript">
+
+<!--
+
+function tmt_IELayerTransitions(targetIE, dur, filterId) {
+    transNo = parseInt(filterId);
+    arHidden = new Array(1, 3, 14, 16);
+    endState = "hidden";
+    for (i = 0; i < arHidden.length; i++) {
+        if (arHidden[i] == transNo) { endState = "visible"; }
+    }
+    target = eval(targetIE);
+    if (document.all && target.filters) {
+        target.style.filter = "revealTrans(duration=" + dur + ",transition=" + filterId + ")";
+        if (endState == "visible") { target.style.visibility = "hidden"; }
+        target.filters.revealTrans.apply();
+        target.style.visibility = endState;
+        target.filters.revealTrans.play();
+    } else {
+        target.style.visibility = endState;
+    }
+}
+
+function tmt_LayerBoxOut(targetNN, targetIE, dur, incr) {
+
+    transNo = parseInt(1);
+
+    arHidden = new Array(1, 3, 14, 16);
+
+    if (document.all) {
+
+        target = eval(targetIE);
+
+        target.style.filter = "revealTrans(duration=" + dur + ",transition=1)";
+
+        endState = "hidden";
+
+        for (i = 0; i < arHidden.length; i++) {
+
+            if (arHidden[i] == transNo) {
+
+                endState = "visible";
+
+                target.style.visibility = "hidden";
+
+            }
+
+        }
+
+        target.filters.revealTrans.apply();
+
+        target.style.visibility = endState;
+
+        target.filters.revealTrans.play();
+
+    }
+
+    if (document.layers) {
+
+        target = eval(targetNN);
+
+        if (incr == 0) {
+
+            target.origLeft = target.clip.left;
+
+            target.origTop = target.clip.top;
+
+            target.origRight = target.clip.right;
+
+            target.origBottom = target.clip.bottom;
+
+            mSecs = dur * 1000;
+
+            intval = 100;
+
+            visits = (mSecs / intval);
+
+            fullW = target.clip.width;
+
+            fullH = target.clip.height;
+
+            halfW = fullW / 2;
+
+            halfH = fullH / 2;
+
+            alternateW = alternateH = true;
+
+            incW = halfW / visits;
+
+            incrementW = (incW >= 1) ? parseInt(incW) : 0;
+
+            xtraPixW = Math.round((incW - incrementW) * visits);
+
+            incH = halfH / visits;
+
+            incrementH = (incH >= 1) ? parseInt(incH) : 0;
+
+            xtraPixH = Math.round((incH - incrementH) * visits);
+
+            target.clip.left += halfW;
+
+            target.clip.right -= halfW;
+
+            target.clip.top += halfH;
+
+            target.clip.bottom -= halfH;
+
+            target.visibility = "show";
+
+            if ((target.clip.left - target.origLeft) <= incrementW) {
+
+                target.clip.left = target.origLeft;
+
+                target.clip.right = target.origRight;
+
+            } else {
+
+                if (xtraPixW > 0) {
+
+                    if (xtraPixW <= visits) {
+
+                        if (alternateW) {
+
+                            target.clip.left--;
+
+                            target.clip.right++;
+
+                            xtraPixW--;
+
+                        }
+
+                        alternateW = !alternateW;
+
+                    } else {
+
+                        target.clip.left--;
+
+                        target.clip.right++;
+
+                        xtraPixW--;
+
+                    }
+
+                }
+
+                target.clip.left -= incrementW;
+
+                target.clip.right += incrementW;
+
+            }
+
+            if ((target.clip.top - target.origTop) <= incrementH) {
+
+                target.clip.top = target.origTop;
+
+                target.clip.bottom = target.origBottom;
+
+            } else {
+
+                if (xtraPixH > 0) {
+
+                    if (xtraPixH <= visits) {
+
+                        if (alternateH) {
+
+                            target.clip.top--;
+
+                            target.clip.bottom++;
+
+                            xtraPixH--;
+
+                        }
+
+                        alternateH = !alternateH;
+
+                    } else {
+
+                        target.clip.top--;
+
+                        target.clip.bottom++;
+
+                        xtraPixH--;
+
+                    }
+
+                }
+
+                target.clip.top -= incrementH;
+
+                target.clip.bottom += incrementH;
+
+            }
+
+            visits--;
+
+        } else {
+
+            if ((target.clip.left - target.origLeft) <= incrementW) {
+
+                target.clip.left = target.origLeft;
+
+                target.clip.right = target.origRight;
+
+            } else {
+
+                if (xtraPixW > 0) {
+
+                    if (xtraPixW <= visits) {
+
+                        if (alternateW) {
+
+                            target.clip.left--;
+
+                            target.clip.right++;
+
+                            xtraPixW--;
+
+                        }
+
+                        alternateW = !alternateW;
+
+                    } else {
+
+                        target.clip.left--;
+
+                        target.clip.right++;
+
+                        xtraPixW--;
+
+                    }
+
+                }
+
+                target.clip.left -= incrementW;
+
+                target.clip.right += incrementW;
+
+            }
+
+            if ((target.clip.top - target.origTop) <= incrementH) {
+
+                target.clip.top = target.origTop;
+
+                target.clip.bottom = target.origBottom;
+
+            } else {
+
+                if (xtraPixH > 0) {
+
+                    if (xtraPixH <= visits) {
+
+                        if (alternateH) {
+
+                            target.clip.top--;
+
+                            target.clip.bottom++;
+
+                            xtraPixH--;
+
+                        }
+
+                        alternateH = !alternateH;
+
+                    } else {
+
+                        target.clip.top--;
+
+                        target.clip.bottom++;
+
+                        xtraPixH--;
+
+                    }
+
+                }
+
+                target.clip.top -= incrementH;
+
+                target.clip.bottom += incrementH;
+
+            }
+
+            visits--;
+
+        }
+
+        if (target.clip.left == target.origLeft && target.clip.top == target.origTop) {
+
+        } else {
+
+            setTimeout("tmt_LayerBoxOut(\"" + targetNN + "\",\"" + targetIE + "\",\"" + dur + "\",1)", dur);
+
+        }
+
+    }
+
+}
+
+function MM_findObj(n, d) { //v3.0
+
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+
+}
+
+
+
+function MM_dragLayer(objName,x,hL,hT,hW,hH,toFront,dropBack,cU,cD,cL,cR,targL,targT,tol,dropJS,et,dragJS) { //v3.0
+
+  //Copyright 1998 Macromedia, Inc. All rights reserved.
+
+  var i,j,aLayer,retVal,curDrag=null,NS=(navigator.appName=='Netscape'), curLeft, curTop;
+
+  if (!document.all && !document.layers) return false;
+
+  retVal = true; if(!NS && event) event.returnValue = true;
+
+  if (MM_dragLayer.arguments.length > 1) {
+
+    curDrag = MM_findObj(objName); if (!curDrag) return false;
+
+    if (!document.allLayers) { document.allLayers = new Array();
+
+      with (document) if (NS) { for (i=0; i<layers.length; i++) allLayers[i]=layers[i];
+
+        for (i=0; i<allLayers.length; i++) if (allLayers[i].document && allLayers[i].document.layers)
+
+          with (allLayers[i].document) for (j=0; j<layers.length; j++) allLayers[allLayers.length]=layers[j];
+
+      } else for (i=0;i<all.length;i++) if (all[i].style&&all[i].style.position) allLayers[allLayers.length]=all[i];}
+
+    curDrag.MM_dragOk=true; curDrag.MM_targL=targL; curDrag.MM_targT=targT;
+
+    curDrag.MM_tol=Math.pow(tol,2); curDrag.MM_hLeft=hL; curDrag.MM_hTop=hT;
+
+    curDrag.MM_hWidth=hW; curDrag.MM_hHeight=hH; curDrag.MM_toFront=toFront;
+
+    curDrag.MM_dropBack=dropBack; curDrag.MM_dropJS=dropJS;
+
+    curDrag.MM_everyTime=et; curDrag.MM_dragJS=dragJS;
+
+    curDrag.MM_oldZ = (NS)?curDrag.zIndex:curDrag.style.zIndex;
+
+    curLeft= (NS)?curDrag.left:curDrag.style.pixelLeft; curDrag.MM_startL = curLeft;
+
+    curTop = (NS)?curDrag.top:curDrag.style.pixelTop; curDrag.MM_startT = curTop;
+
+    curDrag.MM_bL=(cL<0)?null:curLeft-cL; curDrag.MM_bT=(cU<0)?null:curTop -cU;
+
+    curDrag.MM_bR=(cR<0)?null:curLeft+cR; curDrag.MM_bB=(cD<0)?null:curTop +cD;
+
+    curDrag.MM_LEFTRIGHT=0; curDrag.MM_UPDOWN=0; curDrag.MM_SNAPPED=false; //use in your JS!
+
+    document.onmousedown = MM_dragLayer; document.onmouseup = MM_dragLayer;
+
+    if (NS) document.captureEvents(Event.MOUSEDOWN|Event.MOUSEUP);
+
+  } else {
+
+    var theEvent = ((NS)?objName.type:event.type);
+
+    if (theEvent == 'mousedown') {
+
+      var mouseX = (NS)?objName.pageX : event.clientX + document.body.scrollLeft;
+
+      var mouseY = (NS)?objName.pageY : event.clientY + document.body.scrollTop;
+
+      var maxDragZ=null; document.MM_maxZ = 0;
+
+      for (i=0; i<document.allLayers.length; i++) { aLayer = document.allLayers[i];
+
+        var aLayerZ = (NS)?aLayer.zIndex:aLayer.style.zIndex;
+
+        if (aLayerZ > document.MM_maxZ) document.MM_maxZ = aLayerZ;
+
+        var isVisible = (((NS)?aLayer.visibility:aLayer.style.visibility).indexOf('hid') == -1);
+
+        if (aLayer.MM_dragOk != null && isVisible) with (aLayer) {
+
+          var parentL=0; var parentT=0;
+
+          if (!NS) { parentLayer = aLayer.parentElement;
+
+            while (parentLayer != null && parentLayer.style.position) {
+
+              parentL += parentLayer.offsetLeft; parentT += parentLayer.offsetTop;
+
+              parentLayer = parentLayer.parentElement; } }
+
+          var tmpX=mouseX-(((NS)?pageX:style.pixelLeft+parentL)+MM_hLeft);
+
+          var tmpY=mouseY-(((NS)?pageY:style.pixelTop +parentT)+MM_hTop);
+
+          var tmpW = MM_hWidth;  if (tmpW <= 0) tmpW += ((NS)?clip.width :offsetWidth);
+
+          var tmpH = MM_hHeight; if (tmpH <= 0) tmpH += ((NS)?clip.height:offsetHeight);
+
+          if ((0 <= tmpX && tmpX < tmpW && 0 <= tmpY && tmpY < tmpH) && (maxDragZ == null
+
+              || maxDragZ <= aLayerZ)) { curDrag = aLayer; maxDragZ = aLayerZ; } } }
+
+      if (curDrag) {
+
+        document.onmousemove = MM_dragLayer; if (NS) document.captureEvents(Event.MOUSEMOVE);
+
+        curLeft = (NS)?curDrag.left:curDrag.style.pixelLeft;
+
+        curTop = (NS)?curDrag.top:curDrag.style.pixelTop;
+
+        MM_oldX = mouseX - curLeft; MM_oldY = mouseY - curTop;
+
+        document.MM_curDrag = curDrag;  curDrag.MM_SNAPPED=false;
+
+        if(curDrag.MM_toFront) {
+
+          eval('curDrag.'+((NS)?'':'style.')+'zIndex=document.MM_maxZ+1');
+
+          if (!curDrag.MM_dropBack) document.MM_maxZ++; }
+
+        retVal = false; if(!NS) event.returnValue = false;
+
+    } } else if (theEvent == 'mousemove') {
+
+      if (document.MM_curDrag) with (document.MM_curDrag) {
+
+        var mouseX = (NS)?objName.pageX : event.clientX + document.body.scrollLeft;
+
+        var mouseY = (NS)?objName.pageY : event.clientY + document.body.scrollTop;
+
+        newLeft = mouseX-MM_oldX; newTop  = mouseY-MM_oldY;
+
+        if (MM_bL!=null) newLeft = Math.max(newLeft,MM_bL);
+
+        if (MM_bR!=null) newLeft = Math.min(newLeft,MM_bR);
+
+        if (MM_bT!=null) newTop  = Math.max(newTop ,MM_bT);
+
+        if (MM_bB!=null) newTop  = Math.min(newTop ,MM_bB);
+
+        MM_LEFTRIGHT = newLeft-MM_startL; MM_UPDOWN = newTop-MM_startT;
+
+        if (NS) {left = newLeft; top = newTop;}
+
+        else {style.pixelLeft = newLeft; style.pixelTop = newTop;}
+
+        if (MM_dragJS) eval(MM_dragJS);
+
+        retVal = false; if(!NS) event.returnValue = false;
+
+    } } else if (theEvent == 'mouseup') {
+
+      document.onmousemove = null;
+
+      if (NS) document.releaseEvents(Event.MOUSEMOVE);
+
+      if (NS) document.captureEvents(Event.MOUSEDOWN); //for mac NS
+
+      if (document.MM_curDrag) with (document.MM_curDrag) {
+
+        if (typeof MM_targL =='number' && typeof MM_targT == 'number' &&
+
+            (Math.pow(MM_targL-((NS)?left:style.pixelLeft),2)+
+
+             Math.pow(MM_targT-((NS)?top:style.pixelTop),2))<=MM_tol) {
+
+          if (NS) {left = MM_targL; top = MM_targT;}
+
+          else {style.pixelLeft = MM_targL; style.pixelTop = MM_targT;}
+
+          MM_SNAPPED = true; MM_LEFTRIGHT = MM_startL-MM_targL; MM_UPDOWN = MM_startT-MM_targT; }
+
+        if (MM_everyTime || MM_SNAPPED) eval(MM_dropJS);
+
+        if(MM_dropBack) {if (NS) zIndex = MM_oldZ; else style.zIndex = MM_oldZ;}
+
+        retVal = false; if(!NS) event.returnValue = false; }
+
+      document.MM_curDrag = null;
+
+    }
+
+    if (NS) document.routeEvent(objName);
+
+  } return retVal;
+
+}
+
+
+
+function MM_timelinePlay(tmLnName, myID) { //v1.2
+
+  //Copyright 1997 Macromedia, Inc. All rights reserved.
+
+  var i,j,tmLn,props,keyFrm,sprite,numKeyFr,firstKeyFr,propNum,theObj,firstTime=false;
+
+  if (document.MM_Time == null) MM_initTimelines(); //if *very* 1st time
+
+  tmLn = document.MM_Time[tmLnName];
+
+  if (myID == null) { myID = ++tmLn.ID; firstTime=true;}//if new call, incr ID
+
+  if (myID == tmLn.ID) { //if Im newest
+
+    setTimeout('MM_timelinePlay("'+tmLnName+'",'+myID+')',tmLn.delay);
+
+    fNew = ++tmLn.curFrame;
+
+    for (i=0; i<tmLn.length; i++) {
+
+      sprite = tmLn[i];
+
+      if (sprite.charAt(0) == 's') {
+
+        if (sprite.obj) {
+
+          numKeyFr = sprite.keyFrames.length; firstKeyFr = sprite.keyFrames[0];
+
+          if (fNew >= firstKeyFr && fNew <= sprite.keyFrames[numKeyFr-1]) {//in range
+
+            keyFrm=1;
+
+            for (j=0; j<sprite.values.length; j++) {
+
+              props = sprite.values[j]; 
+
+              if (numKeyFr != props.length) {
+
+                if (props.prop2 == null) sprite.obj[props.prop] = props[fNew-firstKeyFr];
+
+                else        sprite.obj[props.prop2][props.prop] = props[fNew-firstKeyFr];
+
+              } else {
+
+                while (keyFrm<numKeyFr && fNew>=sprite.keyFrames[keyFrm]) keyFrm++;
+
+                if (firstTime || fNew==sprite.keyFrames[keyFrm-1]) {
+
+                  if (props.prop2 == null) sprite.obj[props.prop] = props[keyFrm-1];
+
+                  else        sprite.obj[props.prop2][props.prop] = props[keyFrm-1];
+
+        } } } } }
+
+      } else if (sprite.charAt(0)=='b' && fNew == sprite.frame) eval(sprite.value);
+
+      if (fNew > tmLn.lastFrame) tmLn.ID = 0;
+
+  } }
+
+}
+
+
+
+function MM_timelineGoto(tmLnName, fNew, numGotos) { //v2.0
+
+  //Copyright 1997 Macromedia, Inc. All rights reserved.
+
+  var i,j,tmLn,props,keyFrm,sprite,numKeyFr,firstKeyFr,lastKeyFr,propNum,theObj;
+
+  if (document.MM_Time == null) MM_initTimelines(); //if *very* 1st time
+
+  tmLn = document.MM_Time[tmLnName];
+
+  if (numGotos != null)
+
+    if (tmLn.gotoCount == null) tmLn.gotoCount = 1;
+
+    else if (tmLn.gotoCount++ >= numGotos) {tmLn.gotoCount=0; return}
+
+  jmpFwd = (fNew > tmLn.curFrame);
+
+  for (i = 0; i < tmLn.length; i++) {
+
+    sprite = (jmpFwd)? tmLn[i] : tmLn[(tmLn.length-1)-i]; //count bkwds if jumping back
+
+    if (sprite.charAt(0) == "s") {
+
+      numKeyFr = sprite.keyFrames.length;
+
+      firstKeyFr = sprite.keyFrames[0];
+
+      lastKeyFr = sprite.keyFrames[numKeyFr - 1];
+
+      if ((jmpFwd && fNew<firstKeyFr) || (!jmpFwd && lastKeyFr<fNew)) continue; //skip if untouchd
+
+      for (keyFrm=1; keyFrm<numKeyFr && fNew>=sprite.keyFrames[keyFrm]; keyFrm++);
+
+      for (j=0; j<sprite.values.length; j++) {
+
+        props = sprite.values[j];
+
+        if (numKeyFr == props.length) propNum = keyFrm-1 //keyframes only
+
+        else propNum = Math.min(Math.max(0,fNew-firstKeyFr),props.length-1); //or keep in legal range
+
+        if (sprite.obj != null) {
+
+          if (props.prop2 == null) sprite.obj[props.prop] = props[propNum];
+
+          else        sprite.obj[props.prop2][props.prop] = props[propNum];
+
+      } }
+
+    } else if (sprite.charAt(0)=='b' && fNew == sprite.frame) eval(sprite.value);
+
+  }
+
+  tmLn.curFrame = fNew;
+
+  if (tmLn.ID == 0) eval('MM_timelinePlay(tmLnName)');
+
+}
+
+
+
+function MM_timelineStop(tmLnName) { //v1.2
+
+  //Copyright 1997 Macromedia, Inc. All rights reserved.
+
+  if (document.MM_Time == null) MM_initTimelines(); //if *very* 1st time
+
+  if (tmLnName == null)  //stop all
+
+    for (var i=0; i<document.MM_Time.length; i++) document.MM_Time[i].ID = null;
+
+  else document.MM_Time[tmLnName].ID = null; //stop one
+
+}
+
+
+
+function tmt_DivOnTop(theDiv){
+
+	var t = 0;var z = (document.layers) ? ".zIndex" : ".style.zIndex";
+
+	var fun = (document.getElementById) ? "document.getElementById" : "MM_findObj";
+
+	var arr = (document.layers) ? document.layers : (document.all) ? document.all.tags("DIV") : document.getElementsByTagName("DIV");
+
+	for(var i=0;i<arr.length;i++){var oz = eval("arr["+i+"]"+z);if(oz > t){t = oz;}}
+
+	var obj = eval(fun+"(theDiv)");if(obj)eval(fun+"('"+theDiv+"')"+z+"=parseInt("+t+")+1");
+
+}
+
+
+
+function MM_initTimelines() {
+
+    //MM_initTimelines() Copyright 1997 Macromedia, Inc. All rights reserved.
+
+    var ns = navigator.appName == "Netscape";
+
+    document.MM_Time = new Array(5);
+
+    document.MM_Time[0] = new Array(17);
+
+    document.MM_Time["Timeline1"] = document.MM_Time[0];
+
+    document.MM_Time[0].MM_Name = "Timeline1";
+
+    document.MM_Time[0].fps = 15;
+
+    document.MM_Time[0][0] = new String("sprite");
+
+    document.MM_Time[0][0].slot = 1;
+
+    if (ns)
+
+        document.MM_Time[0][0].obj = document["Menu"];
+
+    else
+
+        document.MM_Time[0][0].obj = document.all ? document.all["Menu"] : null;
+
+    document.MM_Time[0][0].keyFrames = new Array(1, 8);
+
+    document.MM_Time[0][0].values = new Array(5);
+
+    document.MM_Time[0][0].values[0] = new Array(-169,-141,-114,-86,-59,-31,-4,24);
+
+    document.MM_Time[0][0].values[0].prop = "left";
+
+    document.MM_Time[0][0].values[1] = new Array(86,86,86,86,86,86,86,86);
+
+    document.MM_Time[0][0].values[1].prop = "top";
+
+    if (!ns) {
+
+        document.MM_Time[0][0].values[0].prop2 = "style";
+
+        document.MM_Time[0][0].values[1].prop2 = "style";
+
+    }
+
+    document.MM_Time[0][0].values[2] = new Array("visible","visible");
+
+    document.MM_Time[0][0].values[2].prop = "visibility";
+
+    if (!ns)
+
+        document.MM_Time[0][0].values[2].prop2 = "style";
+
+    document.MM_Time[0][0].values[3] = new Array("9","9");
+
+    document.MM_Time[0][0].values[3].prop = "zIndex";
+
+    if (!ns)
+
+        document.MM_Time[0][0].values[3].prop2 = "style";
+
+    document.MM_Time[0][0].values[4] = new Array(227,227,227,227,227,227,227,227);
+
+    document.MM_Time[0][0].values[4].prop = "height";
+
+    if (!ns)
+
+        document.MM_Time[0][0].values[4].prop2 = "style";
+
+    document.MM_Time[0][1] = new String("sprite");
+
+    document.MM_Time[0][1].slot = 1;
+
+    if (ns)
+
+        document.MM_Time[0][1].obj = document["Menu"];
+
+    else
+
+        document.MM_Time[0][1].obj = document.all ? document.all["Menu"] : null;
+
+    document.MM_Time[0][1].keyFrames = new Array(9, 15);
+
+    document.MM_Time[0][1].values = new Array(4);
+
+    document.MM_Time[0][1].values[0] = new Array(24,-6,-36,-66,-96,-126,-156);
+
+    document.MM_Time[0][1].values[0].prop = "left";
+
+    document.MM_Time[0][1].values[1] = new Array(86,86,86,86,86,86,86);
+
+    document.MM_Time[0][1].values[1].prop = "top";
+
+    if (!ns) {
+
+        document.MM_Time[0][1].values[0].prop2 = "style";
+
+        document.MM_Time[0][1].values[1].prop2 = "style";
+
+    }
+
+    document.MM_Time[0][1].values[2] = new Array("9","9");
+
+    document.MM_Time[0][1].values[2].prop = "zIndex";
+
+    if (!ns)
+
+        document.MM_Time[0][1].values[2].prop2 = "style";
+
+    document.MM_Time[0][1].values[3] = new Array(227,227,227,227,227,227,227);
+
+    document.MM_Time[0][1].values[3].prop = "height";
+
+    if (!ns)
+
+        document.MM_Time[0][1].values[3].prop2 = "style";
+
+    document.MM_Time[0][2] = new String("behavior");
+
+    document.MM_Time[0][2].frame = 15;
+
+    document.MM_Time[0][2].value = "MM_timelineGoto('Timeline1','1')";
+
+    document.MM_Time[0][3] = new String("behavior");
+
+    document.MM_Time[0][3].frame = 8;
+
+    document.MM_Time[0][3].value = "MM_timelineStop('Timeline1');tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][4] = new String("behavior");
+
+    document.MM_Time[0][4].frame = 1;
+
+    document.MM_Time[0][4].value = "MM_timelineStop('Timeline1');tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][5] = new String("behavior");
+
+    document.MM_Time[0][5].frame = 9;
+
+    document.MM_Time[0][5].value = "MM_timelinePlay('Timeline1');tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][6] = new String("behavior");
+
+    document.MM_Time[0][6].frame = 2;
+
+    document.MM_Time[0][6].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][7] = new String("behavior");
+
+    document.MM_Time[0][7].frame = 3;
+
+    document.MM_Time[0][7].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][8] = new String("behavior");
+
+    document.MM_Time[0][8].frame = 4;
+
+    document.MM_Time[0][8].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][9] = new String("behavior");
+
+    document.MM_Time[0][9].frame = 5;
+
+    document.MM_Time[0][9].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][10] = new String("behavior");
+
+    document.MM_Time[0][10].frame = 6;
+
+    document.MM_Time[0][10].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][11] = new String("behavior");
+
+    document.MM_Time[0][11].frame = 7;
+
+    document.MM_Time[0][11].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][12] = new String("behavior");
+
+    document.MM_Time[0][12].frame = 10;
+
+    document.MM_Time[0][12].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][13] = new String("behavior");
+
+    document.MM_Time[0][13].frame = 11;
+
+    document.MM_Time[0][13].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][14] = new String("behavior");
+
+    document.MM_Time[0][14].frame = 12;
+
+    document.MM_Time[0][14].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][15] = new String("behavior");
+
+    document.MM_Time[0][15].frame = 13;
+
+    document.MM_Time[0][15].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0][16] = new String("behavior");
+
+    document.MM_Time[0][16].frame = 14;
+
+    document.MM_Time[0][16].value = "tmt_DivOnTop('Menu')";
+
+    document.MM_Time[0].lastFrame = 15;
+
+    document.MM_Time[1] = new Array(3);
+
+    document.MM_Time["conmuta"] = document.MM_Time[1];
+
+    document.MM_Time[1].MM_Name = "conmuta";
+
+    document.MM_Time[1].fps = 15;
+
+    document.MM_Time[1][0] = new String("behavior");
+
+    document.MM_Time[1][0].frame = 2;
+
+    document.MM_Time[1][0].value = "MM_swapImage('fuerza','','imagenes/e-t/fuerza3.gif',1);MM_swapImage('amperimetro','','imagenes/amper-7.gif',1);MM_swapImage('motor_foto','','imagenes/motor_marcha.gif',1);MM_swapImage('motor_giro','','imagenes/giro_dcha.gif',1)";
+
+    document.MM_Time[1][1] = new String("behavior");
+
+    document.MM_Time[1][1].frame = 1;
+
+    document.MM_Time[1][1].value = "MM_swapImage('fuerza','','imagenes/e-t/fuerza1.gif',1);MM_swapImage('amperimetro','','imagenes/amper-0.gif',1);MM_swapImage('motor_foto','','imagenes/motor.gif',1);MM_swapImage('motor_giro','','imagenes/motor_parado.gif',1)";
+
+    document.MM_Time[1][2] = new String("behavior");
+
+    document.MM_Time[1][2].frame = 3;
+
+    document.MM_Time[1][2].value = "MM_swapImage('fuerza','','imagenes/e-t/fuerza2.gif',1);MM_swapImage('amperimetro','','imagenes/amper-2.gif',1)";
+
+    document.MM_Time[1].lastFrame = 3;
+
+    document.MM_Time[2] = new Array(6);
+
+    document.MM_Time["tempo1"] = document.MM_Time[2];
+
+    document.MM_Time[2].MM_Name = "tempo1";
+
+    document.MM_Time[2].fps = 1;
+
+    document.MM_Time[2][0] = new String("behavior");
+
+    document.MM_Time[2][0].frame = 2;
+
+    document.MM_Time[2][0].value = "MM_setTextOfLayer('tiempo','','1')";
+
+    document.MM_Time[2][1] = new String("behavior");
+
+    document.MM_Time[2][1].frame = 3;
+
+    document.MM_Time[2][1].value = "MM_setTextOfLayer('tiempo','','2')";
+
+    document.MM_Time[2][2] = new String("behavior");
+
+    document.MM_Time[2][2].frame = 4;
+
+    document.MM_Time[2][2].value = "MM_setTextOfLayer('tiempo','','3')";
+
+    document.MM_Time[2][3] = new String("behavior");
+
+    document.MM_Time[2][3].frame = 5;
+
+    document.MM_Time[2][3].value = "MM_setTextOfLayer('tiempo','','4')";
+
+    document.MM_Time[2][4] = new String("behavior");
+
+    document.MM_Time[2][4].frame = 6;
+
+    document.MM_Time[2][4].value = "MM_swapImage('fuerza','','imagenes/e-t/fuerza2.gif',1);MM_swapImage('amperimetro','','imagenes/amper-2.gif',1);MM_swapImage('mando','','imagenes/e-t/mando5.gif',1);MM_showHideLayers('Pulsadores1','','hide','Pulsadores2','','hide','Pulsadores3','','hide','Pulsadores4','','hide','Pulsadores5','','show');MM_setTextOfLayer('Creditos','','5')";
+
+    document.MM_Time[2][5] = new String("sprite");
+
+    document.MM_Time[2][5].slot = 1;
+
+    if (ns)
+
+        document.MM_Time[2][5].obj = document["Layer1"];
+
+    else
+
+        document.MM_Time[2][5].obj = document.all ? document.all["Layer1"] : null;
+
+    document.MM_Time[2][5].keyFrames = new Array(2, 6);
+
+    document.MM_Time[2][5].values = new Array(4);
+
+    document.MM_Time[2][5].values[0] = new Array(255,255,255,255,255);
+
+    document.MM_Time[2][5].values[0].prop = "left";
+
+    document.MM_Time[2][5].values[1] = new Array(0,0,0,0,0);
+
+    document.MM_Time[2][5].values[1].prop = "top";
+
+    if (!ns) {
+
+        document.MM_Time[2][5].values[0].prop2 = "style";
+
+        document.MM_Time[2][5].values[1].prop2 = "style";
+
+    }
+
+    document.MM_Time[2][5].values[2] = new Array(9,9,9,9,9);
+
+    document.MM_Time[2][5].values[2].prop = "width";
+
+    if (!ns)
+
+        document.MM_Time[2][5].values[2].prop2 = "style";
+
+    document.MM_Time[2][5].values[3] = new Array(10,10,10,10,10);
+
+    document.MM_Time[2][5].values[3].prop = "height";
+
+    if (!ns)
+
+        document.MM_Time[2][5].values[3].prop2 = "style";
+
+    document.MM_Time[2].lastFrame = 6;
+
+    document.MM_Time[3] = new Array(11);
+
+    document.MM_Time["tempo2"] = document.MM_Time[3];
+
+    document.MM_Time[3].MM_Name = "tempo2";
+
+    document.MM_Time[3].fps = 1;
+
+    document.MM_Time[3][0] = new String("behavior");
+
+    document.MM_Time[3][0].frame = 2;
+
+    document.MM_Time[3][0].value = "MM_setTextOfLayer('tiempo','','1')";
+
+    document.MM_Time[3][1] = new String("behavior");
+
+    document.MM_Time[3][1].frame = 3;
+
+    document.MM_Time[3][1].value = "MM_setTextOfLayer('tiempo','','2')";
+
+    document.MM_Time[3][2] = new String("behavior");
+
+    document.MM_Time[3][2].frame = 4;
+
+    document.MM_Time[3][2].value = "MM_setTextOfLayer('tiempo','','3')";
+
+    document.MM_Time[3][3] = new String("behavior");
+
+    document.MM_Time[3][3].frame = 5;
+
+    document.MM_Time[3][3].value = "MM_setTextOfLayer('tiempo','','4')";
+
+    document.MM_Time[3][4] = new String("behavior");
+
+    document.MM_Time[3][4].frame = 6;
+
+    document.MM_Time[3][4].value = "MM_setTextOfLayer('tiempo','','5')";
+
+    document.MM_Time[3][5] = new String("behavior");
+
+    document.MM_Time[3][5].frame = 7;
+
+    document.MM_Time[3][5].value = "MM_setTextOfLayer('tiempo','','6')";
+
+    document.MM_Time[3][6] = new String("behavior");
+
+    document.MM_Time[3][6].frame = 8;
+
+    document.MM_Time[3][6].value = "MM_setTextOfLayer('tiempo','','7')";
+
+    document.MM_Time[3][7] = new String("behavior");
+
+    document.MM_Time[3][7].frame = 9;
+
+    document.MM_Time[3][7].value = "MM_setTextOfLayer('tiempo','','8')";
+
+    document.MM_Time[3][8] = new String("behavior");
+
+    document.MM_Time[3][8].frame = 10;
+
+    document.MM_Time[3][8].value = "MM_setTextOfLayer('tiempo','','9')";
+
+    document.MM_Time[3][9] = new String("sprite");
+
+    document.MM_Time[3][9].slot = 1;
+
+    if (ns)
+
+        document.MM_Time[3][9].obj = document["Layer2"];
+
+    else
+
+        document.MM_Time[3][9].obj = document.all ? document.all["Layer2"] : null;
+
+    document.MM_Time[3][9].keyFrames = new Array(2, 11);
+
+    document.MM_Time[3][9].values = new Array(0);
+
+    document.MM_Time[3][10] = new String("behavior");
+
+    document.MM_Time[3][10].frame = 11;
+
+    document.MM_Time[3][10].value = "MM_swapImage('fuerza','','imagenes/e-t/fuerza2.gif',1);MM_swapImage('amperimetro','','imagenes/amper-2.gif',1);MM_swapImage('mando','','imagenes/e-t/mando5.gif',1);MM_showHideLayers('Pulsadores1','','hide','Pulsadores2','','hide','Pulsadores3','','hide','Pulsadores4','','hide','Pulsadores5','','show');MM_setTextOfLayer('tiempo','','10')";
+
+    document.MM_Time[3].lastFrame = 11;
+
+    document.MM_Time[4] = new Array(21);
+
+    document.MM_Time["tempo3"] = document.MM_Time[4];
+
+    document.MM_Time[4].MM_Name = "tempo3";
+
+    document.MM_Time[4].fps = 1;
+
+    document.MM_Time[4][0] = new String("behavior");
+
+    document.MM_Time[4][0].frame = 2;
+
+    document.MM_Time[4][0].value = "MM_setTextOfLayer('tiempo','','1')";
+
+    document.MM_Time[4][1] = new String("behavior");
+
+    document.MM_Time[4][1].frame = 3;
+
+    document.MM_Time[4][1].value = "MM_setTextOfLayer('tiempo','','2')";
+
+    document.MM_Time[4][2] = new String("behavior");
+
+    document.MM_Time[4][2].frame = 4;
+
+    document.MM_Time[4][2].value = "MM_setTextOfLayer('tiempo','','3')";
+
+    document.MM_Time[4][3] = new String("behavior");
+
+    document.MM_Time[4][3].frame = 5;
+
+    document.MM_Time[4][3].value = "MM_setTextOfLayer('tiempo','','4')";
+
+    document.MM_Time[4][4] = new String("behavior");
+
+    document.MM_Time[4][4].frame = 6;
+
+    document.MM_Time[4][4].value = "MM_setTextOfLayer('tiempo','','5')";
+
+    document.MM_Time[4][5] = new String("behavior");
+
+    document.MM_Time[4][5].frame = 7;
+
+    document.MM_Time[4][5].value = "MM_setTextOfLayer('tiempo','','6')";
+
+    document.MM_Time[4][6] = new String("behavior");
+
+    document.MM_Time[4][6].frame = 8;
+
+    document.MM_Time[4][6].value = "MM_setTextOfLayer('tiempo','','7')";
+
+    document.MM_Time[4][7] = new String("behavior");
+
+    document.MM_Time[4][7].frame = 9;
+
+    document.MM_Time[4][7].value = "MM_setTextOfLayer('tiempo','','8')";
+
+    document.MM_Time[4][8] = new String("behavior");
+
+    document.MM_Time[4][8].frame = 10;
+
+    document.MM_Time[4][8].value = "MM_setTextOfLayer('tiempo','','9')";
+
+    document.MM_Time[4][9] = new String("behavior");
+
+    document.MM_Time[4][9].frame = 11;
+
+    document.MM_Time[4][9].value = "MM_setTextOfLayer('tiempo','','10')";
+
+    document.MM_Time[4][10] = new String("behavior");
+
+    document.MM_Time[4][10].frame = 12;
+
+    document.MM_Time[4][10].value = "MM_setTextOfLayer('tiempo','','11')";
+
+    document.MM_Time[4][11] = new String("behavior");
+
+    document.MM_Time[4][11].frame = 13;
+
+    document.MM_Time[4][11].value = "MM_setTextOfLayer('tiempo','','12')";
+
+    document.MM_Time[4][12] = new String("behavior");
+
+    document.MM_Time[4][12].frame = 14;
+
+    document.MM_Time[4][12].value = "MM_setTextOfLayer('tiempo','','13')";
+
+    document.MM_Time[4][13] = new String("behavior");
+
+    document.MM_Time[4][13].frame = 15;
+
+    document.MM_Time[4][13].value = "MM_setTextOfLayer('tiempo','','14')";
+
+    document.MM_Time[4][14] = new String("behavior");
+
+    document.MM_Time[4][14].frame = 16;
+
+    document.MM_Time[4][14].value = "MM_setTextOfLayer('tiempo','','15')";
+
+    document.MM_Time[4][15] = new String("behavior");
+
+    document.MM_Time[4][15].frame = 17;
+
+    document.MM_Time[4][15].value = "MM_setTextOfLayer('tiempo','','16')";
+
+    document.MM_Time[4][16] = new String("behavior");
+
+    document.MM_Time[4][16].frame = 18;
+
+    document.MM_Time[4][16].value = "MM_setTextOfLayer('tiempo','','17')";
+
+    document.MM_Time[4][17] = new String("behavior");
+
+    document.MM_Time[4][17].frame = 19;
+
+    document.MM_Time[4][17].value = "MM_setTextOfLayer('tiempo','','18')";
+
+    document.MM_Time[4][18] = new String("behavior");
+
+    document.MM_Time[4][18].frame = 20;
+
+    document.MM_Time[4][18].value = "MM_setTextOfLayer('tiempo','','19')";
+
+    document.MM_Time[4][19] = new String("sprite");
+
+    document.MM_Time[4][19].slot = 1;
+
+    if (ns)
+
+        document.MM_Time[4][19].obj = document["Layer3"];
+
+    else
+
+        document.MM_Time[4][19].obj = document.all ? document.all["Layer3"] : null;
+
+    document.MM_Time[4][19].keyFrames = new Array(2, 21);
+
+    document.MM_Time[4][19].values = new Array(0);
+
+    document.MM_Time[4][20] = new String("behavior");
+
+    document.MM_Time[4][20].frame = 21;
+
+    document.MM_Time[4][20].value = "MM_swapImage('fuerza','','imagenes/e-t/fuerza2.gif',1);MM_swapImage('amperimetro','','imagenes/amper-2.gif',1);MM_swapImage('mando','','imagenes/e-t/mando5.gif',1);MM_showHideLayers('Pulsadores1','','hide','Pulsadores2','','hide','Pulsadores3','','hide','Pulsadores4','','hide','Pulsadores5','','show');MM_setTextOfLayer('tiempo','','20')";
+
+    document.MM_Time[4].lastFrame = 21;
+
+    for (i=0; i<document.MM_Time.length; i++) {
+
+        document.MM_Time[i].ID = null;
+
+        document.MM_Time[i].curFrame = 0;
+
+        document.MM_Time[i].delay = 1000/document.MM_Time[i].fps;
+
+    }
+
+}
+
+//-->
+
+</script>
+
+<link rel="stylesheet" href="estilo1.css">
+
+<script language="JavaScript" src="scripts/behActions.js"></script>
+
+<script language="JavaScript" src="scripts/behCourseBuilder.js"></script>
+
+<script language="JavaScript" src="scripts/interactionClass.js"></script>
+
+<script language="JavaScript" src="scripts/elemInptClass.js"></script>
+
+<script language="JavaScript" src="scripts/elemIbtnClass.js"></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" bgproperties="fixed"
+
+ onLoad="MM_initInteractions();MM_dragLayer('Fuerza','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Cuadro','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Mando','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Motores','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Materiales','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Leyenda','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_timelineGoto('Timeline1','1');MM_dragLayer('Descripcion','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('cuestionario','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_preloadImages('imagenes/temporizador/potenciometro2.gif','imagenes/temporizador/potenciometro.gif','imagenes/temporizador/potenciometro3.gif','imagenes/e-t/fuerza1.gif','imagenes/amper-0.gif','imagenes/e-t/fuerza3.gif','imagenes/e-t/fuerza2.gif','imagenes/amper-7.gif','imagenes/amper-2.gif','imagenes/e-t/mando3.gif','imagenes/e-t/mando5.gif','imagenes/e-t/mando7.gif','imagenes/e-t/mando1.gif','imagenes/e-t/mando0.gif','imagenes/motor_marcha.gif','imagenes/giro_dcha.gif','imagenes/motor.gif','imagenes/motor_parado.gif','imagenes/e-t/temporizando.gif');tmt_DivOnTop('Menu');MM_dragLayer('Menu','',0,0,0,0,true,false,-1,0,0,181,24,86,300,'',false,'');MM_dragLayer('Creditos','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'');MM_dragLayer('Titulo','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'')" marginwidth="0" marginheight="0" topmargin="0" leftmargin="0" background="imagenes/fondo.jpg">
+
+<div id="Titulo" style="position:absolute; width:691px; height:21px; z-index:13; left: 70px; top: 5px; background-color: #FFFFFF; layer-background-color: #FFFFFF; border: 1px none #000000"> 
+
+  <table width="100%" border="0" bgcolor="#000000" cellspacing="1">
+
+    <tr bgcolor="#FFCC00"> 
+
+      <td class="titulo"> 
+
+        <div align="center" class="titulo">Arranque estrella/triángulo de un motor 
+
+          trifásico. Mando automático con temporizador</div>
+
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="Menu" style="position:absolute; width:151px; height:227px; z-index:9; left: -169px; top: 86px; visibility: visible" class="blanco"> 
+
+  <table width="158" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFCC00">
+
+    <tr> 
+
+      <td rowspan="18" align="center" valign="middle" bgcolor="#FFFFFF"><img src="imagenes/lacel.gif" width="22" height="102">&nbsp;</td>
+
+      <td rowspan="17" align="center" valign="middle">&nbsp;</td>
+
+      <td valign="middle" bgcolor="#996600"><b><font color="#330099" size="2" face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;<font color="#FFFFFF">Men&uacute;</font></font></b><font color="#FFFFFF">&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="MM_timelineGoto('Timeline1','9')">X</a> 
+
+      </td>
+
+    </tr>
+
+    <tr> 
+
+      <td height="6"> 
+
+        <hr color="#330099" noshade size="1">
+
+      </td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+
+onClick="tmt_LayerBoxOut('document.layers[\'Fuerza\']','document.all[\'Fuerza\']','0.5','0');tmt_DivOnTop('Fuerza')">Esquema 
+
+        de fuerza</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+
+onClick="tmt_LayerBoxOut('document.layers[\'Mando\']','document.all[\'Mando\']','0.5','0');tmt_DivOnTop('Mando')">Esquema 
+
+        de mando</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+
+onClick="tmt_LayerBoxOut('document.layers[\'Cuadro\']','document.all[\'Cuadro\']','0.5','0');tmt_DivOnTop('Cuadro');MM_swapImage('mando','','imagenes/e-t/mando0.gif',1);MM_timelineGoto('conmuta','1');MM_timelineStop();MM_setTextOfLayer('tiempo','','0');MM_showHideLayers('Pulsadores1','','show','Pulsadores2','','hide','Pulsadores3','','hide','Pulsadores4','','hide','Pulsadores5','','hide','temp1on','','show','tempo1off','','hide','tempo2off','','hide','tempo3off','','hide','tiempo','','show')">Cuadro 
+
+        el&eacute;ctrico</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+
+onClick="tmt_LayerBoxOut('document.layers[\'Materiales\']','document.all[\'Materiales\']','0.5','0');tmt_DivOnTop('Materiales')">Materiales</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+
+onClick="tmt_LayerBoxOut('document.layers[\'Motores\']','document.all[\'Motores\']','0.5','0');tmt_DivOnTop('Motores')">Motores</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+
+onClick="tmt_LayerBoxOut('document.layers[\'Descripcion\']','document.all[\'Descripcion\']','0.5','0');tmt_DivOnTop('Descripcion')">Descripci&oacute;n</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+
+onClick="tmt_LayerBoxOut('document.layers[\'Leyenda\']','document.all[\'Leyenda\']','0.5','0');tmt_DivOnTop('Leyenda')">Leyenda</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#"
+
+onClick="tmt_LayerBoxOut('document.layers[\'cuestionario\']','document.all[\'cuestionario\']','0.5','0');tmt_DivOnTop('cuestionario')">Cuestionario</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#" onClick="tmt_IELayerTransitions('document.all[\'Fuerza\']','0.8','12');
+
+	  tmt_IELayerTransitions('document.all[\'Cuadro\']','0.8','12');
+
+	  tmt_IELayerTransitions('document.all[\'Mando\']','0.8','12');
+
+	  tmt_IELayerTransitions('document.all[\'Motores\']','0.8','12');
+
+	  tmt_IELayerTransitions('document.all[\'Materiales\']','0.8','12');
+
+	  tmt_IELayerTransitions('document.all[\'Leyenda\']','0.8','12');
+
+	  tmt_IELayerTransitions('document.all[\'Descripcion\']','0.8','12');
+
+	  tmt_IELayerTransitions('document.all[\'cuestionario\']','0.8','12')
+
+	  ;MM_timelineGoto('conmuta','1');MM_swapImage('mando','','imagenes/e-t/mando0.gif',1);MM_timelineStop();MM_setTextOfLayer('tiempo','','0');MM_showHideLayers('correcto','','hide','incorrecto','','hide','sinrespuesta','','hide','Pulsadores1','','hide','Pulsadores2','','hide','Pulsadores3','','hide','Pulsadores4','','hide','Pulsadores5','','hide','temp1on','','hide','tempo1off','','hide','tempo2off','','hide','tempo3off','','hide','tiempo','','hide')">Ocultar 
+
+        todas </a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#" onClick="tmt_LayerBoxOut('document.layers[\'Cuadro\']','document.all[\'Cuadro\']','0.8','0');
+
+tmt_LayerBoxOut('document.layers[\'Fuerza\']','document.all[\'Fuerza\']','0.8','0');
+
+tmt_LayerBoxOut('document.layers[\'Mando\']','document.all[\'Mando\']','0.8','0');
+
+tmt_LayerBoxOut('document.layers[\'Motores\']','document.all[\'Motores\']','0.8','0');
+
+tmt_LayerBoxOut('document.layers[\'Materiales\']','document.all[\'Materiales\']','0.8','0');
+
+tmt_LayerBoxOut('document.layers[\'Leyenda\']','document.all[\'Leyenda\']','0.8','0');
+
+tmt_LayerBoxOut('document.layers[\'Descripcion\']','document.all[\'Descripcion\']','0.8','0');
+
+tmt_LayerBoxOut('document.layers[\'cuestionario\']','document.all[\'cuestionario\']','0.8','0');MM_showHideLayers('Pulsadores1','','show','Pulsadores2','','hide','Pulsadores3','','hide','Pulsadores4','','hide','Pulsadores5','','hide','temp1on','','show','tempo1off','','hide','tempo2off','','hide','tempo3off','','hide','tiempo','','show')">Mostrar 
+
+        todas</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#" OnClick="window.open(document.location, 'big', 'fullscreen=yes')">Pantalla 
+
+        completa</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#" onClick="window.close()">Cerrar 
+
+        ventana</a></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="14"><img src="imagenes/flecha.gif" width="12" height="12"><a href="#" onClick="MM_openBrWindow('ayuda/ayuda.htm','','scrollbars=yes,width=400,height=500')">Ayuda</a></td>
+
+    </tr>
+
+    <tr>
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="#" onClick="tmt_LayerBoxOut('document.layers[\'Creditos\']','document.all[\'Creditos\']','0.5','0');tmt_DivOnTop('Creditos')">Cr&eacute;ditos</a></td>
+
+    </tr>
+
+    <tr>
+
+      <td><img src="imagenes/flecha.gif" width="12" height="12"><a href="menu.htm">Inicio</a></td>
+
+    </tr>
+
+    <tr> 
+
+      <td align="center" valign="middle">&nbsp;</td>
+
+      <td> 
+
+        <hr color="#330099" noshade size="1">
+
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="cuestionario" style="position:absolute; width:306px; height:21px; z-index:3; left: 300px; top: 20px; visibility: hidden"> 
+
+  <table width="308" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+
+      <td class="arrastrar" height="11"> 
+
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Cuestionario&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font><font face="Arial, Helvetica, sans-serif" size="2"><b><a href="#" onClick="tmt_IELayerTransitions('document.all[\'cuestionario\']','0.8','12');MM_showHideLayers('correcto','','hide','incorrecto','','hide','sinrespuesta','','hide')">X</a></b></font></div>
+
+      </td>
+
+    </tr>
+
+    <tr bgcolor="#99CCCC"> 
+
+      <td class="arrastrar"> 
+
+        <div align="center"><interaction name="MultCh_Checkboxes01" object="G01" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+
+          </interaction><interaction name="MultCh_Checkboxes01" object="G01" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+
+          <div name="G01Layer" align="left" class="arrastrar"><span name="G01question">&iquest;Cual 
+
+            es la misi&oacute;n del temporizador en el circuito?<br>
+
+            </span> 
+
+            <form name="G01choices">
+
+              <p><span name="G01choice1"> </span><span name="G01choice3"> 
+
+                <input name="G01choice3Inp" type="checkbox" onClick="G01.e['choice3'].update()">
+
+                Parar el motor a los pocos segundos de su puesta en marcha</span><span name="G01choice1"><br>
+
+                </span> <span name="G01choice2"> 
+
+                <input name="G01choice2Inp" type="checkbox" onClick="G01.e['choice2'].update()">
+
+                Conmutar el motor de tri&aacute;ngulo a estrella<br>
+
+                </span><span name="G01choice1"> 
+
+                <input name="G01choice1Inp" type="checkbox" onClick="G01.e['choice1'].update()">
+
+                Conmutar el motor de estrella a </span><span name="G01choice1"> 
+
+                tri&aacute;ngulo</span><span name="G01choice2"><br>
+
+                </span> <span name="G01choice3"> <br>
+
+                </span> </p>
+
+              </form>
+
+            <form name="G01controls">
+
+            </form>
+
+          </div>
+
+          <div align="left"> 
+
+            <script language="JavaScript">
+
+<!--
+
+  // Copyright 1998,1999 Macromedia, Inc. All rights reserved.
+
+  function newG01() {
+
+    G01 = new MM_interaction('G01',0,1,1,null,0,1,0,'','','c','',0);
+
+    G01.add('inpt','choice1',0,1,1,0);
+
+    G01.add('inpt','choice2',0,1,0,0);
+
+    G01.add('inpt','choice3',0,1,0,0);
+
+    G01.init();
+
+    G01.am('segm','Segment: Check Tries_',1,0);
+
+    G01.am('cond','Limite de veces_','G01.triesAtLimit == true',0);
+
+    G01.am('actn','Set Interaction Properties: Disable Interaction','MM_setIntProps(\'G01.setDisabled(true);\')','sp');
+
+    G01.am('end');
+
+  }
+
+  if (window.newG01 == null) window.newG01 = newG01;
+
+  if (!window.MM_initIntFns) window.MM_initIntFns = ''; window.MM_initIntFns += 'newG01();';
+
+//-->
+
+</script>
+
+            <cbi-select object="G01"></div>
+
+          </interaction> 
+
+          <div align="left"><interaction name="MultCh_Checkboxes02" object="G02" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+
+            </interaction></div>
+
+          <interaction name="MultCh_Checkboxes02" object="G02" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+
+          <div name="G02Layer" align="left"><span name="G02question">La corriente 
+
+            que el amper&iacute;metro marcha en estrella es:<br>
+
+            </span> 
+
+            <form name="G02choices">
+
+              <span name="G02choice1"> 
+
+              <input name="G02choice1Inp" type="checkbox" onClick="G02.e['choice1'].update()">
+
+              Una tercera parte que en tri&aacute;ngulo<br>
+
+              </span> <span name="G02choice2"> 
+
+              <input name="G02choice2Inp" type="checkbox" onClick="G02.e['choice2'].update()">
+
+              Tres veces la de tri&aacute;ngulo<br>
+
+              </span> <span name="G02choice3"> 
+
+              <input name="G02choice3Inp" type="checkbox" onClick="G02.e['choice3'].update()">
+
+              La misma.<br>
+
+              </span> 
+
+            </form>
+
+            <form name="G02controls">
+
+            </form>
+
+          </div>
+
+          <div align="left"> 
+
+            <script language="JavaScript">
+
+<!--
+
+  // Copyright 1998,1999 Macromedia, Inc. All rights reserved.
+
+  function newG02() {
+
+    G02 = new MM_interaction('G02',0,1,1,null,0,1,0,'','','c','',0);
+
+    G02.add('inpt','choice1',0,1,1,0);
+
+    G02.add('inpt','choice2',0,1,0,0);
+
+    G02.add('inpt','choice3',0,1,0,0);
+
+    G02.init();
+
+    G02.am('segm','Segment: Check Tries_',1,0);
+
+    G02.am('cond','Limite de veces_','G02.triesAtLimit == true',0);
+
+    G02.am('actn','Set Interaction Properties: Disable Interaction','MM_setIntProps(\'G02.setDisabled(true);\')','sp');
+
+    G02.am('end');
+
+  }
+
+  if (window.newG02 == null) window.newG02 = newG02;
+
+  if (!window.MM_initIntFns) window.MM_initIntFns = ''; window.MM_initIntFns += 'newG02();';
+
+//-->
+
+</script>
+
+            <cbi-select object="G02"></div>
+
+          </interaction> 
+
+          <div align="left"><interaction name="MultCh_Checkboxes04" object="G04" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+
+            </interaction></div>
+
+          <interaction name="MultCh_Checkboxes04" object="G04" template="010_Multiple Choice/050_MultCh_Checkboxes_03.agt" includesrc="interactionClass.js,elemInptClass.js"> 
+
+          <div name="G04Layer" align="left"><span name="G04question">El contacto 
+
+            de enclavamiento de KM2, conectado en paralelo al contacto abierto 
+
+            de KT1<br>
+
+            </span> 
+
+            <form name="G04choices">
+
+              <span name="G04choice1"> </span> <span name="G04choice2"> 
+
+              <input name="G04choice2Inp" type="checkbox" onClick="G04.e['choice2'].update()">
+
+              Sirve para enclavar el contactor KM2 y es imprescincible.<br>
+
+              </span> <span name="G04choice3"> 
+
+              <input name="G04choice3Inp" type="checkbox" onClick="G04.e['choice3'].update()">
+
+              Si no se pone, el circuito conmutar&iacute;a de estrella a tri&aacute;ngulo 
+
+              a intevalos de tiempo que corresponden con el ajuste del temporizador.<br>
+
+              </span><span name="G04choice1">
+
+              <input name="G04choice1Inp" type="checkbox" onClick="G04.e['choice1'].update()">
+
+              No es necesario. Se puede eliminar</span><span name="G04choice3"> 
+
+              <br>
+
+              </span> 
+
+            </form>
+
+            <form name="G04controls">
+
+            </form>
+
+          </div>
+
+          <div align="left"> 
+
+            <script language="JavaScript">
+
+<!--
+
+  // Copyright 1998,1999 Macromedia, Inc. All rights reserved.
+
+  function newG04() {
+
+    G04 = new MM_interaction('G04',0,1,1,null,0,1,0,'','','c','',0);
+
+    G04.add('inpt','choice1',0,1,1,0);
+
+    G04.add('inpt','choice2',0,1,0,0);
+
+    G04.add('inpt','choice3',0,1,0,0);
+
+    G04.init();
+
+    G04.am('segm','Segment: Check Tries_',1,0);
+
+    G04.am('cond','Limite de veces_','G04.triesAtLimit == true',0);
+
+    G04.am('actn','Set Interaction Properties: Disable Interaction','MM_setIntProps(\'G04.setDisabled(true);\')','sp');
+
+    G04.am('end');
+
+  }
+
+  if (window.newG04 == null) window.newG04 = newG04;
+
+  if (!window.MM_initIntFns) window.MM_initIntFns = ''; window.MM_initIntFns += 'newG04();';
+
+//-->
+
+</script>
+
+            <cbi-select object="G04"></div>
+
+          </interaction> 
+
+          <div align="left"><interaction name="Button_Push03" object="G03" template="040_Button/020_Button_Push_04.agt" includesrc="interactionClass.js,elemIbtnClass.js"></interaction><span name="G03question"><br>
+
+            </span> <span name="G03ibtn"> <a name="G03elemInp" href="#"
+
+    onClick="G03.e['elem'].update('onclick');return false"
+
+    onMouseOver="G03.e['elem'].update('onmouseover');"
+
+    onMouseOut="G03.e['elem'].update('onmouseout');"
+
+    onMouseDown="G03.e['elem'].update('onmousedown');"><img name="G03elemBtn" src="imagenes/transparente.gif" border="0" width="1" height="1">Comprobar</a> 
+
+            </span> </div>
+
+          <interaction name="Button_Push03" object="G03" template="040_Button/020_Button_Push_04.agt" includesrc="interactionClass.js,elemIbtnClass.js"> 
+
+          <div align="left"> 
+
+            <script language="JavaScript">
+
+<!--
+
+  // Copyright 1998,1999 Macromedia, Inc. All rights reserved.
+
+  function newG03() {
+
+    G03 = new MM_interaction('G03',1,1,0,0,0,0,0,'','','t','',0);
+
+    G03.add('ibtn','elem',0,null,1,0,0,'s');
+
+    G03.init();
+
+    G03.am('segm','comprobar_',1,0);
+
+    G03.am('cond','todos correctos_','G01.correct == (true) && G02.correct == (true) && G04.correct == (true)',0);
+
+    G03.am('actn','Show-Hide Layers','MM_showHideLayers(\'correcto\',\'\',\'show\',\'incorrecto\',\'\',\'hide\',\'sinrespuesta\',\'\',\'hide\')','');
+
+    G03.am('end');
+
+    G03.am('cond','sin respuesta_','G01.knownResponse == false || G02.knownResponse == false || G04.knownResponse == false',0);
+
+    G03.am('actn','Show-Hide Layers','MM_showHideLayers(\'correcto\',\'\',\'hide\',\'incorrecto\',\'\',\'hide\',\'sinrespuesta\',\'\',\'show\')','');
+
+    G03.am('end');
+
+    G03.am('cond','incorrecto_','G01.correct == (false) || G02.correct == (false) || G04.correct == (false)',0);
+
+    G03.am('actn','Show-Hide Layers','MM_showHideLayers(\'correcto\',\'\',\'hide\',\'incorrecto\',\'\',\'show\',\'sinrespuesta\',\'\',\'hide\')','');
+
+    G03.am('end');
+
+  }
+
+  if (window.newG03 == null) window.newG03 = newG03;
+
+  if (!window.MM_initIntFns) window.MM_initIntFns = ''; window.MM_initIntFns += 'newG03();';
+
+//-->
+
+</script>
+
+            <cbi-select object="G03"></div>
+
+          </interaction> 
+
+          <div id="correcto" style="position:absolute; width:125px; height:46px; z-index:1; left: 160px; top: 428px; visibility: hidden; background-color: #CCCC99; layer-background-color: #CCCC99; border: 1px none #000000"> 
+
+            <table width="100%" border="0" cellspacing="1" bgcolor="#000000">
+
+              <tr bgcolor="#CCCCFF"> 
+
+                <td> 
+
+                  <div align="center"><font color="#000066"><b><font size="2">&iexcl;&iexcl;ENHORABUENA!!</font></b><br>
+
+                    Las respuestas son correctas</font></div>
+
+                </td>
+
+              </tr>
+
+            </table>
+
+          </div>
+
+          <div id="incorrecto" style="position:absolute; width:125px; height:46px; z-index:2; left: 160px; top: 428px; visibility: hidden; background-color: #CCCC99; layer-background-color: #CCCC99; border: 1px none #000000"> 
+
+            <table width="100%" border="0" cellspacing="1" bgcolor="#000000">
+
+              <tr bgcolor="#FFCCCC"> 
+
+                <td> 
+
+                  <div align="center"><font color="#CC0000">Una o m&aacute;s respuestas 
+
+                    no son correctas</font></div>
+
+                </td>
+
+              </tr>
+
+            </table>
+
+          </div>
+
+          <div id="sinrespuesta" style="position:absolute; width:125px; height:46px; z-index:3; left: 160px; top: 428px; visibility: hidden"> 
+
+            <table width="100%" border="0" cellspacing="1" bgcolor="#000000">
+
+              <tr bgcolor="#CCCC99"> 
+
+                <td> 
+
+                  <div align="center"><font color="#006600">Una o m&aacute;s preguntas 
+
+                    no tienen respuesta</font></div>
+
+                </td>
+
+              </tr>
+
+            </table>
+
+          </div>
+
+          <div align="left"></div>
+
+          <p align="left"><br>
+
+            <br>
+
+          </p>
+
+          <font color="#FFFFFF">. </font></div>
+
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="Fuerza" style="position:absolute; width:219px; height:37px; z-index:5; left: 5px; top: 40px; background-color: #FFFFFF; layer-background-color: #FFFFFF; border: 1px none #000000; visibility: visible" class="blanco"> 
+
+  <table width="221" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+
+      <td class="arrastrar" height="16"> 
+
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Esquema de Fuerza&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Fuerza\']','0.8','12')">X</a></b></font></div>
+
+      </td>
+
+    </tr>
+
+    <tr bgcolor="#FFFFFF"> 
+
+      <td> 
+
+        <div align="center"> <img src="imagenes/e-t/fuerza1.gif" width="410" height="448" name="fuerza"> 
+
+          <br>
+
+        </div>
+
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="Cuadro" style="position:absolute; width:172px; height:202px; z-index:7; left: 585px; top: 40px; visibility: visible"> 
+
+  <table width="192" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000" height="200">
+
+      <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+
+        <td class="arrastrar" height="8"> 
+
+          
+
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Cuadro 
+
+          el&eacute;ctrico&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="MM_timelineStop();MM_swapImage('mando','','imagenes/e-t/mando0.gif',1);MM_timelineGoto('conmuta','1');tmt_IELayerTransitions('document.all[\'Cuadro\']','0.8','12');MM_setTextOfLayer('tiempo','','0');MM_showHideLayers('Pulsadores1','','hide','Pulsadores2','','hide','Pulsadores3','','hide','Pulsadores4','','hide','Pulsadores5','','hide','temp1on','','hide','tempo1off','','hide','tempo2off','','hide','tempo3off','','hide','tiempo','','hide')">X</a></b></font></div>
+
+        </td>
+
+      </tr>
+
+      <tr bgcolor="#CCCC99" valign="top" align="left"> 
+
+        <td height="186"> 
+
+          <div align="left"> 
+
+          <div align="center">
+
+            <table width="75%" border="0">
+
+              <tr> 
+
+                <td colspan="2"> 
+
+                  <table border="1" bordercolor="#000000" bgcolor="#999999" align="center">
+
+                    <tr> 
+
+                      <td><img src="imagenes/amper-0.gif" width="90" height="90" name="amperimetro"></td>
+
+                    </tr>
+
+                  </table>
+
+                </td>
+
+              </tr>
+
+              <tr> 
+
+                <td> 
+
+                  <div align="center">Marcha</div>
+
+                </td>
+
+                <td> 
+
+                  <div align="center">Paro</div>
+
+                </td>
+
+              </tr>
+
+              <tr> 
+
+                <td>&nbsp;</td>
+
+                <td> 
+
+                  <div align="center"><a href="#" onClick="MM_timelineGoto('conmuta','1');MM_setTextOfLayer('tiempo','','0')"><img src="imagenes/paro-in.gif" width="23" height="23" name="paro" onMouseDown="MM_timelineStop();MM_showHideLayers('Pulsadores1','','show','Pulsadores2','','hide','Pulsadores3','','hide','Pulsadores4','','hide','Pulsadores5','','hide','temp1on','','show','tempo1off','','hide','tempo2off','','hide','tempo3off','','hide');MM_swapImage('mando','','imagenes/e-t/mando1.gif',1);MM_swapImage('potenciometro','','imagenes/temporizador/potenciometro2.gif',1)" border="0" onMouseUp="MM_swapImage('mando','','imagenes/e-t/mando0.gif',1)"></a></div>
+
+                </td>
+
+              </tr>
+
+              <tr> 
+
+                <td colspan="2" height="7"> 
+
+                  <div align="center"></div>
+
+                </td>
+
+              </tr>
+
+              <tr> 
+
+                <td colspan="2">
+
+                  <div align="center"><font size="1">Ajuste del temporizador</font></div>
+
+                </td>
+
+              </tr>
+
+              <tr> 
+
+                <td>&nbsp;</td>
+
+                <td>&nbsp;</td>
+
+              </tr>
+
+              <tr> 
+
+                <td height="18">&nbsp;</td>
+
+                <td height="18">&nbsp;</td>
+
+              </tr>
+
+              <tr> 
+
+                <td>&nbsp;</td>
+
+                <td>&nbsp;</td>
+
+              </tr>
+
+              <tr> 
+
+                <td>&nbsp;</td>
+
+                <td>&nbsp;</td>
+
+              </tr>
+
+              <tr> 
+
+                <td>&nbsp;</td>
+
+                <td>&nbsp;</td>
+
+              </tr>
+
+              <tr> 
+
+                <td>&nbsp;</td>
+
+                <td>&nbsp;</td>
+
+              </tr>
+
+            </table>
+
+            <div id="Pulsadores1" style="position:absolute; width:23px; height:23px; z-index:11; left: 57px; top: 144px; visibility: visible"><a href="#" onClick="MM_timelineGoto('conmuta','2');MM_timelinePlay('tempo1');MM_showHideLayers('Pulsadores1','','hide','Pulsadores2','','hide','Pulsadores3','','hide','Pulsadores4','','show','Pulsadores5','','hide','temp1on','','hide','tempo1off','','show','tempo2off','','hide','tempo3off','','hide')"><img src="imagenes/mch1-in.gif" width="23" height="23" name="marcha" border="0" onMouseDown="MM_swapImage('mando','','imagenes/e-t/mando3.gif',1);MM_timelineGoto('tempo1','1')" onMouseUp="MM_swapImage('mando','','imagenes/e-t/temporizando.gif',1)"></a> 
+
+            </div>
+
+            <div id="Pulsadores2" style="position:absolute; width:18px; height:18px; z-index:11; left: 57px; top: 144px; visibility: hidden"> 
+
+              <a href="#" onClick="MM_timelineGoto('tempo2','1');MM_timelinePlay('tempo2');MM_timelineGoto('conmuta','2')"><img src="imagenes/mch1-in.gif" width="22" height="23" name="marcha" border="0" onMouseDown="MM_swapImage('mando','','imagenes/e-t/mando3.gif',1)" onMouseUp="MM_swapImage('mando','','imagenes/e-t/temporizando.gif',1);MM_showHideLayers('Pulsadores1','','hide','Pulsadores2','','hide','Pulsadores3','','hide','Pulsadores4','','show','Pulsadores5','','hide','temp1on','','hide','tempo1off','','hide','tempo2off','','show','tempo3off','','hide')"></a> 
+
+            </div>
+
+            <div id="Pulsadores3" style="position:absolute; width:15px; height:15px; z-index:11; left: 57px; top: 144px; visibility: hidden"> 
+
+              <a href="#" onClick="MM_timelineGoto('tempo3','1');MM_timelinePlay('tempo3');MM_timelineGoto('conmuta','2')"><img src="imagenes/mch1-in.gif" width="23" height="23" name="marcha" onMouseDown="MM_swapImage('mando','','imagenes/e-t/mando3.gif',1)" border="0" onMouseUp="MM_swapImage('mando','','imagenes/e-t/temporizando.gif',1);MM_showHideLayers('Pulsadores1','','hide','Pulsadores2','','hide','Pulsadores3','','hide','Pulsadores4','','show','Pulsadores5','','hide','temp1on','','hide','tempo1off','','hide','tempo2off','','hide','tempo3off','','show')"></a> 
+
+            </div>
+
+            <div id="Pulsadores4" style="position:absolute; width:18px; height:21px; z-index:11; left: 57px; top: 144px; visibility: hidden"> 
+
+              <img src="imagenes/mch1-in.gif" width="23" height="23" name="marcha" onMouseDown="MM_swapImage('mando','','imagenes/e-t/mando3.gif',1)" onMouseUp="MM_swapImage('mando','','imagenes/e-t/temporizando.gif',1)"> 
+
+            </div>
+
+            <div id="Pulsadores5" style="position:absolute; width:18px; height:21px; z-index:11; left: 57px; top: 144px; visibility: hidden"> 
+
+              <img src="imagenes/mch1-in.gif" width="23" height="23" name="marcha" onMouseDown="MM_swapImage('mando','','imagenes/e-t/mando7.gif',1)" onMouseUp="MM_swapImage('mando','','imagenes/e-t/mando5.gif',1)"> 
+
+            </div>
+
+            <div id="temp1on" style="position:absolute; width:62px; height:59px; z-index:11; left: 56px; top: 200px; visibility: visible"> 
+
+              <table width="42%" border="1" bordercolor="#99CCCC">
+
+                <tr> 
+
+                  <td> 
+
+                    <div align="center"><img src="imagenes/temporizador/potenciometro2.gif" width="73" height="74" usemap="#Map2" border="0" name="potenciometro"><map name="Map2"><area shape="rect" coords="30,1,47,40" href="#" onClick="MM_showHideLayers('Pulsadores1','','hide','Pulsadores2','','show','Pulsadores3','','hide','Pulsadores4','','hide','Pulsadores5','','hide','tempo1off','','hide','tempo2off','','hide','tempo3off','','hide');MM_swapImage('potenciometro','','imagenes/temporizador/potenciometro.gif',1)"><area shape="poly" coords="4,62,26,38,38,48,15,71" href="#" onClick="MM_showHideLayers('Pulsadores1','','show','Pulsadores2','','hide','Pulsadores3','','hide','Pulsadores4','','hide','Pulsadores5','','hide','tempo1off','','hide','tempo2off','','hide','tempo3off','','hide');MM_swapImage('potenciometro','','imagenes/temporizador/potenciometro2.gif',1)"><area shape="poly" coords="43,38,66,61,57,72,35,48" href="#" onClick="MM_showHideLayers('Pulsadores1','','hide','Pulsadores2','','hide','Pulsadores3','','show','Pulsadores4','','hide','Pulsadores5','','hide','tempo1off','','hide','tempo2off','','hide','tempo3off','','hide');MM_swapImage('potenciometro','','imagenes/temporizador/potenciometro3.gif',1)"></map></div>
+
+                  </td>
+
+                </tr>
+
+              </table>
+
+            </div>
+
+            <div id="tempo1off" style="position:absolute; width:62px; height:59px; z-index:11; left: 56px; top: 200px; visibility: hidden"> 
+
+              <table width="42%" border="1" bordercolor="#99CCCC">
+
+                <tr> 
+
+                  <td> 
+
+                    <div align="center"><img src="imagenes/temporizador/potenciometro2.gif" width="73" height="74"></div>
+
+                  </td>
+
+                </tr>
+
+              </table>
+
+            </div>
+
+            <div id="tempo2off" style="position:absolute; width:62px; height:59px; z-index:11; left: 56px; top: 200px; visibility: hidden"> 
+
+              <table width="42%" border="1" bordercolor="#99CCCC">
+
+                <tr> 
+
+                  <td> 
+
+                    <div align="center"><img src="imagenes/temporizador/potenciometro.gif" width="73" height="74"></div>
+
+                  </td>
+
+                </tr>
+
+              </table>
+
+            </div>
+
+            <div id="tempo3off" style="position:absolute; width:62px; height:59px; z-index:11; left: 56px; top: 200px; visibility: hidden"> 
+
+              <table width="42%" border="1" bordercolor="#99CCCC">
+
+                <tr> 
+
+                  <td> 
+
+                    <div align="center"><img src="imagenes/temporizador/potenciometro3.gif" width="73" height="74"></div>
+
+                  </td>
+
+                </tr>
+
+              </table>
+
+            </div>
+
+            <div id="tiempo" style="position:absolute; width:87px; height:22px; z-index:11; left: 53px; top: 290px">0</div>
+
+          </div>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+    </table>
+
+    
+
+  </div>
+
+<div id="Mando" style="position:absolute; width:120px; height:301px; z-index:2; left: 250px; top: 35px"> 
+
+  <table width="192" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+
+      <td class="arrastrar"> 
+
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Esquema 
+
+          de mando &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Mando\']','0.8','12')">X</a></b></font></div>
+
+      </td>
+
+    </tr>
+
+    <tr bgcolor="#FFFFFF"> 
+
+      <td><img src="imagenes/e-t/mando0.gif" width="439" height="456" name="mando"></td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="Motores" style="position:absolute; width:120px; height:22px; z-index:3; left: 424px; top: 48px; visibility: visible"> 
+
+  <table width="192" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+
+      <td class="arrastrar" height="2"> 
+
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Motor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Motores\']','0.8','12')">X</a></b></font></div>
+
+      </td>
+
+    </tr>
+
+    <tr bgcolor="#CCCC99"> 
+
+      <td> 
+
+        <div align="center"><br>
+
+          <b>M1</b><br>
+
+          <img src="imagenes/motor.gif" width="101" height="57" align="texttop" name="motor_foto"> 
+
+          <img src="imagenes/motor_parado.gif" width="40" height="40" align="absmiddle" name="motor_giro"><br>
+
+          <br>
+
+        </div>
+
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="Materiales" style="position:absolute; width:142px; height:16px; z-index:6; left: 264px; top: 21px; visibility: hidden"> 
+
+  <table width="192" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+
+      <td class="arrastrar"> 
+
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2"><b>Lista 
+
+          de materiales&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Materiales\']','0.8','12')">X</a></b></font></div>
+
+      </td>
+
+    </tr>
+
+    <tr bgcolor="#99CCCC"> 
+
+      <td>
+
+        <table width="99%" border="0">
+
+          <tr> 
+
+            <td width="59%">1 interruptor magnetot&eacute;rmico tripolar</td>
+
+            <td width="41%"><a href="#"><img src="imagenes/materiales/magneto_tripolar.gif" width="84" height="81" onMouseDown="MM_openBrWindow('simbolos/magneto3.htm','','resizable=yes,width=130,height=245')" border="0"></a></td>
+
+          </tr>
+
+          <tr> 
+
+            <td width="59%">1 interruptor magnetot&eacute;rmico monopolar</td>
+
+            <td width="41%"> 
+
+              <div align="center"><a href="#"><img src="imagenes/materiales/magneto_mono.gif" width="68" height="82" onMouseDown="MM_openBrWindow('simbolos/magneto1.htm','','resizable=yes,width=130,height=245')" border="0"></a></div>
+
+            </td>
+
+          </tr>
+
+          <tr> 
+
+            <td width="59%">3 contactores</td>
+
+            <td width="41%"> 
+
+              <div align="center"><a href="#"><img src="imagenes/materiales/contactor3.gif" width="61" height="83" border="0" onMouseDown="MM_openBrWindow('simbolos/contactor.htm','Contactor','resizable=yes,width=130,height=330')"></a></div>
+
+            </td>
+
+          </tr>
+
+          <tr> 
+
+            <td width="59%">1 rel&eacute; t&eacute;rmico</td>
+
+            <td width="41%"> 
+
+              <div align="center"><a href="#"><img src="imagenes/materiales/rele_termico.gif" width="52" height="67" border="0" onMouseDown="MM_openBrWindow('simbolos/rele_termico.htm','','resizable=yes,width=130,height=250')"></a></div>
+
+            </td>
+
+          </tr>
+
+          <tr> 
+
+            <td width="59%">1 amper&iacute;metro</td>
+
+            <td width="41%"> 
+
+              <div align="center"><a href="#"><img src="imagenes/materiales/amperimetro.gif" width="60" height="64" onMouseDown="MM_openBrWindow('simbolos/amper.htm','','resizable=yes,width=130,height=150')" border="0"></a></div>
+
+            </td>
+
+          </tr>
+
+          <tr> 
+
+            <td width="59%">2 pulsadores</td>
+
+            <td width="41%"> 
+
+              <div align="center"><a href="#"><img src="imagenes/materiales/pulsador_verde.gif" width="61" height="68" onMouseDown="MM_openBrWindow('simbolos/pulsador.htm','','resizable=yes,width=130,height=350')" border="0"></a></div>
+
+            </td>
+
+          </tr>
+
+          <tr> 
+
+            <td width="59%">1 temporizador</td>
+
+            <td width="41%"> 
+
+              <div align="center"><a href="#"><img src="imagenes/materiales/temporizador.gif" width="41" height="90" onMouseDown="MM_openBrWindow('simbolos/temporizador.htm','','resizable=yes,width=130,height=280')" border="0"></a></div>
+
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td width="59%">1 indicador luminoso</td>
+
+            <td width="41%">
+
+              <div align="center"><a href="#"><img src="imagenes/materiales/piloto_roojo.gif" width="66" height="65" onMouseDown="MM_openBrWindow('simbolos/indicador.htm','','resizable=yes,width=130,height=150')" border="0"></a></div>
+
+            </td>
+
+          </tr>
+
+        </table>
+
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="Leyenda" style="position:absolute; width:240px; height:21px; z-index:4; left: 368px; top: 128px; visibility: hidden"> 
+
+  <table width="255" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+
+      <td class="arrastrar"> 
+
+        <div align="left"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>Leyenda&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Leyenda\']','0.8','12')">X</a></b></font></div>
+
+      </td>
+
+    </tr>
+
+    <tr bgcolor="#99CCCC"> 
+
+      <td><font size="-1" face="Arial, Helvetica, sans-serif">QM1- Interruptor 
+
+        magnetot&eacute;rmico</font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>KM1- Contactor principal</font></font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>KM2- Contactor Tri&aacute;ngulo</font></font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>KM3- Contactor Estrella</font></font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>FR1- Rel&eacute; t&eacute;rmico</font></font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>M1- Motor</font></font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>SB1- Pulsador de parada</font></font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>SB2- Pulsador de marcha</font></font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>KT1- Temporizador</font></font> <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>HL1- Se&ntilde;alizaci&oacute;n motor en marcha</font></font> 
+
+        <font face="Arial, Helvetica, sans-serif"><br>
+
+        <font size=-1>HL2- Se&ntilde;alizaci&oacute;n disparo rel&eacute; t&eacute;rmico</font></font> 
+
+      </td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+<div id="Descripcion" style="position:absolute; width:120px; height:22px; z-index:3; left: 350px; top: 185px; visibility: hidden"> 
+
+  <table width="400" border="0" cellspacing="1" cellpadding="0" bordercolor="#CCCCCC" bgcolor="#000000">
+
+    <tr bgcolor="#FFCC00" bordercolor="#FFCC00"> 
+
+      <td class="arrastrar" height="18"> 
+
+        <div align="left">Descripci&oacute;n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font face="Arial, Helvetica, sans-serif" size="2"><a href="#" onClick="tmt_IELayerTransitions('document.all[\'Descripcion\']','0.8','12')">X</a></font></div>
+
+      </td>
+
+    </tr>
+
+    <tr bgcolor="#99CCCC"> 
+
+      <td class="descripcion">El fundamento del arranque estrella-triángulo se 
+
+        describe en el circuito de arranque por pulsadores. En aquel caso, se 
+
+        encargaba al operario la función de determinar el instante correcto para 
+
+        realizar la conmutación. En este circuito, la secuencia de conexiones 
+
+        se asegura mediante la determinación del tiempo que el motor tarda en 
+
+        acelerarse correctamente en estrella, utilizando un temporizador para 
+
+        la conmutación. El único inconveniente de este sistema, que libera al 
+
+        operario de la determinación del instante de paso correcto a triángulo, 
+
+        es que la máquina, en su proceso, pueda arrancar con cargas muy diferentes, 
+
+        lo que produciría tiempos distintos de aceleración, estando el temporizador 
+
+        tarado para un tiempo fijo. Como se trata de un caso raro, este sistema 
+
+        es el más utilizado; no obstante, siempre exige en la instalación la fijación 
+
+        del tiempo correcto de funcionamiento en estrella, para regular el temporizador.<br>
+
+        La orden de marcha activa el contactor de línea y el de estrella, con 
+
+        lo que el motor arranca, y, transcurrido el tiempo adecuado, el temporizador 
+
+        desactiva el contactor estrella y activa el contactor triángulo. Por ello, 
+
+        el temporizador debe poseer doble contacto (NC+NA) para asegurar que se 
+
+        abre el contactor estrella antes de que se active el contactor triángulo. 
+
+        Para prever la activación indebida del contactor estrella en un retorno 
+
+        intempestivo del contacto del temporizador, se usa un enclavamiento eléctrico, 
+
+        mediante contactos NC, similar al de la inversión. </td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+&nbsp; 
+
+<div id="Creditos" style="position:absolute; width:366px; height:260px; z-index:10; top: 45px; overflow: visible; visibility: hidden; left: 240px"> 
+
+  <div aling=justify class="creditos"> 
+
+    <table width="381" border="0" cellspacing="1" cellpadding="0" height="245" bgcolor="#000000">
+
+      <tr> 
+
+        <td height="18" bgcolor="#FFCC00" class="arrastrar"> 
+
+          <div align="left"><b><font face="Arial, Helvetica, sans-serif" color="#CCCC99">&nbsp;<font color="#000000">Acerca 
+
+            de CACEL</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b>&nbsp;<a href="#" onClick="tmt_IELayerTransitions('document.all[\'Creditos\']','0.8','12')">X</a></b></font></b></div>
+
+        </td>
+
+      </tr>
+
+      <tr valign="top" bgcolor="#FFFFFF"> 
+
+        <td height="290"> 
+
+          <blockquote> 
+
+            <p><b><font face="Arial, Helvetica, sans-serif" color="#CCCC99"><br>
+
+              <img src="imagenes/portada/icono.gif" width="100" height="22"></font></b></p>
+
+            <p><font face="Arial, Helvetica, sans-serif" color="#000000" size="2">Curso 
+
+              de Automatismos Cableados en L&iacute;nea</font> </p>
+
+            <p><font face="Arial, Helvetica, sans-serif" size="1" color="#3333CC"><b>Desarrollado 
+
+              por:</b></font></p>
+
+            <p><font face="Arial, Helvetica, sans-serif" size="1" color="#990000">Juan 
+
+              Carlos Mart&iacute;n Castillo </font><font face="Arial, Helvetica, sans-serif" size="1" color="#003300"><br>
+
+              Profesor de Instalaciones Electrot&eacute;cnicas del IES &quot;R&iacute;o 
+
+              Cuerpo de Hombre&quot; de B&eacute;jar (Salamanca)</font></p>
+
+            <p><font face="Arial, Helvetica, sans-serif" size="1" color="#990000">Jes&uacute;s 
+
+              G&oacute;mez Colorado</font><font face="Arial, Helvetica, sans-serif" size="1" color="#CCCCFF"><br>
+
+              <font color="#003300">Catedr&aacute;tico de Sistemas Electrot&eacute;cnicos 
+
+              y Autom&aacute;ticos de IES &quot;R&iacute;o Cuerpo de Hombre&quot; 
+
+              de B&eacute;jar (Salamanca)</font></font></p>
+
+            <p><font face="Arial, Helvetica, sans-serif" size="1" color="#333333">E- 
+
+              mail:</font><font face="Arial, Helvetica, sans-serif" size="1" color="#CCCCFF"> 
+
+              <a href="mailto:%20jmarti50@olmo.pntic.mec.es" class="submenu">jmarti50@olmo.pntic.mec.es</a><br>
+
+              <font color="#333333">WEB :</font><a href="http://olmo.pntic.mec.es/%7Ejmarti50/index.htm" class="submenu"> 
+
+              http://olmo.pntic.mec.es/~jmarti50/index.htm</a></font></p>
+
+          </blockquote>
+
+          <p align="right"><font color="#333333" face="Arial, Helvetica, sans-serif" size="1"> 
+
+            &copy; Castillo &amp; Colorado 2.000</font> 
+
+        </td>
+
+      </tr>
+
+    </table>
+
+  </div>
+
+</div>
+
+<span class="blanco"><a href="#" class="blanco"  onClick="MM_timelinePlay('Timeline1');tmt_DivOnTop('Menu')">Men&uacute;</a></span> 
+
+<!--Linea de tiempo conmuta
+
+1 - Circuto en paro
+
+2- Arranque en estrella
+
+3- arranque en triángulo --> 
+
+<div id="Layer2" style="position:absolute; width:23px; height:24px; z-index:12; left: 255px; top: 0px"></div>
+
+<div id="Layer1" style="position:absolute; width:9px; height:10px; z-index:11; left: 255px; top: 0px"></div>
+
+<div id="Layer3" style="position:absolute; width:40px; height:23px; z-index:13; left: 289px; top: 0px"></div>
+
+</body>
+
+</html>
+

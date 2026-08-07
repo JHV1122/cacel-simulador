@@ -1,0 +1,661 @@
+<html>
+
+<head>
+
+<title>Identifica los s&iacute;mbolos electrot&eacute;cnicos 2</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<!doctype html>
+<meta http-equiv="X-UA-Compatible" content="IE=5" />
+
+<script language="JavaScript"></script>
+
+<script language="JavaScript">
+
+<!--
+
+function noteclado()
+
+{
+
+alert('Pulsación de teclado no Permitida!')
+
+}
+
+
+
+document.onkeydown = noteclado ;
+
+
+
+function maximize_window()
+
+{
+
+	self.moveTo(0,0)
+
+	self.resizeTo(screen.availWidth,screen.availHeight)
+
+}
+
+//-->
+
+</script>
+
+<script language="JavaScript" src="scripts/behActions.js"></script>
+
+<script language="JavaScript" src="scripts/behCourseBuilder.js"></script>
+
+<script language="JavaScript" src="scripts/interactionClass.js"></script>
+
+<script language="JavaScript" src="scripts/elemDragClass.js"></script>
+
+<script language="JavaScript" src="scripts/behDragLayer.js"></script>
+
+<script language="JavaScript" src="scripts/elemTimrClass.js"></script>
+
+<script language="JavaScript">
+
+
+
+//Detección de la resolución de pantalla
+
+
+
+if ((screen.width == 640) && (screen.height == 480)) 
+
+{
+
+alert('La resolución de su monitor es demasiado baja para visualizar esta página.¡Por favor cambielá a 800x600!')
+
+}
+
+
+
+</script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_initInteractions();maximize_window()" background="../imagenes/fondo.jpg">
+
+<table width="750" border="0">
+
+  <tr>
+
+    <td><interaction name="Drag_ManyToMany01" object="G01" template="020_Drag and Drop/010_Drag_ManyToMany_04.agt" includesrc="interactionClass.js,elemDragClass.js,behDragLayer.js"> 
+
+      <div name="G01Layer"> 
+
+        <div align="center"></div>
+
+        <form name="G01controls">
+
+          <div align="center"> 
+
+            <input name="G01judge" type="submit" value="Comprobar" onClick="MM_judgeInt('G01')">
+
+            <input name="G01reset" type="reset" value="Restaurar" onClick="MM_resetInt('G01','reset','')">
+
+            <input type="button" name="Button" value="Cerra Ventana"onClick="window.close()">
+
+            <input type="button" name="Button" value="Ayuda" onClick="MM_showHideLayers('ayuda','','show')" onBlur="MM_showHideLayers('ayuda','','hide')">
+
+          </div>
+
+        </form>
+
+      </div>
+
+      <div id="G01destino1" style="position:absolute; left:248px; Top:426px; width:130px; height:10px; visibility: visible; z-index: 2"> 
+
+        <div align="center"><font color="#CC0000"><b><font face="Arial, Helvetica, sans-serif" size="1" color="#CC0000">Contacto_del_rel&eacute;_t&eacute;rmico</font></b></font></div>
+
+      </div>
+
+      <div id="G01destino2" style="position:absolute; left:448px; Top:256px; width:130px; height:8px; visibility: visible; z-index: 3"> 
+
+        <div align="center"> 
+
+          <p align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#CC0000"><b><font color="#000099" size="1">Interruptor_rotativo_de<br>
+
+            3_posiciones</font></b></font></p>
+
+        </div>
+
+      </div>
+
+      <div id="G01destino3" style="position:absolute; left:418px; Top:120px; width:125px; height:10px; visibility: visible; z-index: 4"> 
+
+        <div align="center"><b><font face="Arial, Helvetica, sans-serif" size="1" color="#CC0000">Final_de_carrera 
+
+          </font></b></div>
+
+      </div>
+
+      <div id="G01destino4" style="position:absolute; left:278px; Top:120px; width:115px; height:30px; visibility: visible; z-index: 5"> 
+
+        <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="1" color="#000099">Contacto_conmutado_de<br>
+
+          Interrutor_horario</font></b></p>
+
+      </div>
+
+      <div id="G01destino5" style="position:absolute; left:603px; Top:256px; width:165px; height:20px; visibility: visible; z-index: 6"> 
+
+        <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="1" color="#CC0000">Contacto_conmutado_de<br>
+
+          Temporizador_a_la_desconexi&oacute;n</font><font face="Arial, Helvetica, sans-serif" size="2" color="#CC0000"><br>
+
+          </font></b></p>
+
+      </div>
+
+      <div id="G01destino6" style="position:absolute; left:263px; Top:256px; width:165px; height:25px; visibility: visible; z-index: 7"> 
+
+        <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="1" color="#CC0000">Contacto_conmutado_de<br>
+
+          Temporizador_a_la_conexi&oacute;n</font></b></p>
+
+      </div>
+
+      <div id="G01destino7" style="position:absolute; left:568px; Top:120px; width:65px; height:15px; visibility: visible; z-index: 8"> 
+
+        <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="1" color="#000099">Interruptor</font></b></p>
+
+      </div>
+
+      <div id="G01destino8" style="position:absolute; left:418px; Top:431px; width:155px; height:30px; visibility: visible; z-index: 9"> 
+
+        <p align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#CC0000"><b><font face="Arial, Helvetica, sans-serif" size="1" color="#000099">Contacto_conmutado_de<br>
+
+          </font><font size="1" color="#000099">detector_de_nivel</font></b></font></p>
+
+      </div>
+
+      <div id="G01destino9" style="position:absolute; left:607px; Top:431px; width:136px; height:5px; visibility: visible; z-index: 10"> 
+
+        <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="1" color="#CC0000">Detector_capacitivo</font><font face="Arial, Helvetica, sans-serif" size="2" color="#CC0000"> 
+
+          </font><font face="Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+
+          </font></b></p>
+
+      </div>
+
+      <div id="G01destino10" style="position:absolute; left:658px; Top:125px; width:90px; height:5px; visibility: visible; z-index: 11"> 
+
+        <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="1" color="#CC0000">Detector_inductivo</font></b></p>
+
+      </div>
+
+      <div id="G01simbolo1" style="position:absolute; left:133px; Top:337px; width:20px; height:20px; visibility: visible; z-index: 12"> 
+
+        <img name="G01simbolo1Img" src="Image13.gif" width="100" height="68"></div>
+
+      <div id="G01simbolo2" style="position:absolute; left:123px; Top:266px; width:20px; height:20px; visibility: visible; z-index: 13"> 
+
+        <img name="G01simbolo2Img" src="Image16.gif" width="100" height="67"></div>
+
+      <div id="G01simbolo3" style="position:absolute; left:133px; Top:56px; width:20px; height:20px; visibility: visible; z-index: 14"> 
+
+        <img name="G01simbolo3Img" src="Image12.gif" width="99" height="68"></div>
+
+      <div id="G01simbolo4" style="position:absolute; left:18px; Top:125px; width:20px; height:20px; visibility: visible; z-index: 15"> 
+
+        <img name="G01simbolo4Img" src="Image19.gif" width="100" height="68"></div>
+
+      <div id="G01simbolo5" style="position:absolute; left:33px; Top:337px; width:20px; height:20px; visibility: visible; z-index: 16"> 
+
+        <img name="G01simbolo5Img" src="Image14.gif" width="101" height="67"></div>
+
+      <div id="G01simbolo6" style="position:absolute; left:18px; Top:266px; width:20px; height:20px; visibility: visible; z-index: 17"> 
+
+        <img name="G01simbolo6Img" src="Image15.gif" width="100" height="68"></div>
+
+      <div id="G01simbolo7" style="position:absolute; left:33px; Top:56px; width:20px; height:20px; visibility: visible; z-index: 18"> 
+
+        <img name="G01simbolo7Img" src="Image11.gif" width="100" height="68"></div>
+
+      <div id="G01simbolo8" style="position:absolute; left:118px; Top:125px; width:20px; height:20px; visibility: visible; z-index: 19"> 
+
+        <img name="G01simbolo8Img" src="Image20.gif" width="100" height="67"></div>
+
+      <div id="G01simbolo9" style="position:absolute; left:133px; Top:196px; width:20px; height:20px; visibility: visible; z-index: 20"> 
+
+        <img name="G01simbolo9Img" src="Image18.gif" width="100" height="67"></div>
+
+      <div id="G01simbolo10" style="position:absolute; left:33px; Top:196px; width:20px; height:20px; visibility: visible; z-index: 21"> 
+
+        <img name="G01simbolo10Img" src="Image17.gif" width="99" height="67"></div>
+
+      <script language="JavaScript">
+
+<!--
+
+  // Copyright 1998,1999 Macromedia, Inc. All rights reserved.
+
+  function newG01() {
+
+    G01 = new MM_interaction('G01',0,1,1,null,0,3,60,'','','m','',0);
+
+    G01.add('drag','destino1',null,0,1,1,0);
+
+    G01.add('drag','destino2',null,0,1,1,0);
+
+    G01.add('drag','destino3',null,0,1,1,0);
+
+    G01.add('drag','destino4',null,0,1,1,0);
+
+    G01.add('drag','destino5',null,0,1,1,0);
+
+    G01.add('drag','destino6',null,0,1,1,0);
+
+    G01.add('drag','destino7',null,0,1,1,0);
+
+    G01.add('drag','destino8',null,0,1,1,0);
+
+    G01.add('drag','destino9',null,0,1,1,0);
+
+    G01.add('drag','destino10',null,0,1,1,0);
+
+    G01.add('drag','simbolo1',null,1,0,1,0);
+
+    G01.add('drag','simbolo2',null,1,0,1,0);
+
+    G01.add('drag','simbolo3',null,1,0,1,0);
+
+    G01.add('drag','simbolo4',null,1,0,1,0);
+
+    G01.add('drag','simbolo5',null,1,0,1,0);
+
+    G01.add('drag','simbolo6',null,1,0,1,0);
+
+    G01.add('drag','simbolo7',null,1,0,1,0);
+
+    G01.add('drag','simbolo8',null,1,0,1,0);
+
+    G01.add('drag','simbolo9',null,1,0,1,0);
+
+    G01.add('drag','simbolo10',null,1,0,1,0);
+
+    G01.add('dragTarg','simbolo1','destino1',1,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo3','destino1',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo3','destino2',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo3','destino3',1,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo3','destino4',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo3','destino5',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo3','destino6',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo3','destino7',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo3','destino8',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo3','destino9',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo3','destino10',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo4','destino1',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo4','destino2',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo4','destino3',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo4','destino4',1,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo4','destino5',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo4','destino6',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo4','destino7',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo4','destino8',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo4','destino9',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo4','destino10',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo5','destino1',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo5','destino2',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo5','destino3',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo5','destino4',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo5','destino5',1,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo5','destino6',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo5','destino7',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo5','destino8',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo5','destino9',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo5','destino10',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo6','destino1',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo6','destino2',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo6','destino3',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo6','destino4',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo6','destino5',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo6','destino6',1,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo6','destino7',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo6','destino8',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo6','destino9',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo6','destino10',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo7','destino1',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo7','destino2',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo7','destino3',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo7','destino4',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo7','destino5',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo7','destino6',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo7','destino7',1,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo7','destino8',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo7','destino9',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo7','destino10',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo8','destino1',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo8','destino2',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo8','destino3',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo8','destino4',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo8','destino5',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo8','destino6',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo8','destino7',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo8','destino8',1,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo8','destino9',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo8','destino10',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo9','destino1',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo9','destino2',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo9','destino3',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo9','destino4',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo9','destino5',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo9','destino6',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo9','destino7',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo9','destino8',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo9','destino9',1,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo9','destino10',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo10','destino1',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo10','destino2',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo10','destino3',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo10','destino4',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo10','destino5',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo10','destino6',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo10','destino7',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo10','destino8',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo10','destino9',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo10','destino10',1,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo1','destino2',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo1','destino3',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo1','destino4',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo1','destino5',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo1','destino6',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo1','destino7',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo1','destino8',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo1','destino9',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo1','destino10',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo2','destino1',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo2','destino2',1,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo2','destino3',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo2','destino4',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo2','destino5',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo2','destino6',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo2','destino7',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo2','destino8',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo2','destino9',0,0,75,'Top','0:0',1);
+
+    G01.add('dragTarg','simbolo2','destino10',0,0,75,'Top','0:0',1);
+
+    G01.init();
+
+    G01.am('segm','Segment: Check Time_',1,0);
+
+    G01.am('cond','Time At Limit_','G01.timeAtLimit == true',0);
+
+    G01.am('actn','Popup Message','MM_popupMsg(\'Su tiempo ha terminado.\\rPara intentarlo de nuevo, vuelva a cargar la página.\')','pm');
+
+    G01.am('actn','Set Interaction Properties: Disable Interaction','MM_setIntProps(\'G01.setDisabled(true);\')','sp');
+
+    G01.am('end');
+
+    G01.am('segm','Segment: Correctness_',1,0);
+
+    G01.am('cond','Correct_','G01.correct == true',0);
+
+    G01.am('actn','Popup Message','MM_popupMsg(\'¡Enhorabuena!\\rLos símbolos han sido asociados correctamente.\')','');
+
+    G01.am('end');
+
+    G01.am('cond','Incorrect_','G01.correct == (false)',0);
+
+    G01.am('actn','Popup Message','MM_popupMsg(\'INCORRECTO.\\rUno o varios de los símbolos no han sido asociados correctamente.\')','');
+
+    G01.am('end');
+
+    G01.am('cond','Unknown Response_','G01.knownResponse == false',0);
+
+    G01.am('actn','Popup Message','MM_popupMsg(\'Tiene que dar alguna respuesta.\')','');
+
+    G01.am('end');
+
+    G01.am('segm','Segment: Check Tries_',1,0);
+
+    G01.am('cond','Tries At Limit_','G01.triesAtLimit == true',0);
+
+    G01.am('actn','Popup Message','MM_popupMsg(\'Sus intentos se han agotado.\\rPara intentarlo de nuevo, vuelva a cargar la página.\')','pm');
+
+    G01.am('actn','Set Interaction Properties: Disable Interaction','MM_setIntProps(\'G01.setDisabled(true);\')','sp');
+
+    G01.am('end');
+
+  }
+
+  if (window.newG01 == null) window.newG01 = newG01;
+
+  if (!window.MM_initIntFns) window.MM_initIntFns = ''; window.MM_initIntFns += 'newG01();';
+
+//-->
+
+</script>
+
+      <cbi-select object="G01"></interaction> 
+
+      <div id="ayuda" style="position:absolute; width:295px; height:200px; z-index:22; background-color: #FFCC66; layer-background-color: #FFCC66; border: 1px none #000000; left: 433px; top: 71px; visibility: hidden"> 
+
+        <p align="left"><span name="G01question"><font face="Arial, Helvetica, sans-serif" size="2" color="#003399"><b><font size="3" color="#6699FF">AYUDA:</font></b></font></span><span name="G01question"><font face="Arial, Helvetica, sans-serif" size="2" color="#003399"><br>
+
+          <b><font size="3">1-</font></b>Arrastrar los s&iacute;mbolos situados 
+
+          a la izquierda encima de cada uno de los nombres situados a la derecha<br>
+
+          <b></b></font></span></p>
+
+        <div align="justify"></div>
+
+        <p align="left"><b><span name="G01question"><font face="Arial, Helvetica, sans-serif" size="2" color="#003399"> 
+
+          </font></span></b><span name="G01question"><font face="Arial, Helvetica, sans-serif" size="2" color="#003399"><b><font size="3">2-</font></b>Presionar 
+
+          el Bot&oacute;n &quot;Comprobar&quot; para ver si las asociaciones son 
+
+          correctas. </font></span></p>
+
+        <p align="left"><span name="G01question"><font face="Arial, Helvetica, sans-serif" size="2" color="#003399"> 
+
+          Para comenzar de nuevo, pulsar &quot;Restaurar&quot;.<br>
+
+          </font></span><span name="G01question"><font face="Arial, Helvetica, sans-serif" size="2" color="#003399"><br>
+
+          El tiempo m&aacute;ximo de la prueba es <b>1 minuto.</b></font></span></p>
+
+        <p align="center"><span name="G01question"><font face="Arial, Helvetica, sans-serif" size="2" color="#003399"><b><br>
+
+          <img src="../com-rev/lin-roja.gif" width="289" height="5"> </b></font></span></p>
+
+        <p align="right"><font size="1" color="#CC0000" face="Arial, Helvetica, sans-serif">&copy;_J.C.M.Castillo_2.000 
+
+          </font></p>
+
+      </div>
+
+      <p>&nbsp;</p>
+
+      <p>&nbsp;</p>
+
+      <p>&nbsp;</p>
+
+      <p>&nbsp;</p>
+
+      <p>&nbsp;</p>
+
+      <p>&nbsp;</p>
+
+      <p>&nbsp;</p>
+
+      <p>&nbsp;</p>
+
+      <div id="Layer1" style="position:absolute; width:200px; height:45px; z-index:23; left: 33px; top: 406px"> 
+
+        <div align="center"><b><font color="#000099" face="Arial, Helvetica, sans-serif">Identifica 
+
+          los S&iacute;mbolos Electrot&eacute;cnicos 2</font></b></div>
+
+      </div>
+
+      <p>&nbsp;</p>
+
+      <p>&nbsp;</p>
+
+      <interaction name="Timer_Forward1Trig02" object="G02" template="060_Timer/010_Timer_Forward1Trig_04.agt" includesrc="interactionClass.js,elemTimrClass.js"> 
+
+      <div name="G02Layer" style="position:absolute; left:13px; width:155px; height:15px; z-index:1; visibility:visible;; top: 16px" id="G02Layer"> 
+
+        <span name="G02elem"> <img name="G02elemImg" src="images/timers/Small_Gradient_01.gif" width="106" height="15" align="absmiddle"></span> 
+
+        <font size="1" face="Arial, Helvetica, sans-serif">1 min </font> 
+
+        <form name="G02controls">
+
+        </form>
+
+      </div>
+
+      <script language="JavaScript">
+
+<!--
+
+  // Copyright 1998,1999 Macromedia, Inc. All rights reserved.
+
+  function newG02() {
+
+    G02=new MM_interaction('G02',1,0,0,null,0,0,0,'','','c','',0);
+
+    G02.add('timr','elem',0,30,60,0);
+
+    G02.add('timrTrig','elem','Trigger1',60,null,0);
+
+    G02.init();
+
+    G02.am('segm','Segment: Trigger1 Feedback_',0,0);
+
+  }
+
+  if (window.newG02 == null) window.newG02 = newG02;
+
+  if (!window.MM_initIntFns) window.MM_initIntFns = ''; window.MM_initIntFns += 'newG02();';
+
+//-->
+
+</script>
+
+      <cbi-select object="G02"></interaction> 
+
+      <p>&nbsp;</p>
+
+      <p>&nbsp;</p>
+
+      </td>
+
+  </tr>
+
+</table>
+
+</body>
+
+</html>
+
