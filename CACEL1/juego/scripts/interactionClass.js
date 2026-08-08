@@ -380,6 +380,8 @@ function MM_intFindObject(objName,  parentObj) {
           tempObj = MM_intFindObject(objName,parentObj[i]); //recurse
           if (tempObj) { curObj = tempObj; break;} //if found, done
   } } } }
+  if (!curObj && parentObj.getElementById) curObj = parentObj.getElementById(objName);
+  if (!curObj && parentObj.getElementsByName) { var byN = parentObj.getElementsByName(objName); if (byN.length) curObj = byN[0]; }
   return curObj;
 }
 

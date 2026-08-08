@@ -333,71 +333,42 @@ function MM_findObj(n, d) { //v3.0
 
 
 
-function MM_dragLayer(objName,x,hL,hT,hW,hH,toFront,dropBack,cU,cD,cL,cR,targL,targT,tol,dropJS,et,dragJS) { //v4.0 (modern)
-
-  var el = document.getElementById(objName);
-
-  if (!el || el._mmDragInit) return;
-
-  el._mmDragInit = true;
-
-  el.style.cursor = "move";
-
-  el.addEventListener("mousedown", function(e) {
-
-    var t = e.target;
-
-    while (t) { if (t.tagName === "A" || t.tagName === "IMG" || t.tagName === "INPUT" || t.tagName === "BUTTON") return; t = t.parentElement; }
-
-    e.preventDefault();
-
-    var startX = e.clientX, startY = e.clientY;
-
-    var startLeft = parseInt(el.style.left) || 0;
-
-    var startTop = parseInt(el.style.top) || 0;
-
-    if (toFront) {
-
-      var maxZ = 0;
-
-      var allEls = document.querySelectorAll("[id]");
-
-      for (var k = 0; k < allEls.length; k++) {
-
-        var zv = parseInt(allEls[k].style && allEls[k].style.zIndex) || 0;
-
-        if (zv > maxZ) maxZ = zv;
-
-      }
-
-      el.style.zIndex = maxZ + 1;
-
-    }
-
-    function onMove(ev) {
-
-      el.style.left = (startLeft + (ev.clientX - startX)) + "px";
-
-      el.style.top = (startTop + (ev.clientY - startY)) + "px";
-
-    }
-
-    function onUp() {
-
-      document.removeEventListener("mousemove", onMove);
-
-      document.removeEventListener("mouseup", onUp);
-
-    }
-
-    document.addEventListener("mousemove", onMove);
-
-    document.addEventListener("mouseup", onUp);
-
-  });
-
+function MM_dragLayer(objName,x,hL,hT,hW,hH,toFront,dropBack,cU,cD,cL,cR,targL,targT,tol,dropJS,et,dragJS) { //v5.0 (modern, title-bar only)
+  var el = document.getElementById(objName);
+  if (!el || el._mmDragInit) return;
+  el._mmDragInit = true;
+  var handle = el.querySelector(".arrastrar") || el;
+  handle.style.cursor = "move";
+  handle.addEventListener("mousedown", function(e) {
+    var t = e.target;
+    while (t && t !== handle) { if (t.tagName === "A" || t.tagName === "IMG" || t.tagName === "INPUT" || t.tagName === "BUTTON") return; t = t.parentElement; }
+    e.preventDefault();
+    var startX = e.clientX, startY = e.clientY;
+    var startLeft = parseInt(el.style.left) || 0;
+    var startTop = parseInt(el.style.top) || 0;
+    if (toFront) {
+      var maxZ = 0;
+      var allEls = document.querySelectorAll("[id]");
+      for (var k = 0; k < allEls.length; k++) {
+        var zv = parseInt(allEls[k].style && allEls[k].style.zIndex) || 0;
+        if (zv > maxZ) maxZ = zv;
+      }
+      el.style.zIndex = maxZ + 1;
+    }
+    function onMove(ev) {
+      el.style.left = (startLeft + (ev.clientX - startX)) + "px";
+      el.style.top = (startTop + (ev.clientY - startY)) + "px";
+    }
+    function onUp() {
+      document.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseup", onUp);
+    }
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseup", onUp);
+  });
 }
+
+
 
 function MM_timelinePlay(tmLnName, myID) { //v1.2
 
@@ -1949,13 +1920,13 @@ tmt_LayerBoxOut('document.layers[\'cuestionario\']','document.all[\'cuestionario
 
             </table>
 
-            <div id="intTemp1" style="position:absolute; width:57px; height:66px; z-index:12; left: 73px; top: 56px; visibility: visible"><img src="imagenes/int-0.gif" width="58" height="82" usemap="#mapa1" border="0"><map name="mapa1"><area shape="rect" coords="9,10,48,42" href="#" onClick="MM_timelineGoto('conmuta','2');MM_timelinePlay('tempo1');MM_timelineGoto('tempo1','1');MM_showHideLayers('intTemp1','','hide','intTemp2','','hide','intTemp3','','hide','inton','','show','temp1on','','hide','tempo1off','','show','tempo2off','','hide','tempo3off','','hide')" alt="5 Seg" title="5 Seg"></map></div>
+            <div id="intTemp1" style="position:absolute; width:57px; height:66px; z-index:12; left: 73px; top: 56px; visibility: visible"><img src="imagenes/int-0.gif" width="58" height="82" usemap="#mapa1" border="0" onClick="MM_timelineGoto('conmuta','2');MM_timelinePlay('tempo1');MM_timelineGoto('tempo1','1');MM_showHideLayers('intTemp1','','hide','intTemp2','','hide','intTemp3','','hide','inton','','show','temp1on','','hide','tempo1off','','show','tempo2off','','hide','tempo3off','','hide')"><map name="mapa1"><area shape="rect" coords="9,10,48,42" href="#" onClick="MM_timelineGoto('conmuta','2');MM_timelinePlay('tempo1');MM_timelineGoto('tempo1','1');MM_showHideLayers('intTemp1','','hide','intTemp2','','hide','intTemp3','','hide','inton','','show','temp1on','','hide','tempo1off','','show','tempo2off','','hide','tempo3off','','hide')" alt="5 Seg" title="5 Seg"></map></div>
 
-            <div id="intTemp2" style="position:absolute; width:57px; height:66px; z-index:12; left: 73px; top: 56px; visibility: hidden"><img src="imagenes/int-0.gif" width="58" height="82" usemap="#mapa2" border="0"><map name="mapa2"><area shape="rect" coords="9,9,48,41" href="#" onClick="MM_timelineGoto('conmuta','2');MM_timelinePlay('tempo2');MM_timelineGoto('tempo2','1');MM_showHideLayers('intTemp1','','hide','intTemp2','','hide','intTemp3','','hide','inton','','show','temp1on','','hide','tempo1off','','hide','tempo2off','','show','tempo3off','','hide')" alt="10 Seg" title="10 Seg"></map></div>
+            <div id="intTemp2" style="position:absolute; width:57px; height:66px; z-index:12; left: 73px; top: 56px; visibility: hidden"><img src="imagenes/int-0.gif" width="58" height="82" usemap="#mapa2" border="0" onClick="MM_timelineGoto('conmuta','2');MM_timelinePlay('tempo2');MM_timelineGoto('tempo2','1');MM_showHideLayers('intTemp1','','hide','intTemp2','','hide','intTemp3','','hide','inton','','show','temp1on','','hide','tempo1off','','hide','tempo2off','','show','tempo3off','','hide')"><map name="mapa2"><area shape="rect" coords="9,9,48,41" href="#" onClick="MM_timelineGoto('conmuta','2');MM_timelinePlay('tempo2');MM_timelineGoto('tempo2','1');MM_showHideLayers('intTemp1','','hide','intTemp2','','hide','intTemp3','','hide','inton','','show','temp1on','','hide','tempo1off','','hide','tempo2off','','show','tempo3off','','hide')" alt="10 Seg" title="10 Seg"></map></div>
 
-            <div id="intTemp3" style="position:absolute; width:57px; height:66px; z-index:12; left: 73px; top: 56px; visibility: hidden"><img src="imagenes/int-0.gif" width="58" height="82" usemap="#mapa3" border="0"><map name="mapa3"><area shape="rect" coords="10,10,49,42" href="#" onClick="MM_timelineGoto('conmuta','2');MM_timelinePlay('tempo3');MM_timelineGoto('tempo3','1');MM_showHideLayers('intTemp1','','hide','intTemp2','','hide','intTemp3','','hide','inton','','show','temp1on','','hide','tempo1off','','hide','tempo2off','','hide','tempo3off','','show')" alt="20 Seg" title="20 Seg"></map></div>
+            <div id="intTemp3" style="position:absolute; width:57px; height:66px; z-index:12; left: 73px; top: 56px; visibility: hidden"><img src="imagenes/int-0.gif" width="58" height="82" usemap="#mapa3" border="0" onClick="MM_timelineGoto('conmuta','2');MM_timelinePlay('tempo3');MM_timelineGoto('tempo3','1');MM_showHideLayers('intTemp1','','hide','intTemp2','','hide','intTemp3','','hide','inton','','show','temp1on','','hide','tempo1off','','hide','tempo2off','','hide','tempo3off','','show')"><map name="mapa3"><area shape="rect" coords="10,10,49,42" href="#" onClick="MM_timelineGoto('conmuta','2');MM_timelinePlay('tempo3');MM_timelineGoto('tempo3','1');MM_showHideLayers('intTemp1','','hide','intTemp2','','hide','intTemp3','','hide','inton','','show','temp1on','','hide','tempo1off','','hide','tempo2off','','hide','tempo3off','','show')" alt="20 Seg" title="20 Seg"></map></div>
 
-            <div id="inton" style="position:absolute; width:57px; height:66px; z-index:12; left: 73px; top: 56px; visibility: hidden"><img src="imagenes/int-1.gif" width="58" height="82" usemap="#Map" border="0"><map name="Map"><area shape="rect" coords="9,42,48,74" href="#" onClick="MM_timelineGoto('conmuta','1');MM_timelineStop();MM_showHideLayers('intTemp1','','show','intTemp2','','hide','intTemp3','','hide','inton','','hide','temp1on','','show','tempo1off','','hide','tempo2off','','hide','tempo3off','','hide');MM_setTextOfLayer('tiempo','','0');MM_swapImage('potenciometro','','imagenes/temporizador/potenciometro2.gif',1)"></map></div>
+            <div id="inton" style="position:absolute; width:57px; height:66px; z-index:12; left: 73px; top: 56px; visibility: hidden"><img src="imagenes/int-1.gif" width="58" height="82" usemap="#Map" border="0" onClick="MM_timelineGoto('conmuta','1');MM_timelineStop();MM_showHideLayers('intTemp1','','show','intTemp2','','hide','intTemp3','','hide','inton','','hide','temp1on','','show','tempo1off','','hide','tempo2off','','hide','tempo3off','','hide');MM_setTextOfLayer('tiempo','','0');MM_swapImage('potenciometro','','imagenes/temporizador/potenciometro2.gif',1)"><map name="Map"><area shape="rect" coords="9,42,48,74" href="#" onClick="MM_timelineGoto('conmuta','1');MM_timelineStop();MM_showHideLayers('intTemp1','','show','intTemp2','','hide','intTemp3','','hide','inton','','hide','temp1on','','show','tempo1off','','hide','tempo2off','','hide','tempo3off','','hide');MM_setTextOfLayer('tiempo','','0');MM_swapImage('potenciometro','','imagenes/temporizador/potenciometro2.gif',1)"></map></div>
 
             
 

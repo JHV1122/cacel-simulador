@@ -333,71 +333,42 @@ function MM_findObj(n, d) { //v3.0
 
 
 
-function MM_dragLayer(objName,x,hL,hT,hW,hH,toFront,dropBack,cU,cD,cL,cR,targL,targT,tol,dropJS,et,dragJS) { //v4.0 (modern)
-
-  var el = document.getElementById(objName);
-
-  if (!el || el._mmDragInit) return;
-
-  el._mmDragInit = true;
-
-  el.style.cursor = "move";
-
-  el.addEventListener("mousedown", function(e) {
-
-    var t = e.target;
-
-    while (t) { if (t.tagName === "A" || t.tagName === "IMG" || t.tagName === "INPUT" || t.tagName === "BUTTON") return; t = t.parentElement; }
-
-    e.preventDefault();
-
-    var startX = e.clientX, startY = e.clientY;
-
-    var startLeft = parseInt(el.style.left) || 0;
-
-    var startTop = parseInt(el.style.top) || 0;
-
-    if (toFront) {
-
-      var maxZ = 0;
-
-      var allEls = document.querySelectorAll("[id]");
-
-      for (var k = 0; k < allEls.length; k++) {
-
-        var zv = parseInt(allEls[k].style && allEls[k].style.zIndex) || 0;
-
-        if (zv > maxZ) maxZ = zv;
-
-      }
-
-      el.style.zIndex = maxZ + 1;
-
-    }
-
-    function onMove(ev) {
-
-      el.style.left = (startLeft + (ev.clientX - startX)) + "px";
-
-      el.style.top = (startTop + (ev.clientY - startY)) + "px";
-
-    }
-
-    function onUp() {
-
-      document.removeEventListener("mousemove", onMove);
-
-      document.removeEventListener("mouseup", onUp);
-
-    }
-
-    document.addEventListener("mousemove", onMove);
-
-    document.addEventListener("mouseup", onUp);
-
-  });
-
+function MM_dragLayer(objName,x,hL,hT,hW,hH,toFront,dropBack,cU,cD,cL,cR,targL,targT,tol,dropJS,et,dragJS) { //v5.0 (modern, title-bar only)
+  var el = document.getElementById(objName);
+  if (!el || el._mmDragInit) return;
+  el._mmDragInit = true;
+  var handle = el.querySelector(".arrastrar") || el;
+  handle.style.cursor = "move";
+  handle.addEventListener("mousedown", function(e) {
+    var t = e.target;
+    while (t && t !== handle) { if (t.tagName === "A" || t.tagName === "IMG" || t.tagName === "INPUT" || t.tagName === "BUTTON") return; t = t.parentElement; }
+    e.preventDefault();
+    var startX = e.clientX, startY = e.clientY;
+    var startLeft = parseInt(el.style.left) || 0;
+    var startTop = parseInt(el.style.top) || 0;
+    if (toFront) {
+      var maxZ = 0;
+      var allEls = document.querySelectorAll("[id]");
+      for (var k = 0; k < allEls.length; k++) {
+        var zv = parseInt(allEls[k].style && allEls[k].style.zIndex) || 0;
+        if (zv > maxZ) maxZ = zv;
+      }
+      el.style.zIndex = maxZ + 1;
+    }
+    function onMove(ev) {
+      el.style.left = (startLeft + (ev.clientX - startX)) + "px";
+      el.style.top = (startTop + (ev.clientY - startY)) + "px";
+    }
+    function onUp() {
+      document.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseup", onUp);
+    }
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseup", onUp);
+  });
 }
+
+
 
 function MM_timelinePlay(tmLnName, myID) { //v1.2
 
@@ -1267,7 +1238,7 @@ tmt_LayerBoxOut('document.layers[\'cuestionario\']','document.all[\'cuestionario
 
       <td> <img src="imagenes/arranque1/arran4.gif" width="242" height="395" name="fuerza">
 
-        <div id="cableroto" style="position:absolute; width:28px; height:39px; z-index:12; left: 66px; top: 73px; visibility: hidden"><img src="imagenes/transparente.gif" width="52" height="40" usemap="#Map3" border="0" onMouseDown="MM_timelineGoto('tiempo','1')"><map name="Map3"><area shape="rect" coords="20,9,33,26" href="#" onClick="MM_timelineGoto('conmuta','3');MM_timelineGoto('tiempo','1');MM_showHideLayers('cableroto','','hide')"></map></div>
+        <div id="cableroto" style="position:absolute; width:28px; height:39px; z-index:12; left: 66px; top: 73px; visibility: hidden"><img src="imagenes/transparente.gif" width="52" height="40" usemap="#Map3" border="0" onMouseDown="MM_timelineGoto('tiempo','1')" onClick="MM_timelineGoto('conmuta','3');MM_timelineGoto('tiempo','1');MM_showHideLayers('cableroto','','hide')"><map name="Map3"><area shape="rect" coords="20,9,33,26" href="#" onClick="MM_timelineGoto('conmuta','3');MM_timelineGoto('tiempo','1');MM_showHideLayers('cableroto','','hide')"></map></div>
 
         <map name="Map2"><area shape="circle" coords="91,70,5" href="#"></map>
 
@@ -1345,9 +1316,9 @@ tmt_LayerBoxOut('document.layers[\'cuestionario\']','document.all[\'cuestionario
 
           </table>
 
-          <div id="intoff" style="position:absolute; width:57px; height:66px; z-index:12; left: 68px; top: 190px; visibility: visible"><img src="imagenes/int-0.gif" width="58" height="82" usemap="#MapMap" border="0"><map name="MapMap"><area shape="rect" coords="9,10,48,42" href="#" onClick="MM_timelineGoto('conmuta','2')"></map></div>
+          <div id="intoff" style="position:absolute; width:57px; height:66px; z-index:12; left: 68px; top: 190px; visibility: visible"><img src="imagenes/int-0.gif" width="58" height="82" usemap="#MapMap" border="0" onClick="MM_timelineGoto('conmuta','2')"><map name="MapMap"><area shape="rect" coords="9,10,48,42" href="#" onClick="MM_timelineGoto('conmuta','2')"></map></div>
 
-          <div id="inton" style="position:absolute; width:57px; height:66px; z-index:12; left: 68px; top: 190px; visibility: hidden"><img src="imagenes/int-1.gif" width="58" height="82" usemap="#Map" border="0"><map name="Map"><area shape="rect" coords="9,41,48,73" href="#" onClick="MM_timelineGoto('conmuta','1');MM_timelineStop('tiempo');MM_showHideLayers('mensaje','','hide')"></map></div>
+          <div id="inton" style="position:absolute; width:57px; height:66px; z-index:12; left: 68px; top: 190px; visibility: hidden"><img src="imagenes/int-1.gif" width="58" height="82" usemap="#Map" border="0" onClick="MM_timelineGoto('conmuta','1');MM_timelineStop('tiempo');MM_showHideLayers('mensaje','','hide')"><map name="Map"><area shape="rect" coords="9,41,48,73" href="#" onClick="MM_timelineGoto('conmuta','1');MM_timelineStop('tiempo');MM_showHideLayers('mensaje','','hide')"></map></div>
 
         </div>
 
