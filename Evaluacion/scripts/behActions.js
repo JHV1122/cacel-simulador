@@ -85,9 +85,7 @@ function MM_setTextOfFrame(frameRef,newHTML,preserveBg) { //v2.0
   }
 }
 function MM_setTextOfLayer(objName,x,newText) { //v3.0
-  if ((obj=MM_findObj(objName))!=null) with (obj)
-    if (navigator.appName=='Netscape') {document.write(unescape(newText)); document.close();}
-    else innerHTML = unescape(newText);
+  if ((obj=MM_findObj(objName))!=null) obj.innerHTML = unescape(newText);
 }
 function MM_setTextOfTextfield(objName,x,newText) { //v3.0
   var obj = MM_findObj(objName); if (obj) obj.value = newText;
