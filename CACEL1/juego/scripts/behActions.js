@@ -59,6 +59,7 @@ function MM_findObj(r, d) { //v3.0  special CourseBuilder version of findObj
   if (!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
   for (i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
   if(!x && d.getElementById) x=d.getElementById(n);
+  if(!x && d.getElementsByName) { var byN=d.getElementsByName(n); if(byN.length) x=byN[0]; }
   return x;
 }
 function MM_goToURL() { //v3.0
